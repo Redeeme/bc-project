@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\GanttController;
+use App\Http\Controllers\TaskController;
+use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +16,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/gantt', function () {
+    return view('gantt');
 });
+Route::get('/', [WelcomeController::class, 'index'])->name('welcome-page');
+Route::get('/tourSelection', [TaskController::class, 'getTours'])->name('select-tours');
+Route::post('/gantt',[GanttController::class, 'index'])->name('gantt-page');
+
