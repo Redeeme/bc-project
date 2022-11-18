@@ -21,7 +21,7 @@ class DiagramTimeSeeder extends Seeder
         for ($i = 4; $i <= 24; $i++) {
             if ($i == 4){
                 $data[] = [
-                    'start'=>Carbon::createFromTime(),
+                    'start'=>Carbon::createFromTime($i),
                     'end'=>Carbon::createFromTime(23,59,59),
                     'label'=>'čas',
                 ];

@@ -34,10 +34,10 @@ class TasksSeeder extends Seeder
                 if(!$header) {
                     $header = $row;
                 }else{
-                    $hours_start = (int)$row[6] / 60;
-                    $minute_start = (int)$row[6] % 60;
-                    $hours_end = (int)$row[7] / 60;
-                    $minute_end = (int)$row[7] % 60;
+                    $hours_start = (int)($row[6] / 60);
+                    $minute_start = $row[6] % 60;
+                    $hours_end = (int)($row[7] / 60);
+                    $minute_end = $row[7] % 60;
                     $time_start = Carbon::createFromTime(round($hours_start), $minute_start);
                     $time_end = Carbon::createFromTime(round($hours_end), $minute_end);
                     $data[] = [
@@ -45,12 +45,10 @@ class TasksSeeder extends Seeder
                         'processid' => $row[1],
                         'start' => $time_start,
                         'end' => $time_end,
-                        'label' => $row[4] . ' ' .
-                            $row[5] . ' ' .
-                            $time_start . ' ' .
-                            $time_end . ' ' .
-                            $row[8] . ' ' .
-                            $row[9],
+                        'label' => 'ZastavkaStart' . '-' . $row[4] . ' ' .
+                            'ZastavkaFinish' . '-' . $row[5] . ' ' .
+                            'Vzdialenost' . '-' . $row[8] . ' ' .
+                            'Spotreba' . '-' . $row[9],
                         'linka' => $row[3],
                     ];
                 }

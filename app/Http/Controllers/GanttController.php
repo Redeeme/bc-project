@@ -29,8 +29,9 @@ class GanttController extends Controller
         $processes = Task::select('processid AS label', 'processid AS id')->where('linka', $request->linka)->get();
         $task = Task::select('processid', 'start', 'end', 'label')->where('linka', $request->linka)->get();
         $categories = DiagramTime::select('start','end','label')->where('id','!=','1')->get();
+        $category = DiagramTime::select('start','end','label')->where('id','=','1')->get();
 
-        return view('gantt', ['processes' => $processes, 'task' => $task,'categories'=>$categories]);
-        //return response()->json(['processes' => $processes, 'task' => $task]);
+        return view('gantt', ['processes' => $processes, 'task' => $task,'categories'=>$categories,'category'=>$category]);
+        //return response()->json(['processes' => $processes, 'task' => $task,'categories'=>$categories,'category'=>$category]);
     }
 }
