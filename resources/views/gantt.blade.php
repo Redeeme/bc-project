@@ -19,6 +19,7 @@
         let array_categories = @json($categories);
         let array_category = @json($category);
         let palette = Math.floor(Math.random() * 5);
+        let tourNumber = @json($tour);
 
         const dataSource = {
             tasks: {
@@ -31,7 +32,7 @@
                 fontsize: "20",
                 isbold: "1",
                 align: "Center",
-                headertext: "Linky",
+                headertext: "Spoje",
                 headerfontsize: "14",
                 headervalign: "middle",
                 headeralign: "left",
@@ -58,8 +59,7 @@
             chart: {
                 dateformat: "dd/mm/yyyy",
                 outputdateformat: "hh12:mn ampm",
-                caption: "Shift Roster for June",
-                subcaption: "Customer Success Team<br>",
+                caption: "linka číslo: " + tourNumber,
                 ganttpaneduration: "20",
                 ganttpanedurationunit: "h",
                 useverticalscrolling: "0",
