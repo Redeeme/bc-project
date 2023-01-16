@@ -42,7 +42,7 @@
             <div class="image">
             </div>
             <h3>
-                <a href="{{route('select-schedules')}}">
+                <a href="{{route('select-table-view')}}">
                     tabulkove zobrazenie vybranych dat
                 </a>
             </h3>

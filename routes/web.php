@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ChargerTaskController;
+use App\Http\Controllers\DataTableController;
 use App\Http\Controllers\GanttController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\TaskController;
@@ -25,7 +26,10 @@ Route::get('/', [WelcomeController::class, 'index'])->name('welcome-page');
 Route::get('/tourSelection', [TaskController::class, 'getTours'])->name('select-tours');
 Route::get('/chargerSelection', [ChargerTaskController::class, 'getChargers'])->name('select-chargers');
 Route::get('/scheduleSelection', [ScheduleController::class, 'getFilteredSchedules'])->name('select-schedules');
+Route::get('/dataTableSelection', [DataTableController::class, 'getTableNames'])->name('select-table-view');
+Route::get('/dataTableChargerTasks', [DataTableController::class, 'getChargerTasks'])->name('get-Charger-Tasks');
 Route::post('/ganttTours',[GanttController::class, 'toursGantt'])->name('gantt-page-tours');
 Route::post('/ganttChargers',[GanttController::class, 'chargersGantt'])->name('gantt-page-chargers');
 Route::post('/ganttSchedules',[GanttController::class, 'schedulesGantt'])->name('gantt-page-schedules');
+Route::post('/dataTableview',[DataTableController::class, 'getDataTable'])->name('page-data-table');
 
