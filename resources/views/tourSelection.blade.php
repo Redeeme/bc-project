@@ -5,7 +5,7 @@
     <div class="card">
         <div class="card-header">xd</div>
         <div class="card-body">
-            <form action="{{route('gantt-page')}}" method="post">
+            <form action="{{route('gantt-page-tours')}}" method="post">
                 @csrf
                 <input type="hidden" name="cid" value="ahoj">
                 <div class="col-md-6 col-md-offset-3" style="margin-top:50px">

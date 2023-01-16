@@ -2,12 +2,13 @@
 
 namespace Database\Seeders;
 
+use App\Models\ChargerTask;
 use App\Models\Task;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Log;
 
-class TasksSeeder extends Seeder
+class ChargerTaskSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,7 +17,7 @@ class TasksSeeder extends Seeder
      */
     public function run()
     {
-        $filename = storage_path("app\csv\spoje_id_DS10_J.csv");
+        $filename = storage_path("app\csv\ChEvents_DS10_J.csv");
         Log::debug($filename);
         if(!file_exists($filename) || !is_readable($filename))
             return;
@@ -34,28 +35,28 @@ class TasksSeeder extends Seeder
                 if(!$header) {
                     $header = $row;
                 }else{
-                    $hours_start = (int)($row[6] / 60);
-                    $minute_start = $row[6] % 60;
-                    $hours_end = (int)($row[7] / 60);
-                    $minute_end = $row[7] % 60;
+                    $hours_start = (int)($row[2] / 60);
+                    $minute_start = $row[2] % 60;
+                    $hours_end = (int)($row[3] / 60);
+                    $minute_end = $row[3] % 60;
                     $time_start = Carbon::createFromTime(round($hours_start), $minute_start);
                     $time_end = Carbon::createFromTime(round($hours_end), $minute_end);
                     $data[] = [
-                        'task_id' => $row[0],
-                        'processid' => $row[1],
+                        'charger_id' => $row[0],
+                        'process_id' => $row[1],
                         'start' => $time_start,
                         'end' => $time_end,
-                        'label' => 'ZastavkaStart' . '-' . $row[4] . ' ' .
-                            'ZastavkaFinish' . '-' . $row[5] . ' ' .
-                            'Vzdialenost' . '-' . $row[8] . ' ' .
-                            'Spotreba' . '-' . $row[9],
-                        'linka' => $row[3],
+                        'label' => 'lokacia' . '-' . $row[5] . ' ' .
+                            'rychlost nabijania' . '-' . $row[6],
                     ];
                 }
 
             }
             fclose($handle);
-            Task::insert($data);
+            foreach (array_chunk($data,1000) as $t)
+            {
+                ChargerTask::insert($t);
+            }
         }
     }
 }

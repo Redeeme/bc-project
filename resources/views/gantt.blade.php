@@ -60,9 +60,9 @@
                 dateformat: "dd/mm/yyyy",
                 outputdateformat: "hh12:mn ampm",
                 caption: "linka číslo: " + tourNumber,
-                ganttpaneduration: "20",
+                ganttpaneduration: "10",
                 ganttpanedurationunit: "h",
-                useverticalscrolling: "0",
+                useverticalscrolling: "1",
                 theme: "fusion",
                 palette: palette
             }

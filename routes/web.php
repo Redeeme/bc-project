@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\ChargerTaskController;
 use App\Http\Controllers\GanttController;
+use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
@@ -21,5 +23,9 @@ Route::get('/gantt', function () {
 });
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome-page');
 Route::get('/tourSelection', [TaskController::class, 'getTours'])->name('select-tours');
-Route::post('/gantt',[GanttController::class, 'index'])->name('gantt-page');
+Route::get('/chargerSelection', [ChargerTaskController::class, 'getChargers'])->name('select-chargers');
+Route::get('/scheduleSelection', [ScheduleController::class, 'getFilteredSchedules'])->name('select-schedules');
+Route::post('/ganttTours',[GanttController::class, 'toursGantt'])->name('gantt-page-tours');
+Route::post('/ganttChargers',[GanttController::class, 'chargersGantt'])->name('gantt-page-chargers');
+Route::post('/ganttSchedules',[GanttController::class, 'schedulesGantt'])->name('gantt-page-schedules');
 

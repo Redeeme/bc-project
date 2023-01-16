@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             ChargerSeeder::class,
             StationSeeder::class,
             ScheduleSeeder::class,
+            ChargerTaskSeeder::class,
             DiagramTimeSeeder::class
         ]);
     }

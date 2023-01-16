@@ -15,10 +15,10 @@ class CreateSchedulesTable extends Migration
     {
         Schema::create('schedules', function (Blueprint $table) {
             $table->id('schedule_id');
-            $table->integer('schedule_index');
+            $table->string('schedule_index');
             $table->integer('charger_index')->nullable();;
-            $table->integer('start');
-            $table->integer('finish');
+            $table->time('start');
+            $table->time('end');
             $table->float('energy_before');
             $table->float('energy_after');
             $table->float('consumption');
