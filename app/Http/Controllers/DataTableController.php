@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\ChargerTaskDataTable;
+use App\DataTables\ScheduleDataTable;
+use App\DataTables\TaskDataTable;
 use App\Models\ChargerTask;
 use App\Models\TableName;
 use Illuminate\Http\Request;
@@ -22,15 +25,35 @@ class DataTableController extends Controller
         ]);
     }
 
-    public function getDataTable(Request $request)
-    {
-        $tableName = $request->name;
-        return view('dataTableView', ['tableName' => $tableName]);
+    public function getData(Request $request){
+        return match ($request->name) {
+            'charger_tasks' => redirect()->route('page-data-table-chargertask'),
+            'schedules' => redirect()->route('page-data-table-schedule'),
+            'tasks' => redirect()->route('page-data-table-task'),
+            default => redirect()->route('welcome-page'),
+        };
     }
 
-    public function getChargerTasks()
+    public function getChargerTaskDataTable(ChargerTaskDataTable $dataTable)
     {
-        $chargerTask = ChargerTask::all();
-        return DataTables::of($chargerTask)->make(true);
+        return $dataTable->render('dataTableView');
+    }
+    public function getScheduleDataTable(ScheduleDataTable $dataTable)
+    {
+        return $dataTable->render('dataTableView');
+    }
+    public function getTaskDataTable(TaskDataTable $dataTable)
+    {
+        return $dataTable->render('dataTableView');
+    }
+
+
+    public function getChargerTasks(ChargerTaskDataTable $dataTable)
+    {
+        return response()->json(array('chargerTask' => $chargerTask));
+        //return $dataTable->render('dataTableView');
+        /*$chargerTask = ChargerTask::all();
+        return response()->json(array('chargerTask' => $chargerTask));
+        return DataTables::of($chargerTask)->make(true);*/
     }
 }

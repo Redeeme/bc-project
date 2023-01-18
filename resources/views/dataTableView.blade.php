@@ -2,7 +2,7 @@
 @section('pageTitle', 'dataTableView')
 @section('content')
 
-    <div class="container">
+{{--    <div class="container">
         <div class="row" style="margin-top: 45px">
             <div class="col-md-8">
                 <div class="card">
@@ -25,7 +25,6 @@
 
     <script>
         toastr.options.preventDuplicates = true;
-        let tableName = @json($tableName);
 
         $.ajaxSetup({
             headers: {
@@ -46,6 +45,17 @@
                     ]
                 });
         });
-    </script>
+    </script>--}}
+    <section style="padding-top: 60px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    {!! $dataTable->table() !!}
+                </div>
+            </div>
+        </div>
+    </section>
+    {!! $dataTable->scripts() !!}
+
 
 @endsection

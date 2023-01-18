@@ -27,9 +27,15 @@ Route::get('/tourSelection', [TaskController::class, 'getTours'])->name('select-
 Route::get('/chargerSelection', [ChargerTaskController::class, 'getChargers'])->name('select-chargers');
 Route::get('/scheduleSelection', [ScheduleController::class, 'getFilteredSchedules'])->name('select-schedules');
 Route::get('/dataTableSelection', [DataTableController::class, 'getTableNames'])->name('select-table-view');
-Route::get('/dataTableChargerTasks', [DataTableController::class, 'getChargerTasks'])->name('get-Charger-Tasks');
+
+Route::get('/dataTableChargerTaskview',[DataTableController::class, 'getChargerTaskDataTable'])->name('page-data-table-chargertask');
+Route::get('/dataTableScheduleview',[DataTableController::class, 'getScheduleDataTable'])->name('page-data-table-schedule');
+Route::get('/dataTableTaskview',[DataTableController::class, 'getTaskDataTable'])->name('page-data-table-task');
+
 Route::post('/ganttTours',[GanttController::class, 'toursGantt'])->name('gantt-page-tours');
 Route::post('/ganttChargers',[GanttController::class, 'chargersGantt'])->name('gantt-page-chargers');
 Route::post('/ganttSchedules',[GanttController::class, 'schedulesGantt'])->name('gantt-page-schedules');
-Route::post('/dataTableview',[DataTableController::class, 'getDataTable'])->name('page-data-table');
+Route::post('/dataTableData',[DataTableController::class, 'getData'])->name('page-data-table');
+
+
 
