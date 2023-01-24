@@ -3,6 +3,7 @@
 use App\Http\Controllers\ChargerTaskController;
 use App\Http\Controllers\DataTableController;
 use App\Http\Controllers\GanttController;
+use App\Http\Controllers\GrafikonController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\WelcomeController;
@@ -27,6 +28,8 @@ Route::get('/tourSelection', [TaskController::class, 'getTours'])->name('select-
 Route::get('/chargerSelection', [ChargerTaskController::class, 'getChargers'])->name('select-chargers');
 Route::get('/scheduleSelection', [ScheduleController::class, 'getFilteredSchedules'])->name('select-schedules');
 Route::get('/dataTableSelection', [DataTableController::class, 'getTableNames'])->name('select-table-view');
+
+Route::get('/taskGrafikon', [GrafikonController::class, 'getTaskGrafikon'])->name('select-task-grafikon');
 
 Route::get('/dataTableChargerTaskview',[DataTableController::class, 'getChargerTaskDataTable'])->name('page-data-table-chargertask');
 Route::get('/dataTableScheduleview',[DataTableController::class, 'getScheduleDataTable'])->name('page-data-table-schedule');

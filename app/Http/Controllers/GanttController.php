@@ -25,9 +25,23 @@ class GanttController extends Controller
     public function toursGantt(Request $request)
     {
         $tour = $request->linka;
-
         $processes = Task::select('processid AS label', 'processid AS id')->where('linka', $tour)->get();
-        $task = Task::select('processid', 'start', 'end', 'label')->where('linka', $tour)->get();
+        $data = Task::select('*')->where('linka', $tour)->get();
+        $task = [];
+        foreach ($data as $row){
+            $task[] = [
+                'processid' => $row->processid,
+                'start' => $row->start,
+                'end' => $row->end,
+                'label' => 'ZastavkaStart' . '-' . $row->loc_start . ' ' .
+                    'ZastavkaFinish' . '-' . $row->loc_end . ' ' .
+                    'Vzdialenost' . '-' . $row->distance . ' ' .
+                    'Spotreba' . '-' . $row->consumption,
+                'linka' => $row->linka,
+            ];
+        }
+
+
         $categories = DiagramTime::select('start','end','label')->where('id','!=','1')->get();
         $category = DiagramTime::select('start','end','label')->where('id','=','1')->get();
 

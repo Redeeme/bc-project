@@ -46,14 +46,4 @@ class DataTableController extends Controller
     {
         return $dataTable->render('dataTableView');
     }
-
-
-    public function getChargerTasks(ChargerTaskDataTable $dataTable)
-    {
-        return response()->json(array('chargerTask' => $chargerTask));
-        //return $dataTable->render('dataTableView');
-        /*$chargerTask = ChargerTask::all();
-        return response()->json(array('chargerTask' => $chargerTask));
-        return DataTables::of($chargerTask)->make(true);*/
-    }
 }

@@ -18,7 +18,10 @@ class CreateTasksTable extends Migration
             $table->string('processid');
             $table->time('start');
             $table->time('end');
-            $table->string('label');
+            $table->integer('loc_start');
+            $table->integer('loc_end');
+            $table->integer('distance');
+            $table->float('consumption');
             $table->integer('linka');
         });
     }

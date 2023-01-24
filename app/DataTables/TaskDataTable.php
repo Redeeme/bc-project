@@ -65,7 +65,10 @@ class TaskDataTable extends DataTable
             'processid',
             'start',
             'end',
-            'label',
+            'loc_start',
+            'loc_end',
+            'distance',
+            'consumption',
             'linka',
         ];
     }

@@ -1,6 +1,8 @@
 @extends('layouts.app')
 @section('pageTitle', 'gantt')
 @section('content')
+    <script src="https://static.fusioncharts.com/code/latest/fusioncharts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore.js"></script>
     <script>
         // let processes = [{"label":"2","id":"2"},
         //     {"label":"3","id":"3"},

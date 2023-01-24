@@ -2,50 +2,9 @@
 @section('pageTitle', 'dataTableView')
 @section('content')
 
-{{--    <div class="container">
-        <div class="row" style="margin-top: 45px">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">dataTable view</div>
-                    <div class="card-body">
-                        <table class="table table-hover table-condensed" id="data_table">
-                            <thead>
-                            <th>charger_task_id</th>
-                            <th>charger_id</th>
-                            <th>process_id</th>
-                            <th>label</th>
-                            </thead>
-                            <tbody></tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap4.min.js"></script>
 
-    <script>
-        toastr.options.preventDuplicates = true;
-
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-        $(function () {
-                $('#data_table').DataTable({
-                    processing: true,
-                    serverside: true,
-                    info: true,
-                    ajax: "{{route('get-Charger-Tasks')}}",
-                    columns: [
-                        {data: 'charger_task_id', name: 'charger_task_id'},
-                        {data: 'charger_id', name: 'charger_id'},
-                        {data: 'process_id', name: 'process_id'},
-                        {data: 'label', name: 'label'},
-                    ]
-                });
-        });
-    </script>--}}
     <section style="padding-top: 60px;">
         <div class="container">
             <div class="row">
