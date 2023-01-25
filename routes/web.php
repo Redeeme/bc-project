@@ -30,6 +30,7 @@ Route::get('/scheduleSelection', [ScheduleController::class, 'getFilteredSchedul
 Route::get('/dataTableSelection', [DataTableController::class, 'getTableNames'])->name('select-table-view');
 
 Route::get('/taskGrafikon', [GrafikonController::class, 'getTaskGrafikon'])->name('select-task-grafikon');
+Route::get('/scheduleGrafikon', [GrafikonController::class, 'getScheduleGrafikon'])->name('select-schedule-grafikon');
 
 Route::get('/dataTableChargerTaskview',[DataTableController::class, 'getChargerTaskDataTable'])->name('page-data-table-chargertask');
 Route::get('/dataTableScheduleview',[DataTableController::class, 'getScheduleDataTable'])->name('page-data-table-schedule');

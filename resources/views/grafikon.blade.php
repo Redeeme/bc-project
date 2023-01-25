@@ -18,116 +18,114 @@
         }
     }
 
-    let stations = @json($stations);
-
     const ctx = document.getElementById('myChart');
 
     const data = {
         datasets: [
             {
-                label: 'Dataset 0',
+                label: 'Linka 0',
                 data: array[0],
                 yAxisID: 'y',
                 xAxisID: 'x',
             },
             {
-                label: 'Dataset 1',
+                label: 'Linka 1',
                 data: array[1],
                 yAxisID: 'y',
                 xAxisID: 'x',
             },
             {
-                label: 'Dataset 2',
+                label: 'Linka 2',
                 data: array[2],
                 yAxisID: 'y',
                 xAxisID: 'x',
             },
             {
-                label: 'Dataset 3',
+                label: 'Linka 3',
                 data: array[3],
                 yAxisID: 'y',
                 xAxisID: 'x',
             },
             {
-                label: 'Dataset 4',
+                label: 'Linka 4',
                 data: array[4],
                 yAxisID: 'y',
                 xAxisID: 'x',
             },
             {
-                label: 'Dataset 5',
+                label: 'Linka 5',
                 data: array[5],
                 yAxisID: 'y',
                 xAxisID: 'x',
             },
             {
-                label: 'Dataset 6',
+                label: 'Linka 6',
                 data: array[6],
                 yAxisID: 'y',
                 xAxisID: 'x',
             },
             {
-                label: 'Dataset 7',
+                label: 'Linka 7',
                 data: array[7],
                 yAxisID: 'y',
                 xAxisID: 'x',
             },
             {
-                label: 'Dataset 8',
+                label: 'Linka 8',
                 data: array[8],
                 yAxisID: 'y',
                 xAxisID: 'x',
             },
             {
-                label: 'Dataset 9',
+                label: 'Linka 9',
                 data: array[9],
                 yAxisID: 'y',
                 xAxisID: 'x',
             },
             {
-                label: 'Dataset 10',
+                label: 'Linka 10',
                 data: array[10],
                 yAxisID: 'y',
                 xAxisID: 'x',
             },
             {
-                label: 'Dataset 11',
+                label: 'Linka 11',
                 data: array[11],
                 yAxisID: 'y',
                 xAxisID: 'x',
             },
             {
-                label: 'Dataset 12',
+                label: 'Linka 12',
                 data: array[12],
                 yAxisID: 'y',
                 xAxisID: 'x',
             },
             {
-                label: 'Dataset 13',
+                label: 'Linka 13',
                 data: array[13],
                 yAxisID: 'y',
                 xAxisID: 'x',
             },
             {
-                label: 'Dataset 14',
+                label: 'Linka 14',
                 data: array[14],
                 yAxisID: 'y',
                 xAxisID: 'x',
             },
             {
-                label: 'Dataset 15',
+                label: 'Linka 15',
                 data: array[15],
                 yAxisID: 'y',
                 xAxisID: 'x',
             },
             {
-                label: 'Dataset 16',
+                label: 'Linka 16',
                 data: array[16],
                 yAxisID: 'y',
                 xAxisID: 'x',
             },
             {
-                label: 'Dataset 17',
+                label: 'Linka 17',
                 data: array[17],
                 yAxisID: 'y',
                 xAxisID: 'x',
@@ -154,14 +152,12 @@
                 y: {
                     type: 'linear',
                     display: true,
-                    data: stations,
                     alignToPixels: true,
-                    ticks: {
-                        // Include a dollar sign in the ticks
-                        callback: function(value, index, ticks) {
-                            return 'lol' + value;
+                        ticks: {
+                            min: 1,
+                            max: 44,
+                            stepSize: 1,
                         }
-                    }
                     // grid line settings
                 },
                 x: {

@@ -66,7 +66,7 @@
             <div class="image">
             </div>
             <h3>
-                <a href="{{route('select-table-view')}}">
+                <a href="{{route('select-schedule-grafikon')}}">
                     grafikon turnusov
                 </a>
             </h3>
