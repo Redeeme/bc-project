@@ -15,7 +15,7 @@
         let max = Date.parse(`01 Jan 1970 23:59:59 GMT`)
         for (let i = 0;i<48-1;i++){
             var arrayy = [];
-            for (let j = 0;j<array_data[i].length;j++) {
+            for (let j = 0;j<array_data[i].length - 1;j++) {
                 array_data[i][j].x = Date.parse(`01 Jan 1970 ${array_data[i][j].x} GMT`)
                 if (array_data[i][j].x > min){
                     arrayy.push(array_data[i][j])

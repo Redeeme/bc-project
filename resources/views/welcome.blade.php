@@ -77,7 +77,11 @@
         <div class="article-card">
             <div class="image">
             </div>
-            <h3>schema zobrazeni gannt diagramu linie</h3>
+            <h3>
+                <a href="{{route('select-schedules-graph')}}">
+                    graf stavu nabijania turnusov
+                </a>
+            </h3>
             <div class="description">
                 description
             </div>

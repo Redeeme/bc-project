@@ -92,5 +92,4 @@ class GrafikonController extends Controller
         //return view('grafikon',['proces14' => $proces14, 'time1' => $time1,'stations'=>$stations,'proces4'=>$proces4]);
         return view('grafikonSchedules',compact('data'));
     }
-
 }

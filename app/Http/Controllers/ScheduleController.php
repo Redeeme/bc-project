@@ -34,4 +34,16 @@ class ScheduleController extends Controller
             ->get();
         return view('scheduleSelection', ['schedules' => $schedules,'categories' => $categories]);
     }
+    public function schedulesSelectGraph(){
+        $schedules = DB::table('schedules')
+            ->select('schedule_no')
+            ->distinct()
+            ->get();
+        $schedules->sortBy('schedule_no');
+        $categories = DB::table('schedules')
+            ->select('type')
+            ->distinct()
+            ->get();
+        return view('scheduleSelectionGraph', ['schedules' => $schedules,'categories' => $categories]);
+    }
 }

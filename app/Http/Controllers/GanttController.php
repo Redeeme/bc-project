@@ -63,11 +63,19 @@ class GanttController extends Controller
 
     public function schedulesGantt(Request $request)
     {
+
         $schedule = $request->schedule;
         $type = $request->type;
-
-        $processes = Schedule::select('schedule_index AS label', 'schedule_index AS id')->where('schedule_no', $schedule)->where('type', $type)->get();
-        $task = Schedule::select('schedule_index', 'start', 'end', 'consumption')->where('schedule_no', $schedule)->where('type', $type)->get();
+        if ($type == "CHARGER"){
+            $processes = Schedule::select('schedule_index AS label', 'schedule_index AS id')->where('schedule_no', $schedule)->where('type', $type)->get();
+            $task = Schedule::select('schedule_index', 'start', 'end', 'consumption')->where('schedule_no', $schedule)->where('type', $type)->get();
+        }elseif ($type == "TRIP"){
+            $processes = Schedule::select('schedule_index AS label', 'schedule_index AS id')->where('schedule_no', $schedule)->where('type', $type)->get();
+            $task = Schedule::select('schedule_index', 'start', 'end', 'consumption')->where('schedule_no', $schedule)->where('type', $type)->get();
+        }else{
+            $processes = Schedule::select('schedule_index AS label', 'schedule_index AS id')->where('schedule_no', $schedule)->get();
+            $task = Schedule::select('schedule_index', 'start', 'end', 'consumption')->where('schedule_no', $schedule)->get();
+        }
         $categories = DiagramTime::select('start','end','label')->where('id','!=','1')->get();
         $category = DiagramTime::select('start','end','label')->where('id','=','1')->get();
         //return response()->json(array('processes' => $type, 'task' => $schedule));

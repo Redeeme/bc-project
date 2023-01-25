@@ -4,6 +4,7 @@ use App\Http\Controllers\ChargerTaskController;
 use App\Http\Controllers\DataTableController;
 use App\Http\Controllers\GanttController;
 use App\Http\Controllers\GrafikonController;
+use App\Http\Controllers\GraphController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\WelcomeController;
@@ -40,6 +41,11 @@ Route::post('/ganttTours',[GanttController::class, 'toursGantt'])->name('gantt-p
 Route::post('/ganttChargers',[GanttController::class, 'chargersGantt'])->name('gantt-page-chargers');
 Route::post('/ganttSchedules',[GanttController::class, 'schedulesGantt'])->name('gantt-page-schedules');
 Route::post('/dataTableData',[DataTableController::class, 'getData'])->name('page-data-table');
+
+Route::post('/graphSchedules',[GraphController::class, 'schedulesGraph'])->name('graph-page-schedules');
+Route::get('/graphSelectSchedules',[ScheduleController::class, 'schedulesSelectGraph'])->name('select-schedules-graph');
+
+
 
 
 

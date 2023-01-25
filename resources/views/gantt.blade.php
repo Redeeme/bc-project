@@ -23,6 +23,20 @@
         let palette = Math.floor(Math.random() * 5);
         let tourNumber = @json($tour);
 
+        let paneLength = 0;
+        if (array_process.length > 550){
+            paneLength = 6;
+        }else if(array_process.length > 400){
+            paneLength = 8;
+        }else if(array_process.length > 120){
+            paneLength = 14;
+        }else if(array_process.length > 50) {
+            paneLength = 16;
+        }else{
+            paneLength = 20;
+        }
+
+
         const dataSource = {
             tasks: {
                 showlabels: "0",
@@ -62,7 +76,7 @@
                 dateformat: "dd/mm/yyyy",
                 outputdateformat: "hh12:mn ampm",
                 caption: "linka číslo: " + tourNumber,
-                ganttpaneduration: "10",
+                ganttpaneduration: paneLength,
                 ganttpanedurationunit: "h",
                 useverticalscrolling: "1",
                 theme: "fusion",
