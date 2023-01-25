@@ -19,22 +19,22 @@ class GraphController extends Controller
         $schedul = $request->schedule;
         $type = $request->type;
         if ($type == "CHARGER"){
-            $schedules = Schedule::select('schedule_index AS label', 'schedule_index AS id')->where('schedule_no', $schedul)->where('type', $type)->get();
+            $schedules = Schedule::select('*')->where('schedule_no', $schedul)->where('type', $type)->get();
         }elseif ($type == "TRIP"){
-            $schedules = Schedule::select('schedule_index AS label', 'schedule_index AS id')->where('schedule_no', $schedul)->where('type', $type)->get();
+            $schedules = Schedule::select('*')->where('schedule_no', $schedul)->where('type', $type)->get();
         }else{
-            $schedules = Schedule::select('schedule_index AS label', 'schedule_index AS id')->where('schedule_no', $schedul)->get();
+            $schedules = Schedule::select('*')->where('schedule_no', $schedul)->get();
         }
 
         $data = [$schedules->count()];
-
         for ($i = 0; $i <= $schedules->count() - 1; $i++) {
-            $dataa[] = [
+            $data[] = [
                 'x'     => $schedules[$i]->start,
                 'y'     => $schedules[$i]->energy_after
             ];
         }
-        return view('grafikonSchedules',compact('data'));
+        //return response()->json(['data' => $data]);
+        return view('scheduleLineGraph',compact('data'));
     }
 
 }

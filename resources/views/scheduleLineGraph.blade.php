@@ -14,13 +14,12 @@
         let min = Date.parse(`01 Jan 1970 03:59:59 GMT`)
         let max = Date.parse(`01 Jan 1970 23:59:59 GMT`)
         for (let i = 0; i < array_data.length - 1; i++) {
-            array_data[i][j].x = Date.parse(`01 Jan 1970 ${array_data[i][j].x} GMT`)
-            if (array_data[i][j].x > min) {
-                array.push(array_data[i][j])
+            array_data[i].x = Date.parse(`01 Jan 1970 ${array_data[i].x} GMT`)
+            if (array_data[i].x > min) {
+                array.push(array_data[i])
             }
-            console.log(array[i]);
         }
-
+        console.log(array);
 
         const ctx = document.getElementById('myChart');
 
