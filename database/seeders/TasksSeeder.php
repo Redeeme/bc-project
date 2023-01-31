@@ -45,10 +45,10 @@ class TasksSeeder extends Seeder
                         'processid' => $row[1],
                         'start' => $time_start,
                         'end' => $time_end,
-                        'label' => 'ZastavkaStart' . '-' . $row[4] . ' ' .
-                            'ZastavkaFinish' . '-' . $row[5] . ' ' .
-                            'Vzdialenost' . '-' . $row[8] . ' ' .
-                            'Spotreba' . '-' . $row[9],
+                        'loc_start' => $row[4],
+                        'loc_end' => $row[5],
+                        'distance' => $row[8],
+                        'consumption' => $row[9],
                         'linka' => $row[3],
                     ];
                 }

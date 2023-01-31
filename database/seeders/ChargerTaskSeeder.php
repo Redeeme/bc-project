@@ -46,8 +46,8 @@ class ChargerTaskSeeder extends Seeder
                         'process_id' => $row[1],
                         'start' => $time_start,
                         'end' => $time_end,
-                        'label' => 'lokacia' . '-' . $row[5] . ' ' .
-                            'rychlost nabijania' . '-' . $row[6],
+                        'speed' => $row[6],
+                        'loc' => $row[5]
                     ];
                 }
 

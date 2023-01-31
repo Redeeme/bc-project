@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('pageTitle', 'tour_selection')
+@section('pageTitle', 'Vyber Linky')
 @section('content')
     <div class="col-md-4" >
     <div class="card">

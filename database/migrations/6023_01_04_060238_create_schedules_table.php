@@ -19,8 +19,8 @@ class CreateSchedulesTable extends Migration
             $table->integer('charger_index')->nullable();;
             $table->time('start');
             $table->time('end');
-            $table->float('energy_before');
-            $table->float('energy_after');
+            $table->string('energy_before');
+            $table->string('energy_after');
             $table->float('consumption');
             $table->integer('location_start')->unsigned();
             $table->integer('location_finish')->unsigned();

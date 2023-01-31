@@ -16,7 +16,10 @@ class GraphController extends Controller
 
     public function schedulesGraph(Request $request){
 
+        //$input = $request->schedule;
         $schedul = $request->schedule;
+        $schedul = $schedul[0];
+
         $type = $request->type;
         if ($type == "CHARGER"){
             $schedules = Schedule::select('*')->where('schedule_no', $schedul)->where('type', $type)->get();

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('pageTitle', 'dataTable_selection')
+@section('pageTitle', 'vyber tabulky')
 @section('content')
     <div class="col-md-4" >
         <div class="card">
