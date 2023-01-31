@@ -11,11 +11,20 @@
 <script>
     var array = [];
     let array_data = @json($data);
+    let stations = @json($stationsNames);
     for (let i = 0;i<18-1;i++){
         array.push(array_data[i]);
-        for (let j = 0;j<array[i].length -1;j++) {
+        for (let j = 0;j<array[i].length;j++) {
             array[i][j].x = Date.parse(`01 Jan 1970 ${array[i][j].x} GMT`)
+            array[i][j].x -= 3600000
+
         }
+        array[i].sort(function(a, b) {
+            var c = a.x;
+            var d = b.x;
+            return a.x-b.x;
+        });
+        console.log(array[i]);
     }
 
     const ctx = document.getElementById('myChart');
@@ -154,9 +163,16 @@
                     display: true,
                     alignToPixels: true,
                         ticks: {
-                            min: 1,
+                            min: 0,
                             max: 44,
                             stepSize: 1,
+                            callback: function (label, index, labels) {
+                                for (let i = 0; i < 44 - 1; i++) {
+                                    if (label === i) {
+                                        return stations[i];
+                                    }
+                                }
+                            }
                         }
                     // grid line settings
                 },

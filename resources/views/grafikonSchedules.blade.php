@@ -12,7 +12,7 @@
         var array = [];
         let array_data = @json($data);
         let min = Date.parse(`01 Jan 1970 03:59:59 GMT`)
-        let max = Date.parse(`01 Jan 1970 23:59:59 GMT`)
+        let max = Date.parse(`02 Jan 1970 03:59:59 GMT`)
         for (let i = 0;i<48-1;i++){
             var arrayy = [];
             for (let j = 0;j<array_data[i].length - 1;j++) {
@@ -20,7 +20,6 @@
                 if (array_data[i][j].x > min){
                     arrayy.push(array_data[i][j])
                 }
-            console.log(array[i]);
             }
             array.push(arrayy);
         }
