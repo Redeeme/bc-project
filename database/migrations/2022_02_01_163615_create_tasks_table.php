@@ -23,6 +23,7 @@ class CreateTasksTable extends Migration
             $table->integer('distance');
             $table->float('consumption');
             $table->integer('linka');
+            $table->integer('dataset');
         });
     }
 

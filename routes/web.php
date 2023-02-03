@@ -5,6 +5,7 @@ use App\Http\Controllers\DataTableController;
 use App\Http\Controllers\GanttController;
 use App\Http\Controllers\GrafikonController;
 use App\Http\Controllers\GraphController;
+use App\Http\Controllers\ImportFileController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\WelcomeController;
@@ -44,6 +45,9 @@ Route::post('/dataTableData',[DataTableController::class, 'getData'])->name('pag
 
 Route::post('/graphSchedules',[GraphController::class, 'schedulesGraph'])->name('graph-page-schedules');
 Route::get('/graphSelectSchedules',[ScheduleController::class, 'schedulesSelectGraph'])->name('select-schedules-graph');
+
+Route::get('/import',[ImportFileController::class, 'index'])->name('import-upload');
+Route::post('/import',[ImportFileController::class, 'importData'])->name('import-data');
 
 
 

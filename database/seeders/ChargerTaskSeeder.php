@@ -47,7 +47,8 @@ class ChargerTaskSeeder extends Seeder
                         'start' => $time_start,
                         'end' => $time_end,
                         'speed' => $row[6],
-                        'loc' => $row[5]
+                        'loc' => $row[5],
+                        'dataset' => 1,
                     ];
                 }
 

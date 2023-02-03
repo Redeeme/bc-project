@@ -50,6 +50,7 @@ class TasksSeeder extends Seeder
                         'distance' => $row[8],
                         'consumption' => $row[9],
                         'linka' => $row[3],
+                        'dataset' => 1,
                     ];
                 }
 

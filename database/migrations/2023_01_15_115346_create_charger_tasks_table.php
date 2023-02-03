@@ -21,6 +21,7 @@ class CreateChargerTasksTable extends Migration
             $table->time('end');
             $table->string('speed');
             $table->string('loc');
+            $table->integer('dataset');
         });
     }
 

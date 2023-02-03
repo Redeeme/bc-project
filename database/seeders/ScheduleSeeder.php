@@ -58,6 +58,7 @@ class ScheduleSeeder extends Seeder
                             'location_finish' => $row[7],
                             'type' => $row[8],
                             'schedule_no' => $schedule,
+                            'dataset' => 1,
                         ];
                     } else {
                         $charger = NULL;
@@ -73,6 +74,7 @@ class ScheduleSeeder extends Seeder
                             'location_finish' => $row[7],
                             'type' => $row[8],
                             'schedule_no' => $schedule,
+                            'dataset' => 1,
                         ];
                     }
 
