@@ -14,22 +14,16 @@ class ChargerTaskController extends Controller
         return view('chargerSelection');
     }
 
-    public function getChargerTasks(){
-        $chargerTasks = ChargerTask::all();
-        return view('chargerSelection',[
-            'chargerTasks' => $chargerTasks,
-        ]);
-    }
 
-    public function getChargers()
+    public function getCharger()
     {
-        $chargers = DB::table('charger_tasks')
-            ->select('charger_id')
+        $charger = DB::table('charger_tasks')
+            ->select('charger_id AS id')
             ->distinct()
             ->get();
-        $chargers->sortBy('process_id');
-        return view('chargerSelection', [
-            'chargers' => $chargers,
+        $charger->sortBy('id');
+        return view('ganttSelection', [
+            'charger' => $charger,
         ]);
     }
 }

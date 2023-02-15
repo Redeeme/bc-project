@@ -1,9 +1,9 @@
 @extends('layouts.app')
 @section('pageTitle', 'grafikonView')
 @section('content')
-<div>
-    <canvas id="myChart"></canvas>
-</div>
+    <div class="container justify-content-center" style="position: relative; height:70vh; width:140vw">
+        <canvas id="myChart"></canvas>
+    </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>

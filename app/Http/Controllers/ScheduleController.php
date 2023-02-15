@@ -14,25 +14,19 @@ class ScheduleController extends Controller
         return view('scheduleSelection');
     }
 
-    public function getSchedules(){
-        $schedules = Schedule::all();
-        return view('scheduleSelection',[
-            'schedules' => $schedules,
-        ]);
-    }
 
-    public function getFilteredSchedules()
+    public function getSchedule()
     {
-        $schedules = DB::table('schedules')
-            ->select('schedule_no')
+        $schedule = DB::table('schedules')
+            ->select('schedule_no AS id')
             ->distinct()
             ->get();
-        $schedules->sortBy('schedule_no');
+        $schedule->sortBy('id');
         $categories = DB::table('schedules')
             ->select('type')
             ->distinct()
             ->get();
-        return view('scheduleSelection', ['schedules' => $schedules,'categories' => $categories]);
+        return view('ganttSelection', ['schedule' => $schedule,'categories' => $categories]);
     }
     public function schedulesSelectGraph(){
         $schedules = DB::table('schedules')
@@ -45,5 +39,44 @@ class ScheduleController extends Controller
             ->distinct()
             ->get();
         return view('scheduleSelectionGraph', ['schedules' => $schedules,'categories' => $categories]);
+    }
+    public function getScheduleTable(Request $request)
+    {
+        $schedule = DB::table('schedules')
+            ->select('schedule_no AS id')
+            ->distinct()
+            ->get();
+        $schedule->sortBy('id');
+        $categories = DB::table('schedules')
+            ->select('type')
+            ->distinct()
+            ->get();
+        return view('ganttSelection', ['schedule' => $schedule,'categories' => $categories]);
+    }
+    public function getScheduleGantt(Request $request)
+    {
+        $schedule = DB::table('schedules')
+            ->select('schedule_no AS id')
+            ->distinct()
+            ->get();
+        $schedule->sortBy('id');
+        $categories = DB::table('schedules')
+            ->select('type')
+            ->distinct()
+            ->get();
+        return view('ganttSelection', ['schedule' => $schedule,'categories' => $categories]);
+    }
+    public function getScheduleStats(Request $request)
+    {
+        $schedule = DB::table('schedules')
+            ->select('schedule_no AS id')
+            ->distinct()
+            ->get();
+        $schedule->sortBy('id');
+        $categories = DB::table('schedules')
+            ->select('type')
+            ->distinct()
+            ->get();
+        return view('ganttSelection', ['schedule' => $schedule,'categories' => $categories]);
     }
 }

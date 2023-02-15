@@ -13,22 +13,16 @@ class TaskController extends Controller
         return view('tourSelection');
     }
 
-    public function getTasks(){
-        $tasks = Task::all();
-        return view('tourSelection',[
-            'tasks' => $tasks,
-        ]);
-    }
 
-    public function getTours()
+    public function getTour()
     {
-        $tours = DB::table('tasks')
-            ->select('linka')
+        $tour = DB::table('tasks')
+            ->select('linka AS id')
             ->distinct()
             ->get();
-        $tours->sortBy('linka');
-        return view('tourSelection', [
-            'tours' => $tours,
+        $tour->sortBy('id');
+        return view('ganttSelection', [
+            'tour' => $tour,
         ]);
     }
 }

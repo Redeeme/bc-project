@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('pageTitle', 'grafikonView')
 @section('content')
-    <div>
+    <div class="container justify-content-center" style="position: relative; height:200vh; width:140vw">
         <canvas id="myChart"></canvas>
     </div>
 

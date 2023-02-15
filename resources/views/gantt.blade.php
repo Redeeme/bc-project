@@ -102,6 +102,8 @@
             chart: {
                 dateformat: "dd/mm/yyyy",
                 outputdateformat: "hh12:mn ampm",
+                width: "500",
+                height: "300",
                 caption: titleLabel(),
                 ganttpaneduration: paneLength,
                 ganttpanedurationunit: "h",
@@ -116,8 +118,8 @@
                 type: "gantt",
 
                 renderAt: "chart-container",
-                width: "100%",
-                height: "100%",
+                width: '94%',
+                height: '83%',
                 dataFormat: "json",
                 dataSource,
                 events: {
@@ -156,6 +158,7 @@
                                 $("#exampleModalText2").text(`loc: ${element.loc}`);
                                 $("#exampleModalText3").text(`speed: ${element.speed}`);
                                 $("#exampleModalText4").text(`charger_task_id: ${element.charger_task_id}`);
+                                $("#exampleModalText5").text(``);
                             }
                         })
                     }
@@ -164,7 +167,127 @@
             }).render();
             myChart.setJSONData(dataSource);
         });
-    </script>
 
-    <div id="chart-container"></div>
+    </script>
+    @if(isset($tourFlag))
+        <div class="card text-center" style="width: 94%; margin-left: 3%">
+            <div class="card-header" >
+                <ul class="nav nav-tabs card-header-tabs">
+                    <li class="nav-item" style="margin-right: 5px">
+                        <form action="{{route('gantt-tour')}}" method="post">
+                            @csrf
+                            <input type="hidden" name="data" value="{{ $tourFlag }}">
+                            <div class="form group">
+                                <button type="submit" class="btn btn-primary btn-block" id="update_button">schema gantt</button>
+                            </div>
+                        </form>
+                    </li>
+
+                    <li class="nav-item" style="margin-right: 5px">
+                        <form action="{{route('table-tour')}}" method="post">
+                            @csrf
+                            <input type="hidden" name="data" value="{{ $tourFlag }}">
+                            <div class="form group">
+                                <button type="submit" class="btn btn-primary btn-block" id="update_button">tabulkove zobrazenie</button>
+                            </div>
+                        </form>
+                    </li>
+
+                    <li class="nav-item" style="margin-right: 5px">
+                        <form action="{{route('stats-tour')}}" method="post">
+                            @csrf
+                            <input type="hidden" name="data" value="{{ $tourFlag }}">
+                            <div class="form group">
+                                <button type="submit" class="btn btn-primary btn-block" id="update_button">statistiky dat</button>
+                            </div>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    @endif
+    @if(isset($chargerFlag))
+        <div class="card text-center" style="width: 94%; margin-left: 3%">
+            <div class="card-header">
+                <ul class="nav nav-tabs card-header-tabs">
+
+                    <li class="nav-item" style="margin-right: 5px">
+                        <form action="{{route('gantt-charger')}}" method="post">
+                            @csrf
+                            <input type="hidden" name="data" value="{{ $chargerFlag }}">
+                            <div class="form group">
+                                <button type="submit" class="btn btn-primary btn-block" id="update_button">schema gantt</button>
+                            </div>
+                        </form>
+                    </li>
+
+                    <li class="nav-item" style="margin-right: 5px">
+                        <form action="{{route('table-charger')}}" method="post">
+                            @csrf
+                            <input type="hidden" name="data" value="{{ $chargerFlag }}">
+                            <div class="form group">
+                                <button type="submit" class="btn btn-primary btn-block" id="update_button">tabulkove zobrazenie</button>
+                            </div>
+                        </form>
+                    </li>
+
+                    <li class="nav-item" style="margin-right: 5px">
+                        <form action="{{route('stats-charger')}}" method="post">
+                            @csrf
+                            <input type="hidden" name="data" value="{{ $chargerFlag }}">
+                            <div class="form group">
+                                <button type="submit" class="btn btn-primary btn-block" id="update_button">statistiky dat</button>
+                            </div>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    @endif
+    @if(isset($scheduleFlag))
+        <div class="card text-center" style="width: 94%; margin-left: 3%">
+            <div class="card-header">
+                <ul class="nav nav-tabs card-header-tabs">
+
+                    <li class="nav-item" style="margin-right: 5px">
+                        <form action="{{route('gantt-schedule')}}" method="post">
+                            @csrf
+                            <input type="hidden" name="data" value="{{ $scheduleFlag }}">
+                            <input type="hidden" name="type" value="{{ $type }}">
+                            <div class="form group">
+                                <button type="submit" class="btn btn-primary btn-block" id="update_button">schema gantt</button>
+                            </div>
+                        </form>
+                    </li>
+
+                    <li class="nav-item" style="margin-right: 5px">
+                        <form action="{{route('table-schedule')}}" method="post">
+                            @csrf
+                            <input type="hidden" name="data" value="{{ $scheduleFlag }}">
+                            <input type="hidden" name="type" value="{{ $type }}">
+                            <div class="form group">
+                                <button type="submit" class="btn btn-primary btn-block" id="update_button">tabulkove zobrazenie</button>
+                            </div>
+                        </form>
+                    </li>
+
+                    <li class="nav-item" style="margin-right: 5px">
+                        <form action="{{route('stats-schedule')}}" method="post">
+                            @csrf
+                            <input type="hidden" name="data" value="{{ $scheduleFlag }}">
+                            <input type="hidden" name="type" value="{{ $type }}">
+                            <div class="form group">
+                                <button type="submit" class="btn btn-primary btn-block" id="update_button">statistiky dat</button>
+                            </div>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    @endif
+    <div class="card-body align-items-center d-flex justify-content-center" STYLE="margin-top: 20px">
+        <div id="chart-container"></div>
+    </div>
+
+
 @endsection

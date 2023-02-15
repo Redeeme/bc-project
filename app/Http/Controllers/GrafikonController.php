@@ -50,7 +50,7 @@ class GrafikonController extends Controller
         return view('grafikon',compact('data','stationsNames'));
     }
 
-    public function getScheduleGrafikon(){
+    public function getScheduleeGrafikon(){
         $schedules = DB::table('schedules')
             ->select('schedule_no')
             ->distinct()
@@ -83,6 +83,52 @@ class GrafikonController extends Controller
             }
             $data[$i] = $dataa;
         }
+
+        //return response()->json(['data' => $data]);
+        //return response()->json(['categories' => $categories, 'stations' => $stations,'processes4'=>$processes4,'processes14'=>$processes14,'processes1'=>$processes1]);
+        //return view('grafikon',['categories' => $categories, 'stations' => $stations,'processes4'=>$processes4,'processes14'=>$processes14,'processes1'=>$processes1]);
+        //return view('grafikon',['proces14' => $proces14, 'time1' => $time1,'stations'=>$stations,'proces4'=>$proces4]);
+        return view('grafikonSchedules',compact('data'));
+    }
+    public function getScheduleGrafikon(){
+        $schedules = DB::table('schedules')
+            ->select('schedule_no')
+            ->distinct()
+            ->get();
+        $schedules->sortBy('schedules');
+
+
+        $data = [$schedules->count()];
+        $tasks = DB::table('tasks')->select('*')->get();
+
+        for ($i = 0; $i <= $schedules->count() - 1; $i++) {
+
+            $schedulesALL = DB::table('schedules')->select('*')
+                ->where('schedule_no', $schedules[$i]->schedule_no)
+                ->where('type', 'TRIP')
+                ->get();
+
+            $dataa =[];
+
+            for ($j = 0; $j <= $schedulesALL->count() - 1; $j++) {
+
+                    $linka = 0;
+
+                    for ($m = 0; $m <= $tasks->count() - 1; $m++) {
+                        if ($tasks[$m]->task_id == $schedulesALL[$j]->schedule_index){
+                            $linka = $tasks[$m]->linka;//premapovanie $loc_start
+                            break;
+                        }
+                    }
+                    $dataa[] = [
+                        'x'     => $schedulesALL[$j]->start,
+                        'y'     => $linka
+                    ];
+                }
+            $data[$i] = $dataa;
+            }
+
+
 
         //return response()->json(['data' => $data]);
         //return response()->json(['categories' => $categories, 'stations' => $stations,'processes4'=>$processes4,'processes14'=>$processes14,'processes1'=>$processes1]);
