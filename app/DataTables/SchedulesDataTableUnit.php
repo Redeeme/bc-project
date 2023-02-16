@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\ChargerTask;
+use App\Models\Schedule;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -12,7 +12,7 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class ChargerTaskDataTable extends DataTable
+class SchedulesDataTableUnit extends DataTable
 {
     /**
      * Build DataTable class.
@@ -23,19 +23,31 @@ class ChargerTaskDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', 'chargertask.action')
+            ->addColumn('action', 'schedule.action')
             ->setRowId('id');
     }
 
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\ChargerTask $model
+     * @param \App\Models\Schedule $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(): QueryBuilder
+    public function query(Schedule $model): QueryBuilder
     {
-        return ChargerTask::query();
+        if ($this->type == 'BOTH'){
+            return Schedule::where([
+                ['schedule_no', $this->id],
+                ['dataset', $this->dataset],
+            ]);
+        }else{
+            return Schedule::where([
+                ['schedule_no', $this->id],
+                ['dataset', $this->dataset],
+                ['type', $this->type]
+            ]);
+        }
+
     }
 
     /**
@@ -46,10 +58,11 @@ class ChargerTaskDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('chargertask-table')
-                    ->columns($this->getColumns())
-                    ->minifiedAjax()
-                    ->orderBy(1);
+            ->setTableId('schedule-table')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+            //->dom('Bfrtip')
+            ->orderBy(1);
     }
 
     /**
@@ -60,12 +73,17 @@ class ChargerTaskDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            'charger_task_id',
-            'charger_id',
-            'process_id',
+            'schedule_id',
+            'schedule_index',
+            'charger_index',
             'start',
             'end',
-            'label',
+            'energy_before',
+            'energy_after',
+            'location_start',
+            'location_finish',
+            'type',
+            'schedule_no',
         ];
     }
 
@@ -76,6 +94,6 @@ class ChargerTaskDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'ChargerTask_' . date('YmdHis');
+        return 'Schedule_' . date('YmdHis');
     }
 }

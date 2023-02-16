@@ -26,6 +26,13 @@
                                             <option>{{$item->id}}</option>
                                         @endforeach
                                     </select>
+                                    <label for="inputCategory"><strong>Vyber datasetu turnusov</strong></label>
+                                    <select id="inputCategory" class="form-control" name="dataset">
+                                        <option selected>1</option>
+                                        @foreach($dataset as $item)
+                                            <option>{{$item->dataset}}</option>
+                                        @endforeach
+                                    </select>
                                 <div class="form group">
                                     <div class="text-center" style="margin-top: 10px;">
                                         <button type="submit" class="btn btn-success">Show</button>
@@ -55,7 +62,6 @@
                                             <option>{{$item->id}}</option>
                                         @endforeach
                                     </select>
-                                <div class="form-group">
                                     <label for="inputCategory"><strong>Vyber typu akcie</strong></label>
                                     <select id="inputCategory" class="form-control" name="type">
                                         <option selected>BOTH</option>
@@ -63,7 +69,13 @@
                                             <option>{{$category->type}}</option>
                                         @endforeach
                                     </select>
-                                </div>
+                                    <label for="inputCategory"><strong>Vyber datasetu rozvrhov</strong></label>
+                                    <select id="inputCategory" class="form-control" name="dataset">
+                                        <option selected>1</option>
+                                        @foreach($dataset as $item)
+                                            <option>{{$item->dataset}}</option>
+                                        @endforeach
+                                    </select>
                                 <div class="form group">
                                     <div class="text-center" style="margin-top: 10px;">
                                         <button type="submit" class="btn btn-success">Show</button>
@@ -91,6 +103,13 @@
                                         <option selected>Choose...</option>
                                         @foreach($charger as $item)
                                             <option>{{$item->id}}</option>
+                                        @endforeach
+                                    </select>
+                                    <label for="inputCategory"><strong>Vyber datasetu nabijaciek</strong></label>
+                                    <select id="inputCategory" class="form-control" name="dataset">
+                                        <option selected>1</option>
+                                        @foreach($dataset as $item)
+                                            <option>{{$item->dataset}}</option>
                                         @endforeach
                                     </select>
                                 <div class="form group">

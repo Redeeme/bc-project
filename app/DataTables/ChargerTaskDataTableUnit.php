@@ -12,7 +12,7 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class ChargerTaskDataTable extends DataTable
+class ChargerTaskDataTableUnit extends DataTable
 {
     /**
      * Build DataTable class.
@@ -35,7 +35,10 @@ class ChargerTaskDataTable extends DataTable
      */
     public function query(): QueryBuilder
     {
-        return ChargerTask::query();
+        return ChargerTask::where([
+            ['charger_id', $this->id],
+            ['dataset', $this->dataset]
+        ]);
     }
 
     /**
@@ -46,10 +49,10 @@ class ChargerTaskDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('chargertask-table')
-                    ->columns($this->getColumns())
-                    ->minifiedAjax()
-                    ->orderBy(1);
+            ->setTableId('chargertask-table')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+            ->orderBy(1);
     }
 
     /**
@@ -65,7 +68,9 @@ class ChargerTaskDataTable extends DataTable
             'process_id',
             'start',
             'end',
-            'label',
+            'speed',
+            'loc',
+            'dataset',
         ];
     }
 

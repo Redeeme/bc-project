@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\ChargerTaskDataTable;
+use App\DataTables\ChargerTaskDataTableUnit;
 use App\DataTables\ScheduleDataTable;
 use App\DataTables\TaskDataTable;
 use App\Models\ChargerTask;
@@ -26,12 +27,23 @@ class DataTableController extends Controller
     }
 
     public function getData(Request $request){
-        return match ($request->name) {
-            'charger_tasks' => redirect()->route('page-data-table-chargertask'),
-            'schedules' => redirect()->route('page-data-table-schedule'),
-            'tasks' => redirect()->route('page-data-table-task'),
-            default => redirect()->route('welcome-page'),
-        };
+        if ($request->data != null){
+            //return response()->json(['id' => $request->data,'dataset' => $request->dataset,'name' => $request->name,'type' => $request->type]);
+            return match ($request->name) {
+                'charger_tasks' => redirect()->route('page-data-table-charger-task-unit',['id' => $request->data,'dataset' => $request->dataset,'name' => $request->name]),
+                'schedules' => redirect()->route('page-data-table-schedule-unit',['id' => $request->data,'dataset' => $request->dataset,'name' => $request->name,'type' => $request->type]),
+                'tasks' => redirect()->route('page-data-table-task-unit',['id' => $request->data,'dataset' => $request->dataset,'name' => $request->name]),
+                default => redirect()->route('welcome-page'),
+            };
+        }else{
+            return match ($request->name) {
+                'charger_tasks' => redirect()->route('page-data-table-charger-task'),
+                'schedules' => redirect()->route('page-data-table-schedule'),
+                'tasks' => redirect()->route('page-data-table-task'),
+                default => redirect()->route('welcome-page'),
+            };
+        }
+        return redirect()->route('welcome-page');
     }
 
     public function getChargerTaskDataTable(ChargerTaskDataTable $dataTable)

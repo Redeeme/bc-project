@@ -1,5 +1,8 @@
 <?php
 
+use App\DataTables\ChargerTaskDataTableUnit;
+use App\DataTables\SchedulesDataTableUnit;
+use App\DataTables\TaskDataTableUnit;
 use App\Http\Controllers\ChargerTaskController;
 use App\Http\Controllers\DataTableController;
 use App\Http\Controllers\GanttController;
@@ -47,19 +50,31 @@ Route::get('/dataTableSelection', [DataTableController::class, 'getTableNames'])
 Route::get('/taskGrafikon', [GrafikonController::class, 'getTaskGrafikon'])->name('select-task-grafikon');
 Route::get('/scheduleGrafikon', [GrafikonController::class, 'getScheduleGrafikon'])->name('select-schedule-grafikon');
 
-Route::get('/dataTableChargerTaskview',[DataTableController::class, 'getChargerTaskDataTable'])->name('page-data-table-chargertask');
+Route::get('/dataTableChargerTaskview',[DataTableController::class, 'getChargerTaskDataTable'])->name('page-data-table-charger-task');
 Route::get('/dataTableScheduleview',[DataTableController::class, 'getScheduleDataTable'])->name('page-data-table-schedule');
 Route::get('/dataTableTaskview',[DataTableController::class, 'getTaskDataTable'])->name('page-data-table-task');
 
-
 Route::post('/dataTableData',[DataTableController::class, 'getData'])->name('page-data-table');
-
 Route::post('/graphSchedules',[GraphController::class, 'schedulesGraph'])->name('graph-page-schedules');
 Route::get('/graphSelectSchedules',[ScheduleController::class, 'schedulesSelectGraph'])->name('select-schedules-graph');
 
 Route::get('/import',[ImportFileController::class, 'index'])->name('import-upload');
 Route::post('/import',[ImportFileController::class, 'importData'])->name('import-data');
 
+Route::get('datatableUnit/{id}/{dataset}/{name}/{type}', function(SchedulesDataTableUnit $dataTable, $id,$dataset,$name,$type){
+    return $dataTable->with('dataset', $dataset)->with('id', $id)->with('type', $type)
+        ->render('dataTableViewUnit', $data=['dataset' => $dataset,'scheduleFlag' => $id,'type' => $type,'name' => $name]);
+})->name('page-data-table-schedule-unit');
+
+Route::get('datatableUnit/{id}/{dataset}/{name}', function(ChargerTaskDataTableUnit $dataTable, $id,$dataset,$name){
+    return $dataTable->with('dataset', $dataset)->with('id', $id)
+        ->render('dataTableViewUnit', $data=['dataset' => $dataset,'chargerFlag' => $id,'name' => $name]);
+})->name('page-data-table-charger-task-unit');
+
+Route::get('datatableUnit/{id}/{dataset}/{name}', function(TaskDataTableUnit $dataTable, $id,$dataset,$name){
+    return $dataTable->with('dataset', $dataset)->with('id', $id)
+        ->render('dataTableViewUnit', $data=['dataset' => $dataset,'tourFlag' => $id,'name' => $name]);
+})->name('page-data-table-task-unit');
 
 
 

@@ -26,6 +26,7 @@ class GanttController extends Controller
     public function tourGantt(Request $request)
     {
         $tour = $request->data;
+        $dataset = $request->dataset;
         $processes = Task::select('processid AS label', 'processid AS id')->where('linka', $tour)->get();
         $data = Task::select('*')->where('linka', $tour)->get();
         $task = [];
@@ -45,20 +46,20 @@ class GanttController extends Controller
         $categories = DiagramTime::select('start','end','label')->where('id','!=','1')->get();
         $category = DiagramTime::select('start','end','label')->where('id','=','1')->get();
 //return response()->json(['processes' => $processes, 'task' => $task,'categories'=>$categories,'category'=>$category]);
-        return view('gantt', ['processes' => $processes, 'task' => $task,'categories'=>$categories,'category'=>$category,'tour'=>$tour,'tourFlag'=>$tour]);
+        return view('gantt', ['processes' => $processes, 'task' => $task,'categories'=>$categories,'category'=>$category,'tour'=>$tour,'tourFlag'=>$tour,'dataset'=>$dataset,'name'=>'tasks']);
 
     }
 
     public function chargerGantt(Request $request)
     {
         $tour = $request->data;
-
+        $dataset = $request->dataset;
         $processes = ChargerTask::select('process_id AS label', 'process_id AS id')->where('charger_id', $tour)->get();
         $task = ChargerTask::select('*')->where('charger_id', $tour)->get();
         $categories = DiagramTime::select('start','end','label')->where('id','!=','1')->get();
         $category = DiagramTime::select('start','end','label')->where('id','=','1')->get();
         //return response()->json(array('processes' => $processes, 'task' => $task,'categories'=>$categories,'category'=>$category,'tour'=>$tour));
-        return view('gantt', ['processes' => $processes, 'task' => $task,'categories'=>$categories,'category'=>$category,'tour'=>$tour,'chargerFlag'=>$tour]);
+        return view('gantt', ['processes' => $processes, 'task' => $task,'categories'=>$categories,'category'=>$category,'tour'=>$tour,'chargerFlag'=>$tour,'dataset'=>$dataset,'name'=>'charger_tasks']);
     }
 
     public function scheduleGantt(Request $request)
@@ -66,6 +67,7 @@ class GanttController extends Controller
 
         $schedule = $request->data;
         $type = $request->type;
+        $dataset = $request->dataset;
         if ($type == "CHARGER" && $type != null){
             $processes = Schedule::select('schedule_index AS label', 'schedule_index AS id',)->where('schedule_no', $schedule)->where('type', $type)->get();
             $task = Schedule::select('*')->where('schedule_no', $schedule)->where('type', $type)->get();
@@ -107,6 +109,6 @@ class GanttController extends Controller
         //return response()->json(array('task' => $task, 'processes' => $processes));
 
 
-        return view('gantt', ['processes' => $processes, 'task' => $task,'categories'=>$categories,'category'=>$category,'tour'=>$schedule,'scheduleFlag'=>$schedule,'type'=>$type]);
+        return view('gantt', ['processes' => $processes, 'task' => $task,'categories'=>$categories,'category'=>$category,'tour'=>$schedule,'scheduleFlag'=>$schedule,'type'=>$type,'dataset'=>$dataset,'name'=>'schedules']);
     }
 }

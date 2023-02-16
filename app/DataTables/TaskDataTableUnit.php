@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\ChargerTask;
+use App\Models\Task;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -12,7 +12,7 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class ChargerTaskDataTable extends DataTable
+class TaskDataTableUnit extends DataTable
 {
     /**
      * Build DataTable class.
@@ -23,19 +23,22 @@ class ChargerTaskDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', 'chargertask.action')
+            ->addColumn('action', 'task.action')
             ->setRowId('id');
     }
 
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\ChargerTask $model
+     * @param \App\Models\Task $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(): QueryBuilder
+    public function query(Task $model): QueryBuilder
     {
-        return ChargerTask::query();
+        return Task::where([
+            ['linka', $this->id],
+            ['dataset', $this->dataset]
+        ]);
     }
 
     /**
@@ -46,10 +49,11 @@ class ChargerTaskDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('chargertask-table')
-                    ->columns($this->getColumns())
-                    ->minifiedAjax()
-                    ->orderBy(1);
+            ->setTableId('task-table')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+            //->dom('Bfrtip')
+            ->orderBy(1);
     }
 
     /**
@@ -60,12 +64,15 @@ class ChargerTaskDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            'charger_task_id',
-            'charger_id',
-            'process_id',
+            'task_id',
+            'processid',
             'start',
             'end',
-            'label',
+            'loc_start',
+            'loc_end',
+            'distance',
+            'consumption',
+            'linka',
         ];
     }
 
@@ -76,6 +83,6 @@ class ChargerTaskDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'ChargerTask_' . date('YmdHis');
+        return 'Task_' . date('YmdHis');
     }
 }

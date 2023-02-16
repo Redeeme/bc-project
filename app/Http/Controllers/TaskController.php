@@ -21,8 +21,14 @@ class TaskController extends Controller
             ->distinct()
             ->get();
         $tour->sortBy('id');
+        $dataset = DB::table('tasks')
+            ->select('dataset')
+            ->distinct()
+            ->get();
+        $dataset->sortBy('dataset');
         return view('ganttSelection', [
             'tour' => $tour,
+            'dataset' => $dataset,
         ]);
     }
 }

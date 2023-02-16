@@ -26,7 +26,12 @@ class ScheduleController extends Controller
             ->select('type')
             ->distinct()
             ->get();
-        return view('ganttSelection', ['schedule' => $schedule,'categories' => $categories]);
+        $dataset = DB::table('schedules')
+            ->select('dataset')
+            ->distinct()
+            ->get();
+        $dataset->sortBy('dataset');
+        return view('ganttSelection', ['schedule' => $schedule,'categories' => $categories,'dataset' => $dataset]);
     }
     public function schedulesSelectGraph(){
         $schedules = DB::table('schedules')

@@ -177,6 +177,7 @@
                         <form action="{{route('gantt-tour')}}" method="post">
                             @csrf
                             <input type="hidden" name="data" value="{{ $tourFlag }}">
+                            <input type="hidden" name="dataset" value="{{ $dataset }}">
                             <div class="form group">
                                 <button type="submit" class="btn btn-primary btn-block" id="update_button">schema gantt</button>
                             </div>
@@ -184,9 +185,11 @@
                     </li>
 
                     <li class="nav-item" style="margin-right: 5px">
-                        <form action="{{route('table-tour')}}" method="post">
+                        <form action="{{route('page-data-table')}}" method="post">
                             @csrf
                             <input type="hidden" name="data" value="{{ $tourFlag }}">
+                            <input type="hidden" name="dataset" value="{{ $dataset }}">
+                            <input type="hidden" name="name" value="{{ $name }}">
                             <div class="form group">
                                 <button type="submit" class="btn btn-primary btn-block" id="update_button">tabulkove zobrazenie</button>
                             </div>
@@ -197,6 +200,7 @@
                         <form action="{{route('stats-tour')}}" method="post">
                             @csrf
                             <input type="hidden" name="data" value="{{ $tourFlag }}">
+                            <input type="hidden" name="dataset" value="{{ $dataset }}">
                             <div class="form group">
                                 <button type="submit" class="btn btn-primary btn-block" id="update_button">statistiky dat</button>
                             </div>
@@ -215,6 +219,7 @@
                         <form action="{{route('gantt-charger')}}" method="post">
                             @csrf
                             <input type="hidden" name="data" value="{{ $chargerFlag }}">
+                            <input type="hidden" name="dataset" value="{{ $dataset }}">
                             <div class="form group">
                                 <button type="submit" class="btn btn-primary btn-block" id="update_button">schema gantt</button>
                             </div>
@@ -222,9 +227,11 @@
                     </li>
 
                     <li class="nav-item" style="margin-right: 5px">
-                        <form action="{{route('table-charger')}}" method="post">
+                        <form action="{{route('page-data-table')}}" method="post">
                             @csrf
                             <input type="hidden" name="data" value="{{ $chargerFlag }}">
+                            <input type="hidden" name="dataset" value="{{ $dataset }}">
+                            <input type="hidden" name="name" value="{{ $name }}">
                             <div class="form group">
                                 <button type="submit" class="btn btn-primary btn-block" id="update_button">tabulkove zobrazenie</button>
                             </div>
@@ -235,6 +242,8 @@
                         <form action="{{route('stats-charger')}}" method="post">
                             @csrf
                             <input type="hidden" name="data" value="{{ $chargerFlag }}">
+                            <input type="hidden" name="dataset" value="{{ $dataset }}">
+                            <input type="hidden" name="name" value="{{ $name }}">
                             <div class="form group">
                                 <button type="submit" class="btn btn-primary btn-block" id="update_button">statistiky dat</button>
                             </div>
@@ -254,6 +263,8 @@
                             @csrf
                             <input type="hidden" name="data" value="{{ $scheduleFlag }}">
                             <input type="hidden" name="type" value="{{ $type }}">
+                            <input type="hidden" name="dataset" value="{{ $dataset }}">
+                            <input type="hidden" name="name" value="{{ $name }}">
                             <div class="form group">
                                 <button type="submit" class="btn btn-primary btn-block" id="update_button">schema gantt</button>
                             </div>
@@ -261,10 +272,12 @@
                     </li>
 
                     <li class="nav-item" style="margin-right: 5px">
-                        <form action="{{route('table-schedule')}}" method="post">
+                        <form action="{{route('page-data-table')}}" method="post">
                             @csrf
                             <input type="hidden" name="data" value="{{ $scheduleFlag }}">
                             <input type="hidden" name="type" value="{{ $type }}">
+                            <input type="hidden" name="dataset" value="{{ $dataset }}">
+                            <input type="hidden" name="name" value="{{ $name }}">
                             <div class="form group">
                                 <button type="submit" class="btn btn-primary btn-block" id="update_button">tabulkove zobrazenie</button>
                             </div>
@@ -276,6 +289,8 @@
                             @csrf
                             <input type="hidden" name="data" value="{{ $scheduleFlag }}">
                             <input type="hidden" name="type" value="{{ $type }}">
+                            <input type="hidden" name="dataset" value="{{ $dataset }}">
+                            <input type="hidden" name="name" value="{{ $name }}">
                             <div class="form group">
                                 <button type="submit" class="btn btn-primary btn-block" id="update_button">statistiky dat</button>
                             </div>
