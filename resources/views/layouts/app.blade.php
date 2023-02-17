@@ -23,6 +23,31 @@
             margin: 0px;
             overflow: hidden;
         }
+        .containerFooter {
+            text-align: center;
+            color: white;
+            position: relative;
+            background-color: #4854cc;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            height: 150px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: auto;
+        }
+        .footerText {
+            color: white;
+            font-size: clamp(1rem, 2.5vw, 2rem);
+            width: 50%;
+        }
+        .bottom-right {
+            position: absolute;
+            bottom: 8px;
+            right: 16px;
+            color: black;
+        }
     </style>
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
@@ -38,7 +63,7 @@
 
 
 </head>
-<body>
+<body style="display:flex; flex-direction:column;overflow:auto ">
 <div id="app">
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
         <div class="container">
@@ -93,4 +118,17 @@
     @yield('content')
 </main>
 </body>
+<div class="containerFooter">
+    <div class="footerText">
+        <h6>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam at ligula suscipit, iaculis ipsum quis,
+            fringilla nisi. Sed dapibus placerat lorem. Praesent vel blandit velit. Aliquam molestie nulla vitae
+            sapien eleifend, at ultrices elit efficitur.
+        </h6>
+    </div>
+    <div class="bottom-right">
+        <h6>Author</h6>
+        <a href="#">Jozef Forgáč</a>
+    </div>
+</div>
 </html>

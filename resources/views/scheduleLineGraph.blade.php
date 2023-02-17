@@ -11,28 +11,40 @@
     <script>
         var array = [];
         let array_data = @json($data);
+        let schedulesLabels = @json($schedul);
         let min = Date.parse(`01 Jan 1970 03:59:59 GMT`)
-        let max = Date.parse(`01 Jan 1970 23:59:59 GMT`)
-        for (let i = 0; i < array_data.length - 1; i++) {
-            array_data[i].x = Date.parse(`01 Jan 1970 ${array_data[i].x} GMT`)
-            if (array_data[i].x > min) {
-                array.push(array_data[i])
+        let max = Date.parse(`02 Jan 1970 03:59:59 GMT`)
+        for (let i = 0;i<array_data.length;i++){
+            var arrayy = [];
+            for (let j = 0;j<array_data[i].length - 1;j++) {
+                array_data[i][j].x = Date.parse(`01 Jan 1970 ${array_data[i][j].x} GMT`)
+                if (array_data[i][j].x > min){
+                    arrayy.push(array_data[i][j])
+                }
             }
+            array.push(arrayy);
         }
-        console.log(array);
 
         const ctx = document.getElementById('myChart');
+        const hidden_chart = true;
 
+        var dataa = [];
+        for (let i = 0;i<array_data.length;i++){
+
+            dataa.push({
+                label: schedulesLabels[i],
+                data: array[i],
+                yAxisID: 'y',
+                xAxisID: 'x',
+                hidden: hidden_chart
+            });
+        }
         const data = {
-            datasets: [
-                {
-                    label: 'turnus 0',
-                    data: array,
-                    yAxisID: 'y',
-                    xAxisID: 'x',
-                },
-            ]
-        };
+            datasets: dataa
+        }
+
+        console.log(data);
+
         new Chart(ctx, {
             type: 'line',
             data: data,
@@ -46,7 +58,7 @@
                 plugins: {
                     title: {
                         display: true,
-                        text: 'Chart.js Line Chart - Multi Axis'
+                        text: 'stav baterky podla rozvrhu'
                     }
                 },
                 scales: {

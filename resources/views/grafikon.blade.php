@@ -24,12 +24,25 @@
             var d = b.x;
             return a.x-b.x;
         });
-        console.log(array[i]);
     }
 
     const ctx = document.getElementById('myChart');
+    let data = {};
 
-    const data = {
+    for (let i = 0;i<18-1;i++){
+        data = {
+            dataset: [
+                {
+                    label: 'Linka '+i,
+                    data: array[i],
+                    yAxisID: 'y',
+                    xAxisID: 'x',
+                }
+            ]
+        };
+    }
+
+    /*const data = {
         datasets: [
             {
                 label: 'Linka 0',
@@ -140,7 +153,7 @@
                 xAxisID: 'x',
             },
         ]
-    };
+    };*/
     new Chart(ctx, {
         type: 'line',
         data: data,

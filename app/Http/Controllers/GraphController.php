@@ -16,28 +16,31 @@ class GraphController extends Controller
 
     public function schedulesGraph(Request $request){
 
-        //$input = $request->schedule;
         $schedul = $request->schedule;
-        $schedul = $schedul[0];
 
         $type = $request->type;
-        if ($type == "CHARGER"){
-            $schedules = Schedule::select('*')->where('schedule_no', $schedul)->where('type', $type)->get();
-        }elseif ($type == "TRIP"){
-            $schedules = Schedule::select('*')->where('schedule_no', $schedul)->where('type', $type)->get();
-        }else{
-            $schedules = Schedule::select('*')->where('schedule_no', $schedul)->get();
+
+        $data = [sizeof($schedul)];
+        for ($j = 0;$j<=sizeof($schedul)-1;$j++){
+            if ($type == "CHARGER"){
+                $schedule = Schedule::select('*')->where('schedule_no', $schedul[$j])->where('type', $type)->get();
+            }elseif ($type == "TRIP"){
+                $schedule = Schedule::select('*')->where('schedule_no', $schedul[$j])->where('type', $type)->get();
+            }else{
+                $schedule = Schedule::select('*')->where('schedule_no', $schedul[$j])->get();
+            }
+            $dataa = [$schedule->count()];
+            for ($i = 0; $i <= $schedule->count() - 1; $i++) {
+                $dataa[] = [
+                    'x'     => $schedule[$i]->start,
+                    'y'     => $schedule[$i]->energy_after
+                ];
+            }
+            $data[$j] = $dataa;
         }
 
-        $data = [$schedules->count()];
-        for ($i = 0; $i <= $schedules->count() - 1; $i++) {
-            $data[] = [
-                'x'     => $schedules[$i]->start,
-                'y'     => $schedules[$i]->energy_after
-            ];
-        }
         //return response()->json(['data' => $data]);
-        return view('scheduleLineGraph',compact('data'));
+        return view('scheduleLineGraph',compact('data','schedul'));
     }
 
 }

@@ -15,6 +15,18 @@
         Výsledkom optimalizačných algoritmov sú často iba textové súbory, ktoré však nie sú vhodné na čítanie pre človeka. Tak je to aj v prípade úlohy návrhu turnusov elektrických autobusov. Úlohou študenta je preskúmať štandardné grafické schémy turnusov vozidiel (napr. Ganttove diagramy) a následne vytvoriť nástroj, v ktorom bude možné vybrané (po dohode s vedúcim práce) schémy zobraziť pre turnusy definované vstupnými súbormi. Súčasne by mal byť nástroj schopný zobraziť aj rozvrhy nabíjania nabíjacích staníc.
 
         Postup práce:</h4>
+    <h4>
+        Výsledkom optimalizačných algoritmov sú často iba textové súbory, ktoré však nie sú vhodné na čítanie pre človeka. Tak je to aj v prípade úlohy návrhu turnusov elektrických autobusov. Úlohou študenta je preskúmať štandardné grafické schémy turnusov vozidiel (napr. Ganttove diagramy) a následne vytvoriť nástroj, v ktorom bude možné vybrané (po dohode s vedúcim práce) schémy zobraziť pre turnusy definované vstupnými súbormi. Súčasne by mal byť nástroj schopný zobraziť aj rozvrhy nabíjania nabíjacích staníc.
+
+        Postup práce:</h4>
+    <h4>
+        Výsledkom optimalizačných algoritmov sú často iba textové súbory, ktoré však nie sú vhodné na čítanie pre človeka. Tak je to aj v prípade úlohy návrhu turnusov elektrických autobusov. Úlohou študenta je preskúmať štandardné grafické schémy turnusov vozidiel (napr. Ganttove diagramy) a následne vytvoriť nástroj, v ktorom bude možné vybrané (po dohode s vedúcim práce) schémy zobraziť pre turnusy definované vstupnými súbormi. Súčasne by mal byť nástroj schopný zobraziť aj rozvrhy nabíjania nabíjacích staníc.
+
+        Postup práce:</h4>
+    <h4>
+        Výsledkom optimalizačných algoritmov sú často iba textové súbory, ktoré však nie sú vhodné na čítanie pre človeka. Tak je to aj v prípade úlohy návrhu turnusov elektrických autobusov. Úlohou študenta je preskúmať štandardné grafické schémy turnusov vozidiel (napr. Ganttove diagramy) a následne vytvoriť nástroj, v ktorom bude možné vybrané (po dohode s vedúcim práce) schémy zobraziť pre turnusy definované vstupnými súbormi. Súčasne by mal byť nástroj schopný zobraziť aj rozvrhy nabíjania nabíjacích staníc.
+
+        Postup práce:</h4>
 </div>
 
 
