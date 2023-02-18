@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Helper;
 use App\Models\Task;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
@@ -50,13 +51,18 @@ class TasksSeeder extends Seeder
                         'distance' => $row[8],
                         'consumption' => $row[9],
                         'linka' => $row[3],
-                        'dataset' => 1,
+                        'dataset_name' => 'spoje_id_DS10_J',
                     ];
                 }
 
             }
             fclose($handle);
             Task::insert($data);
+            $helper[] = [
+                'dataset_name' => 'spoje_id_DS10_J',
+                'dataset_table' => 'tasks',
+            ];
+            Helper::insert($helper);
         }
     }
 }

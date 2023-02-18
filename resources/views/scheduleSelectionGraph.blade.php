@@ -9,41 +9,75 @@
             background-repeat: no-repeat;
         }
     </style>
-    <div class="container" style="margin-top: 250px">
-            <div class="h-100 d-flex align-items-center justify-content-center">
+
+    <div class="container" style="margin-top: 230px">
+        @if(isset($dataset_name))
+            <div class="h-100 d-flex align-items-center justify-content-center" >
                 <div class="card">
                     <div class="card-header bg-info">
-                        <h6 class="text-white">Vyber daneho rozvrhu pre zobrazenie grafu podla typu akcie</h6>
+                        <h6 class="text-white">Vyber dat pre graf rozvrhov</h6>
                     </div>
-                    <div class="card-body align-items-center d-flex justify-content-center">
-                        <form method="post" action="{{route('graph-page-schedules')}}" enctype="multipart/form-data">
+                    <div class="card-body">
+                        <div class="alert alert-success" role="alert" id="successMsg" style="display: none" >
+                            Choosing successful
+                        </div>
+                        <form action="{{route('select-schedules-graph-dataset')}}" method="post" name="datasetChoosing">
                             @csrf
-                            <div class="">
-                                <label><strong>Vyber turnusu</strong></label>
-                                <select class="selectpicker" multiple data-live-search="true" name="schedule[]">
-                                    @foreach($schedules as $schedule)
-                                        <option value="{{$schedule->schedule_no}}">{{$schedule->schedule_no}}</option>
+                            <input type="hidden" name="cid" value="ahoj">
+                            <div class="form-group">
+                                <label for="inputCategory"><strong>Vyber datasetu rozvrhov</strong></label>
+                                <select id="inputCategory" class="form-control" name="dataset">
+                                    <option selected>{{$dataset_name[0]->dataset_name}}</option>
+                                    @foreach($dataset_name as $item)
+                                        <option>{{$item->dataset_name}}</option>
                                     @endforeach
                                 </select>
-                            </div>
-                            <div class="">
-                                <label><strong>Vyber typu akcie</strong></label>
-                                <select id="inputCategory" class="form-control" name="type">
-                                    <option selected>BOTH</option>
-                                    @foreach($categories as $category)
-                                        <option>{{$category->type}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="text-center" style="margin-top: 10px;">
-                                <button type="submit" class="btn btn-success">Show</button>
+                                <div class="form group">
+                                    <div class="text-center" style="margin-top: 10px;">
+                                        <button type="submit" class="btn btn-success">Choose</button>
+                                    </div>
+                                </div>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
+        @endif
+        @if(isset($schedules))
+                <div class="h-100 d-flex align-items-center justify-content-center">
+                    <div class="card">
+                        <div class="card-header bg-info">
+                            <h6 class="text-white">Vyber daneho rozvrhu pre zobrazenie grafu podla typu akcie</h6>
+                        </div>
+                        <div class="card-body align-items-center d-flex justify-content-center">
+                            <form method="post" action="{{route('graph-page-schedules')}}" enctype="multipart/form-data">
+                                @csrf
+                                <label for="inputCategory"><strong>Dataset:</strong></label>
+                                <br><label><input class="form-control" type="text" value="{{$dataset}}" name="dataset" readonly></label></br>
+                                <br> <label><strong>Vyber turnusu</strong></label></br>
+                                    <select class="selectpicker" multiple data-live-search="true" name="schedule[]">
+                                        @foreach($schedules as $schedule)
+                                            <option value="{{$schedule->schedule_no}}">{{$schedule->schedule_no}}</option>
+                                        @endforeach
+                                    </select>
+                                <div class="">
+                                    <label><strong>Vyber typu akcie</strong></label>
+                                    <select id="inputCategory" class="form-control" name="type">
+                                        <option selected>BOTH</option>
+                                        @foreach($categories as $category)
+                                            <option>{{$category->type}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="text-center" style="margin-top: 10px;">
+                                    <button type="submit" class="btn btn-success">Show</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+        @endif
     </div>
-
 
 
 
@@ -55,6 +89,28 @@
 
             $('select').selectpicker();
 
+        });
+
+        $('#datasetChoosing').on('submit',function(e){
+            e.preventDefault();
+
+            let inputDataset = $('#inputDataset').val();
+
+            $.ajax({
+                url: "/graphSelectSchedulesDataset",
+                type:"POST",
+                data:{
+                    "_token": "{{ csrf_token() }}",
+                    dataset:inputDataset
+                },
+                success:function(response){
+                        $('#successMsg').show();
+                        console.log(response);
+                    },
+                    error: function(response) {
+                        $('#nameErrorMsg').text(response.responseJSON.errors.name);
+                },
+            });
         });
 
     </script>

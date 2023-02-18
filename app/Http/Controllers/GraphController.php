@@ -9,10 +9,6 @@ use Illuminate\Support\Facades\DB;
 
 class GraphController extends Controller
 {
-    public function index()
-    {
-        return view('chargerSelection');
-    }
 
     public function schedulesGraph(Request $request){
 

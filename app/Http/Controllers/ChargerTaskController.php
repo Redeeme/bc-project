@@ -15,18 +15,14 @@ class ChargerTaskController extends Controller
     }
 
 
-    public function getCharger()
+    public function getCharger($dataset)
     {
         $charger = DB::table('charger_tasks')
             ->select('charger_id AS id')
+            ->where('dataset_name',$dataset)
             ->distinct()
             ->get();
         $charger->sortBy('id');
-        $dataset = DB::table('charger_tasks')
-            ->select('dataset')
-            ->distinct()
-            ->get();
-        $dataset->sortBy('dataset');
         return view('ganttSelection', [
             'charger' => $charger,
             'dataset' => $dataset,

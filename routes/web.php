@@ -8,6 +8,7 @@ use App\Http\Controllers\DataTableController;
 use App\Http\Controllers\GanttController;
 use App\Http\Controllers\GrafikonController;
 use App\Http\Controllers\GraphController;
+use App\Http\Controllers\HelpController;
 use App\Http\Controllers\ImportFileController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\TaskController;
@@ -30,9 +31,12 @@ Route::get('/gantt', function () {
 });
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome-page');
 
-Route::get('/tourSelection', [TaskController::class, 'getTour'])->name('select-tours');
-Route::get('/chargerSelection', [ChargerTaskController::class, 'getCharger'])->name('select-chargers');
-Route::get('/scheduleSelection', [ScheduleController::class, 'getSchedule'])->name('select-schedules');
+Route::get('/datasetsSelection',[HelpController::class, 'getDatasets'])->name('get-datasets');
+Route::post('/datasetSelect',[HelpController::class, 'getDataset'])->name('get-dataset');
+
+Route::get('/tourSelection/{dataset}', [TaskController::class, 'getTour'])->name('select-tours');
+Route::get('/chargerSelection/{dataset}', [ChargerTaskController::class, 'getCharger'])->name('select-chargers');
+Route::get('/scheduleSelection/{dataset}', [ScheduleController::class, 'getSchedule'])->name('select-schedules');
 
 Route::post('/ganttTours',[GanttController::class, 'tourGantt'])->name('gantt-tour');
 Route::post('/ganttChargers',[GanttController::class, 'chargerGantt'])->name('gantt-charger');
@@ -52,13 +56,19 @@ Route::get('/scheduleGrafikon', [GrafikonController::class, 'getScheduleGrafikon
 Route::get('/dataTableChargerTaskview',[DataTableController::class, 'getChargerTaskDataTable'])->name('page-data-table-charger-task');
 Route::get('/dataTableScheduleview',[DataTableController::class, 'getScheduleDataTable'])->name('page-data-table-schedule');
 Route::get('/dataTableTaskview',[DataTableController::class, 'getTaskDataTable'])->name('page-data-table-task');
-
 Route::post('/dataTableData',[DataTableController::class, 'getData'])->name('page-data-table');
+
 Route::post('/graphSchedules',[GraphController::class, 'schedulesGraph'])->name('graph-page-schedules');
-Route::get('/graphSelectSchedules',[ScheduleController::class, 'schedulesSelectGraph'])->name('select-schedules-graph');
+
+Route::get('/graphSelectSchedulesDatasets',[HelpController::class, 'getSchedulesDatasets'])->name('select-schedules-graph-datasets');
+Route::post('/graphSelectSchedulesDataset',[HelpController::class, 'getSchedulesDataset'])->name('select-schedules-graph-dataset');
+Route::get('/graphSelectSchedules/{dataset}',[ScheduleController::class, 'schedulesSelectGraph'])->name('select-schedules-graph');
 
 Route::get('/import',[ImportFileController::class, 'index'])->name('import-upload');
 Route::post('/import',[ImportFileController::class, 'importData'])->name('import-data');
+
+
+
 
 Route::get('datatableUnit/{id}/{dataset}/{name}/{type}', function(SchedulesDataTableUnit $dataTable, $id,$dataset,$name,$type){
     return $dataTable->with('dataset', $dataset)->with('id', $id)->with('type', $type)

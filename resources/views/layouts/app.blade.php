@@ -86,7 +86,7 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href={{route('welcome-page')}}>Home</a>
                     </li>
-                    <li class="nav-item dropdown">
+{{--                    <li class="nav-item dropdown">
                         <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Gantt
                         </a>
@@ -95,6 +95,9 @@
                             <li><a class="dropdown-item" href="{{route('select-chargers')}}">chargers</a></li>
                             <li><a class="dropdown-item" href="{{route('select-schedules')}}">schedules</a></li>
                         </ul>
+                    </li>--}}
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href={{route('get-datasets')}}>Gantt</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href={{route('select-table-view')}}>Data</a>
@@ -103,7 +106,7 @@
                         <a class="nav-link active" aria-current="page" href={{route('select-schedule-grafikon')}}>Grafikon</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href={{route('select-schedules-graph')}}>Schedule graph</a>
+                        <a class="nav-link active" aria-current="page" href={{route('select-schedules-graph-datasets')}}>Schedule graph</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href={{route('import-upload')}}>Data import</a>

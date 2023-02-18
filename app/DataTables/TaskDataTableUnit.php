@@ -37,7 +37,7 @@ class TaskDataTableUnit extends DataTable
     {
         return Task::where([
             ['linka', $this->id],
-            ['dataset', $this->dataset]
+            ['dataset_name', $this->dataset]
         ]);
     }
 

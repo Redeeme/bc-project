@@ -26,7 +26,7 @@ class CreateSchedulesTable extends Migration
             $table->integer('location_finish')->unsigned();
             $table->string('type');
             $table->string('schedule_no');
-            $table->integer('dataset');
+            $table->string('dataset_name');
         });
     }
 

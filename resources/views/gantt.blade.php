@@ -43,6 +43,7 @@
         let array_category = @json($category);
         let palette = Math.floor(Math.random() * 5);
         let tourNumber = @json($tour);
+        let dataset = @json($dataset);
 
         let paneLength = 0;
         if (array_process.length > 550){
@@ -58,11 +59,11 @@
         }
         function titleLabel() {
             if (array_task[0].schedule_index != null){
-                return "rozvrh číslo: " + tourNumber;
+                return ("Rozvrh číslo: " + tourNumber + "\t\tNazov suboru: " + dataset);
             }else if(array_task[0].taskid != null){
-                return  "turnus číslo: " + tourNumber;
+                return  ("Turnus číslo: " + tourNumber + "\t\tNazov suboru: " + dataset);
             }else if(array_task[0].charger_task_id != null){
-                return  "nabijacka číslo: " + tourNumber;
+                return  ("Nabijacka číslo: " + tourNumber + "\t\tNazov suboru: " + dataset);
             }
         }
         const dataSource = {

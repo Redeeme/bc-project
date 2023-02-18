@@ -13,9 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('helper', function (Blueprint $table) {
-            $table->id('dataset');
-            $table->timestamps();
+        Schema::create('helpers', function (Blueprint $table) {
+            $table->id();
+            $table->string('dataset_name');
+            $table->string('dataset_table');
         });
     }
 

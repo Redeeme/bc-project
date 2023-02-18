@@ -8,6 +8,38 @@
         }
     </style>
     <div class="container" style="margin-top: 230px">
+        @if(isset($dataset_name))
+            <div class="h-100 d-flex align-items-center justify-content-center" >
+                <div class="card">
+                    <div class="card-header bg-info">
+                        <h6 class="text-white">Vyber dat pre ganttov diagram podla indexu turnusu</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="alert alert-success" role="alert" id="successMsg" style="display: none" >
+                            Choosing successful
+                        </div>
+                        <form action="{{route('get-dataset')}}" method="post" name="datasetChoosing">
+                            @csrf
+                            <input type="hidden" name="cid" value="ahoj">
+                            <div class="form-group">
+                                <label for="inputCategory"><strong>Vyber datasetu turnusov</strong></label>
+                                <select id="inputCategory" class="form-control" name="dataset">
+                                    <option selected>{{$dataset_name[0]->dataset_name}}</option>
+                                    @foreach($dataset_name as $item)
+                                        <option>{{$item->dataset_name}}</option>
+                                    @endforeach
+                                </select>
+                                <div class="form group">
+                                    <div class="text-center" style="margin-top: 10px;">
+                                        <button type="submit" class="btn btn-success">Choose</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        @endif
         @if(isset($tour))
             <div class="h-100 d-flex align-items-center justify-content-center" >
                 <div class="card">
@@ -19,18 +51,13 @@
                             @csrf
                             <input type="hidden" name="cid" value="ahoj">
                                 <div class="form-group">
+                                    <label for="inputCategory"><strong>Dataset:</strong></label>
+                                      <br><label><input class="form-control" type="text" value="{{$dataset}}" name="dataset" readonly></label></br>
                                     <label for="inputCategory"><strong>Vyber index turnusu</strong></label>
                                     <select id="inputCategory" class="form-control" name="data">
                                         <option selected>Choose...</option>
                                         @foreach($tour as $item)
                                             <option>{{$item->id}}</option>
-                                        @endforeach
-                                    </select>
-                                    <label for="inputCategory"><strong>Vyber datasetu turnusov</strong></label>
-                                    <select id="inputCategory" class="form-control" name="dataset">
-                                        <option selected>1</option>
-                                        @foreach($dataset as $item)
-                                            <option>{{$item->dataset}}</option>
                                         @endforeach
                                     </select>
                                 <div class="form group">
@@ -55,6 +82,8 @@
                             @csrf
                             <input type="hidden" name="cid" value="ahoj">
                                 <div class="form-group">
+                                    <label for="inputCategory"><strong>Dataset:</strong></label>
+                                    <br><label><input class="form-control" type="text" value="{{$dataset}}" name="dataset" readonly></label></br>
                                     <label for="inputCategory"><strong>Vyber index rozvrhu</strong></label>
                                     <select id="inputCategory" class="form-control" name="data">
                                         <option selected>Choose...</option>
@@ -69,14 +98,7 @@
                                             <option>{{$category->type}}</option>
                                         @endforeach
                                     </select>
-                                    <label for="inputCategory"><strong>Vyber datasetu rozvrhov</strong></label>
-                                    <select id="inputCategory" class="form-control" name="dataset">
-                                        <option selected>1</option>
-                                        @foreach($dataset as $item)
-                                            <option>{{$item->dataset}}</option>
-                                        @endforeach
-                                    </select>
-                                <div class="form group">
+                                    <div class="form group">
                                     <div class="text-center" style="margin-top: 10px;">
                                         <button type="submit" class="btn btn-success">Show</button>
                                     </div>
@@ -98,6 +120,8 @@
                             @csrf
                             <input type="hidden" name="cid" value="ahoj">
                                 <div class="form-group">
+                                    <label for="inputCategory"><strong>Dataset:</strong></label>
+                                    <br><label><input class="form-control" type="text" value="{{$dataset}}" name="dataset" readonly></label></br>
                                     <label for="inputCategory"><strong>Vyber index nabijacky</strong></label>
                                     <select id="inputCategory" class="form-control" name="data">
                                         <option selected>Choose...</option>
@@ -105,14 +129,7 @@
                                             <option>{{$item->id}}</option>
                                         @endforeach
                                     </select>
-                                    <label for="inputCategory"><strong>Vyber datasetu nabijaciek</strong></label>
-                                    <select id="inputCategory" class="form-control" name="dataset">
-                                        <option selected>1</option>
-                                        @foreach($dataset as $item)
-                                            <option>{{$item->dataset}}</option>
-                                        @endforeach
-                                    </select>
-                                <div class="form group">
+                                    <div class="form group">
                                     <div class="text-center" style="margin-top: 10px;">
                                         <button type="submit" class="btn btn-success">Show</button>
                                     </div>
@@ -124,6 +141,31 @@
             </div>
         @endif
     </div>
+
+    <script type="text/javascript">
+
+        $('#datasetChoosing').on('submit',function(e){
+        e.preventDefault();
+
+        let inputDataset = $('#inputDataset').val();
+
+        $.ajax({
+        url: "/datasetSelect",
+        type:"POST",
+        data:{
+        "_token": "{{ csrf_token() }}",
+        dataset:inputDataset
+    },
+        success:function(response){
+        $('#successMsg').show();
+        console.log(response);
+    },
+        error: function(response) {
+        $('#nameErrorMsg').text(response.responseJSON.errors.name);
+    },
+    });
+    });
+</script>
 
 
 @endsection

@@ -19,8 +19,6 @@ class GrafikonController extends Controller
             ->distinct()
             ->get();
         $schedules->sortBy('schedules');
-
-
         $data = [$schedules->count()];
 
         $stations = Station::select('station_id')->pluck('station_id');
@@ -40,7 +38,6 @@ class GrafikonController extends Controller
                     $dataa[] = [
                         'x'     => $schedulesALL[$j]->start,
                         'y'     => $loc_start
-
                     ];
                 }
             }

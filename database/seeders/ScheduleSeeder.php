@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Helper;
 use App\Models\Schedule;
 use App\Models\Task;
 use Carbon\Carbon;
@@ -17,7 +18,7 @@ class ScheduleSeeder extends Seeder
      */
     public function run()
     {
-        $filename = storage_path("app\csv\schedules.txt");
+        $filename = storage_path("app\csv\DS10J1_res_GGA_T.txt");
         Log::debug($filename);
         if (!file_exists($filename) || !is_readable($filename))
             return;
@@ -29,6 +30,8 @@ class ScheduleSeeder extends Seeder
         $minute_start = 0;
         $hours_end = 0;
         $minute_end = 0;
+
+
         if (($handle = fopen($filename, 'r')) !== FALSE) {
             while (($row = fgetcsv($handle, 1000, ';')) !== FALSE) {
                 if (substr($row[0], 0, 8) == "Schedule") {
@@ -58,7 +61,7 @@ class ScheduleSeeder extends Seeder
                             'location_finish' => $row[7],
                             'type' => $row[8],
                             'schedule_no' => $schedule,
-                            'dataset' => 1,
+                            'dataset_name' => 'DS10J1_res_GGA_T',
                         ];
                     } else {
                         $charger = NULL;
@@ -74,7 +77,7 @@ class ScheduleSeeder extends Seeder
                             'location_finish' => $row[7],
                             'type' => $row[8],
                             'schedule_no' => $schedule,
-                            'dataset' => 1,
+                            'dataset_name' => 'DS10J1_res_GGA_T',
                         ];
                     }
 
@@ -83,6 +86,11 @@ class ScheduleSeeder extends Seeder
             }
             fclose($handle);
             Schedule::insert($data);
+            $helper[] = [
+                'dataset_name' => 'DS10J1_res_GGA_T',
+                'dataset_table' => 'schedules',
+            ];
+            Helper::insert($helper);
         }
     }
 }

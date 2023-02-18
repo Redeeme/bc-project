@@ -37,7 +37,7 @@ class ChargerTaskDataTableUnit extends DataTable
     {
         return ChargerTask::where([
             ['charger_id', $this->id],
-            ['dataset', $this->dataset]
+            ['dataset_name', $this->dataset]
         ]);
     }
 

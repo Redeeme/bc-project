@@ -27,8 +27,8 @@ class GanttController extends Controller
     {
         $tour = $request->data;
         $dataset = $request->dataset;
-        $processes = Task::select('processid AS label', 'processid AS id')->where('linka', $tour)->get();
-        $data = Task::select('*')->where('linka', $tour)->get();
+        $processes = Task::select('processid AS label', 'processid AS id')->where('linka', $tour)->where('dataset_name', $dataset)->get();
+        $data = Task::select('*')->where('linka', $tour)->where('dataset_name', $dataset)->get();
         $task = [];
         foreach ($data as $row){
             $task[] = [
@@ -54,8 +54,8 @@ class GanttController extends Controller
     {
         $tour = $request->data;
         $dataset = $request->dataset;
-        $processes = ChargerTask::select('process_id AS label', 'process_id AS id')->where('charger_id', $tour)->get();
-        $task = ChargerTask::select('*')->where('charger_id', $tour)->get();
+        $processes = ChargerTask::select('process_id AS label', 'process_id AS id')->where('charger_id', $tour)->where('dataset_name', $dataset)->get();
+        $task = ChargerTask::select('*')->where('charger_id', $tour)->where('dataset_name', $dataset)->get();
         $categories = DiagramTime::select('start','end','label')->where('id','!=','1')->get();
         $category = DiagramTime::select('start','end','label')->where('id','=','1')->get();
         //return response()->json(array('processes' => $processes, 'task' => $task,'categories'=>$categories,'category'=>$category,'tour'=>$tour));
@@ -69,17 +69,17 @@ class GanttController extends Controller
         $type = $request->type;
         $dataset = $request->dataset;
         if ($type == "CHARGER" && $type != null){
-            $processes = Schedule::select('schedule_index AS label', 'schedule_index AS id',)->where('schedule_no', $schedule)->where('type', $type)->get();
-            $task = Schedule::select('*')->where('schedule_no', $schedule)->where('type', $type)->get();
-        }elseif ($type == "TRIP"&& $type != null){
-            $processes = Schedule::select('schedule_index AS label', 'schedule_index AS id',)->where('schedule_no', $schedule)->where('type', $type)->get();
-            $task = Schedule::select('*')->where('schedule_no', $schedule)->where('type', $type)->get();
+            $processes = Schedule::select('schedule_index AS label', 'schedule_index AS id',)->where('schedule_no', $schedule)->where('type', $type)->where('dataset_name', $dataset)->get();
+            $task = Schedule::select('*')->where('schedule_no', $schedule)->where('type', $type)->where('dataset_name', $dataset)->get();
+        }elseif ($type == "TRIP" && $type != null){
+            $processes = Schedule::select('schedule_index AS label', 'schedule_index AS id',)->where('schedule_no', $schedule)->where('dataset_name', $dataset)->where('type', $type)->get();
+            $task = Schedule::select('*')->where('schedule_no', $schedule)->where('type', $type)->where('dataset_name', $dataset)->get();
         }else{
-            $processes = Schedule::select('schedule_index AS label', 'schedule_index AS id',)->where('schedule_no', $schedule)->get();
+            $processes = Schedule::select('schedule_index AS label', 'schedule_index AS id',)->where('schedule_no', $schedule)->where('dataset_name', $dataset)->get();
             $taskk = Schedule::select('*')->where('schedule_no', $schedule)->get();
             $task = [];
             foreach ($taskk as $item) {
-                $tmp = Schedule::select('*')->where('schedule_no', $schedule)->where('schedule_index', $item->schedule_index)->get();
+                $tmp = Schedule::select('*')->where('schedule_no', $schedule)->where('schedule_index', $item->schedule_index)->where('dataset_name', $dataset)->get();
                 if ($tmp[0]->type == "CHARGER"){
                     $task[] = [
                         'schedule_index'=> $item->schedule_index,

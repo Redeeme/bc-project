@@ -15,10 +15,11 @@ class ScheduleController extends Controller
     }
 
 
-    public function getSchedule()
+    public function getSchedule($dataset)
     {
         $schedule = DB::table('schedules')
             ->select('schedule_no AS id')
+            ->where('dataset_name',$dataset)
             ->distinct()
             ->get();
         $schedule->sortBy('id');
@@ -26,24 +27,21 @@ class ScheduleController extends Controller
             ->select('type')
             ->distinct()
             ->get();
-        $dataset = DB::table('schedules')
-            ->select('dataset')
-            ->distinct()
-            ->get();
-        $dataset->sortBy('dataset');
         return view('ganttSelection', ['schedule' => $schedule,'categories' => $categories,'dataset' => $dataset]);
     }
-    public function schedulesSelectGraph(){
+    public function schedulesSelectGraph($dataset){
         $schedules = DB::table('schedules')
             ->select('schedule_no')
+            ->where('dataset_name',$dataset)
             ->distinct()
             ->get();
         $schedules->sortBy('schedule_no');
         $categories = DB::table('schedules')
             ->select('type')
+            ->where('dataset_name',$dataset)
             ->distinct()
             ->get();
-        return view('scheduleSelectionGraph', ['schedules' => $schedules,'categories' => $categories]);
+        return view('scheduleSelectionGraph', ['schedules' => $schedules,'categories' => $categories,'dataset' => $dataset]);
     }
     public function getScheduleTable(Request $request)
     {

@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\ChargerTask;
+use App\Models\Helper;
 use App\Models\Task;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
@@ -48,7 +49,7 @@ class ChargerTaskSeeder extends Seeder
                         'end' => $time_end,
                         'speed' => $row[6],
                         'loc' => $row[5],
-                        'dataset' => 1,
+                        'dataset_name' => 'ChEvents_DS10_J',
                     ];
                 }
 
@@ -58,6 +59,11 @@ class ChargerTaskSeeder extends Seeder
             {
                 ChargerTask::insert($t);
             }
+            $helper[] = [
+                'dataset_name' => 'ChEvents_DS10_J',
+                'dataset_table' => 'charger_tasks',
+            ];
+            Helper::insert($helper);
         }
     }
 }
