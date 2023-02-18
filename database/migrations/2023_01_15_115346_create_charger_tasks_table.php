@@ -19,6 +19,7 @@ class CreateChargerTasksTable extends Migration
             $table->string('process_id');
             $table->time('start');
             $table->time('end');
+            $table->time('duration');
             $table->string('speed');
             $table->string('loc');
             $table->string('dataset_name');

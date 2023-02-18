@@ -50,19 +50,21 @@ class GrafikonController extends Controller
     public function getScheduleGrafikon(){
         $schedules = DB::table('schedules')
             ->select('schedule_no')
+            ->where('dataset_name', 'DS10J1_res_GGA_T.txt')
             ->distinct()
             ->get();
         $schedules->sortBy('schedules');
 
 
         $data = [$schedules->count()];
-        $tasks = DB::table('tasks')->select('*')->get();
+        $tasks = DB::table('tasks')->select('*')->where('dataset_name','spoje_id_DS10_J.csv')->get();
 
         for ($i = 0; $i <= $schedules->count() - 1; $i++) {
 
             $schedulesALL = DB::table('schedules')->select('*')
                 ->where('schedule_no', $schedules[$i]->schedule_no)
                 ->where('type', 'TRIP')
+                ->where('dataset_name', 'DS10J1_res_GGA_T.txt')
                 ->get();
 
             $dataa =[];

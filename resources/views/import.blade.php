@@ -27,22 +27,26 @@
                             <fieldset>
                                 <label>Select File to Upload  <small class="warning text-muted">{{__('Please upload only Excel (.xlsx or .xls) files')}}</small></label>
                                 <div class="input-group">
+                                    <br>
                                     <input type="file" required class="form-control" name="uploaded_file" id="uploaded_file">
+                                    </br>
                                     @if ($errors->has('uploaded_file'))
                                         <p class="text-right mb-0">
                                             <small class="danger text-muted" id="file-error">{{ $errors->first('uploaded_file') }}</small>
                                         </p>
                                     @endif
                                     <div class="input-group">
-                                        <select id="inputCategory" class="form-control" name="table_name">
+                                        <br> <label for="inputCategory"><strong>Nazov tabulky:</strong></label>
+                                          <select id="inputCategory" class="form-control" name="table_name">
                                             @foreach($tableNames as $tableName)
                                                 <option>{{$tableName->name}}</option>
                                             @endforeach
                                         </select>
+
                                     </div>
                                     <div class="form-group">
-                                        <label for="dataset">Dataset:</label>
-                                        <textarea class="form-control" rows="1" id="dataset"></textarea>
+                                        <label for="inputCategory"><strong>Comment:</strong></label>
+                                        <br><label><input class="form-control" type="text" name="comment"></label></br>
                                     </div>
 
                                 </div>

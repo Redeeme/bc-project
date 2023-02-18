@@ -51,7 +51,7 @@ class TasksSeeder extends Seeder
                         'distance' => $row[8],
                         'consumption' => $row[9],
                         'linka' => $row[3],
-                        'dataset_name' => 'spoje_id_DS10_J',
+                        'dataset_name' => 'spoje_id_DS10_J.csv',
                     ];
                 }
 
@@ -59,8 +59,9 @@ class TasksSeeder extends Seeder
             fclose($handle);
             Task::insert($data);
             $helper[] = [
-                'dataset_name' => 'spoje_id_DS10_J',
+                'dataset_name' => 'spoje_id_DS10_J.csv',
                 'dataset_table' => 'tasks',
+                'dataset_comment' => 'default',
             ];
             Helper::insert($helper);
         }

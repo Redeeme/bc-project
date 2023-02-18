@@ -14,7 +14,8 @@ class CreateTasksTable extends Migration
     public function up()
     {
         Schema::create('tasks', function (Blueprint $table) {
-            $table->id('task_id');
+            $table->id('index');
+            $table->integer('task_id');
             $table->string('processid');
             $table->time('start');
             $table->time('end');

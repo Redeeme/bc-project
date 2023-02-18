@@ -34,7 +34,7 @@ class ScheduleSeeder extends Seeder
 
         if (($handle = fopen($filename, 'r')) !== FALSE) {
             while (($row = fgetcsv($handle, 1000, ';')) !== FALSE) {
-                if (substr($row[0], 0, 8) == "Schedule") {
+                if (str_starts_with($row[0], "Schedule")) {
                     $schedule = $row[0];
                 } elseif ($row[0] == null) {
 
@@ -61,7 +61,7 @@ class ScheduleSeeder extends Seeder
                             'location_finish' => $row[7],
                             'type' => $row[8],
                             'schedule_no' => $schedule,
-                            'dataset_name' => 'DS10J1_res_GGA_T',
+                            'dataset_name' => 'DS10J1_res_GGA_T.txt',
                         ];
                     } else {
                         $charger = NULL;
@@ -77,7 +77,7 @@ class ScheduleSeeder extends Seeder
                             'location_finish' => $row[7],
                             'type' => $row[8],
                             'schedule_no' => $schedule,
-                            'dataset_name' => 'DS10J1_res_GGA_T',
+                            'dataset_name' => 'DS10J1_res_GGA_T.txt',
                         ];
                     }
 
@@ -87,8 +87,9 @@ class ScheduleSeeder extends Seeder
             fclose($handle);
             Schedule::insert($data);
             $helper[] = [
-                'dataset_name' => 'DS10J1_res_GGA_T',
+                'dataset_name' => 'DS10J1_res_GGA_T.txt',
                 'dataset_table' => 'schedules',
+                'dataset_comment' => 'default',
             ];
             Helper::insert($helper);
         }

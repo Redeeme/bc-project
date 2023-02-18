@@ -40,16 +40,20 @@ class ChargerTaskSeeder extends Seeder
                     $minute_start = $row[2] % 60;
                     $hours_end = (int)($row[3] / 60);
                     $minute_end = $row[3] % 60;
+                    $hours_duration = (int)($row[4] / 60);
+                    $minute_duration = $row[4] % 60;
                     $time_start = Carbon::createFromTime(round($hours_start), $minute_start);
                     $time_end = Carbon::createFromTime(round($hours_end), $minute_end);
+                    $time_duration = Carbon::createFromTime(round($hours_duration), $minute_duration);
                     $data[] = [
                         'charger_id' => $row[0],
                         'process_id' => $row[1],
                         'start' => $time_start,
                         'end' => $time_end,
+                        'duration' => $time_duration,
                         'speed' => $row[6],
                         'loc' => $row[5],
-                        'dataset_name' => 'ChEvents_DS10_J',
+                        'dataset_name' => 'ChEvents_DS10_J.csv',
                     ];
                 }
 
@@ -60,8 +64,9 @@ class ChargerTaskSeeder extends Seeder
                 ChargerTask::insert($t);
             }
             $helper[] = [
-                'dataset_name' => 'ChEvents_DS10_J',
+                'dataset_name' => 'ChEvents_DS10_J.csv',
                 'dataset_table' => 'charger_tasks',
+                'dataset_comment' => 'default',
             ];
             Helper::insert($helper);
         }

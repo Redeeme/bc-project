@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('dataset_name');
             $table->string('dataset_table');
+            $table->string('dataset_comment');
         });
     }
 

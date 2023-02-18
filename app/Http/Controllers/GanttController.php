@@ -32,7 +32,7 @@ class GanttController extends Controller
         $task = [];
         foreach ($data as $row){
             $task[] = [
-                'taskid' => $row->processid,
+                'task_id' => $row->processid,
                 'start' => $row->start,
                 'end' => $row->end,
                 'loc_start'=> $row->loc_start,
@@ -76,8 +76,9 @@ class GanttController extends Controller
             $task = Schedule::select('*')->where('schedule_no', $schedule)->where('type', $type)->where('dataset_name', $dataset)->get();
         }else{
             $processes = Schedule::select('schedule_index AS label', 'schedule_index AS id',)->where('schedule_no', $schedule)->where('dataset_name', $dataset)->get();
-            $taskk = Schedule::select('*')->where('schedule_no', $schedule)->get();
+            $taskk = Schedule::select('*')->where('schedule_no', $schedule)->where('dataset_name', $dataset)->get();
             $task = [];
+            //return response()->json(array('task' => $taskk, 'processes' => $processes));
             foreach ($taskk as $item) {
                 $tmp = Schedule::select('*')->where('schedule_no', $schedule)->where('schedule_index', $item->schedule_index)->where('dataset_name', $dataset)->get();
                 if ($tmp[0]->type == "CHARGER"){
