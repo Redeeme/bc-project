@@ -26,12 +26,13 @@
         .containerFooter {
             text-align: center;
             color: white;
-            position: relative;
+            position: static;
             background-color: #4854cc;
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center;
-            height: 150px;
+            min-height: 150px;
+            max-height: 160px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -43,7 +44,7 @@
             width: 50%;
         }
         .bottom-right {
-            position: absolute;
+            position: static;
             bottom: 8px;
             right: 16px;
             color: black;

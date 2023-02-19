@@ -27,4 +27,17 @@ class TaskController extends Controller
             'dataset' => $dataset,
         ]);
     }
+
+    public function tourStats(Request $request)
+    {
+
+        $dataset = $request->dataset;
+        $name = $request->name;
+        $tourflag = $request->data;
+        return view('ganttStats', [
+            'tourFlag' => $tourflag,
+            'dataset' => $dataset,
+            'name' => $name,
+        ]);
+    }
 }
