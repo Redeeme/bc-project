@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('pageTitle', 'dataTableViewUnit')
+@section('pageTitle', 'statsViewUnit')
 @section('content')
 
     @if(isset($tourFlag))
@@ -134,29 +134,17 @@
             </div>
         </div>
     @endif
+    @if(isset($stats))
         <div class="articles-wrapper" style="width: 94%; margin-left: 3%">
-            <div class="article-card">
-                <div class="image">
+            @foreach($stats as $stat)
+                <div class="article-card">
+                    <div class="image">
+                    </div>
+                    <h3>{{$stat['name']}}</h3>
+                    <div class="description">
+                        {{$stat['stat']}}
+                    </div>
                 </div>
-                <h3>
-                    <a href="{{route('select-table-view')}}">
-                        tabulkove zobrazenie vybranych dat
-                    </a>
-                </h3>
-                <div class="description">
-                    description
-                </div>
-            </div>
-            <div class="article-card">
-                <div class="image">
-                </div>
-                <h3>
-                    <a href="{{route('select-schedule-grafikon')}}">
-                        grafikon turnusov
-                    </a>
-                </h3>
-                <div class="description">
-                    description
-                </div>
-            </div>
+            @endforeach
+    @endif
 @endsection

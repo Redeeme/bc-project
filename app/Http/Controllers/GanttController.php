@@ -54,11 +54,12 @@ class GanttController extends Controller
     {
         $tour = $request->data;
         $dataset = $request->dataset;
+
         $processes = ChargerTask::select('process_id AS label', 'process_id AS id')->where('charger_id', $tour)->where('dataset_name', $dataset)->get();
         $task = ChargerTask::select('*')->where('charger_id', $tour)->where('dataset_name', $dataset)->get();
         $categories = DiagramTime::select('start','end','label')->where('id','!=','1')->get();
         $category = DiagramTime::select('start','end','label')->where('id','=','1')->get();
-        //return response()->json(array('processes' => $processes, 'task' => $task,'categories'=>$categories,'category'=>$category,'tour'=>$tour));
+        //return response()->json(array('tour'=>$tour,'chargerFlag'=>$tour,'dataset'=>$dataset));
         return view('gantt', ['processes' => $processes, 'task' => $task,'categories'=>$categories,'category'=>$category,'tour'=>$tour,'chargerFlag'=>$tour,'dataset'=>$dataset,'name'=>'charger_tasks']);
     }
 

@@ -28,4 +28,17 @@ class ChargerTaskController extends Controller
             'dataset' => $dataset,
         ]);
     }
+
+    public function chargerStats(Request $request)
+    {
+
+        $dataset = $request->dataset;
+        $name = $request->name;
+        $chargerFlag = $request->data;
+        return view('ganttStats', [
+            'chargerFlag' => $chargerFlag,
+            'dataset' => $dataset,
+            'name' => $name,
+        ]);
+    }
 }
