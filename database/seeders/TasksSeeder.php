@@ -62,6 +62,7 @@ class TasksSeeder extends Seeder
                 'dataset_name' => 'spoje_id_DS10_1.csv',
                 'dataset_table' => 'tasks',
                 'dataset_comment' => 'default',
+                'row_count'=>count($data)
             ];
             Helper::insert($helper);
         }

@@ -75,6 +75,7 @@ class ImportFileController extends Controller
                         'dataset_name' => $file_name,
                         'dataset_table' => 'tasks',
                         'dataset_comment' => 'default',
+                        'row_count'=>count($data)
                     ];
                     Helper::insert($helper);
                     //return response()->json(array('$data' => $data));
@@ -157,6 +158,7 @@ class ImportFileController extends Controller
                         'dataset_name' => $file_name,
                         'dataset_table' => 'schedules',
                         'dataset_comment' => 'default',
+                        'row_count'=>count($data)
                     ];
                     Helper::insert($helper);
                     //return response()->json(array('$data' => $data));
@@ -202,6 +204,7 @@ class ImportFileController extends Controller
                         'dataset_name' => $file_name,
                         'dataset_table' => 'charger_tasks',
                         'dataset_comment' => 'default',
+                        'row_count'=>count($data)
                     ];
                     Helper::insert($helper);
                     foreach (array_chunk($data,1000) as $t)

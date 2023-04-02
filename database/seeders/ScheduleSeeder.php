@@ -93,6 +93,7 @@ class ScheduleSeeder extends Seeder
                 'dataset_name' => 'DS10_1_res_GGA_.txt',
                 'dataset_table' => 'schedules',
                 'dataset_comment' => 'default',
+                'row_count'=>count($data)
             ];
             Helper::insert($helper);
         }

@@ -112,6 +112,9 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href={{route('import-upload')}}>Data import</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href={{route('datasets')}}>Datasets Management</a>
+                    </li>
                 </ul>
             </div>
         </div>

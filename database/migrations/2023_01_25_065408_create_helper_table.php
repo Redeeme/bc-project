@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('dataset_name');
             $table->string('dataset_table');
             $table->string('dataset_comment');
+            $table->integer('row_count');
         });
     }
 

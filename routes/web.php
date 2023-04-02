@@ -97,4 +97,8 @@ Route::get('stats/schedules-stat-charging/{table}/{type}/{dataset}', [StatContro
 Route::get('stats/schedules-stat-utilization/{table}/{type}/{dataset}', [StatController::class, 'schedulesStatUtil'])->name('schedules-stat-utilization');
 Route::get('stats/schedules-stat-trips/{table}/{type}/{dataset}', [StatController::class, 'schedulesStatTrips'])->name('schedules-stat-trips');
 
+//stats
+Route::get('/datasets',[HelpController::class, 'indexDataset'])->name('datasets');
+Route::delete('/datasets/{id}/{table}',[HelpController::class, 'deleteDataset'])->name('delete-dataset');
+Route::get('/datasets/refresh',[HelpController::class, 'refreshDatasets'])->name('refresh');
 
