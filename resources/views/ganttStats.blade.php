@@ -146,5 +146,6 @@
                     </div>
                 </div>
             @endforeach
+        </div>
     @endif
 @endsection

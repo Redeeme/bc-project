@@ -2,94 +2,59 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\DiagramTime;
-use App\Models\Schedule;
-use App\Models\Station;
-use App\Models\Task;
-use Illuminate\Http\Request;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
 class GrafikonController extends Controller
 {
 
-    public function getScheduleeGrafikon(){
+    public function getScheduleGrafikon()
+    {
         $schedules = DB::table('schedules')
             ->select('schedule_no')
-            ->distinct()
-            ->get();
-        $schedules->sortBy('schedules');
-        $data = [$schedules->count()];
-
-        $stations = Station::select('station_id')->pluck('station_id');
-
-        for ($i = 0; $i <= $schedules->count() - 1; $i++) {
-            $length = Schedule::select('location_start')->where('schedule_no', $schedules[$i]->schedule_no)->count();
-            $schedulesALL = DB::table('schedules')->select('*')->where('schedule_no', $schedules[$i]->schedule_no)->get();
-            $dataa =[];
-            for ($j = 0; $j <= $schedulesALL->count() - 1; $j++) {
-                if ($schedulesALL[$j]->schedule_no == $schedules[$i]->schedule_no){
-                    $loc_start = 0;
-                    for ($m = 0; $m <= $stations->count() - 1; $m++) {
-                        if ($stations[$m] == $schedulesALL[$j]->location_start){
-                            $loc_start = $m;//premapovanie $loc_start
-                        }
-                    }
-                    $dataa[] = [
-                        'x'     => $schedulesALL[$j]->start,
-                        'y'     => $loc_start
-                    ];
-                }
-            }
-            $data[$i] = $dataa;
-        }
-
-        //return response()->json(['data' => $data]);
-        return view('grafikonSchedules',compact('data'));
-    }
-    public function getScheduleGrafikon(){
-        $schedules = DB::table('schedules')
-            ->select('schedule_no')
-            ->where('dataset_name', 'DS10J1_res_GGA_T.txt')
+            ->where('dataset_name', 'DS10_1_res_GGA_.txt')
             ->distinct()
             ->get();
         $schedules->sortBy('schedules');
 
-
         $data = [$schedules->count()];
-        $tasks = DB::table('tasks')->select('*')->where('dataset_name','spoje_id_DS10_J.csv')->get();
+        $tasks = DB::table('tasks')->select('*')->where('dataset_name', 'spoje_id_DS10_1.csv')->get();
 
         for ($i = 0; $i <= $schedules->count() - 1; $i++) {
 
             $schedulesALL = DB::table('schedules')->select('*')
                 ->where('schedule_no', $schedules[$i]->schedule_no)
                 ->where('type', 'TRIP')
-                ->where('dataset_name', 'DS10J1_res_GGA_T.txt')
+                ->where('dataset_name', 'DS10_1_res_GGA_.txt')
                 ->get();
 
-            $dataa =[];
+            $dataa = [];
 
             for ($j = 0; $j <= $schedulesALL->count() - 1; $j++) {
-
+                if ($schedulesALL[$j]->schedule_index != 928) {
                     $linka = 0;
 
                     for ($m = 0; $m <= $tasks->count() - 1; $m++) {
-                        if ($tasks[$m]->task_id == $schedulesALL[$j]->schedule_index){
+                        if ($tasks[$m]->task_id == $schedulesALL[$j]->schedule_index) {
                             $linka = $tasks[$m]->linka;//premapovanie $loc_start
                             break;
                         }
                     }
                     $dataa[] = [
-                        'x'     => $schedulesALL[$j]->start,
-                        'y'     => $linka
+                        'x' => $schedulesALL[$j]->start,
+                        'y' => $linka
+                    ];
+                    $dataa[] = [
+                        'x' => $schedulesALL[$j]->end,
+                        'y' => $linka
                     ];
                 }
-            $data[$i] = $dataa;
-            }
 
+            }
+            $data[$i] = $dataa;
+        }
 
 
         //return response()->json(['data' => $data]);
-        return view('grafikonSchedules',compact('data'));
+        return view('grafikonSchedules', compact('data'));
     }
 }

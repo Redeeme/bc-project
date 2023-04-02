@@ -22,7 +22,8 @@ class DatabaseSeeder extends Seeder
             ScheduleSeeder::class,
             ChargerTaskSeeder::class,
             TableNameSeeder::class,
-            DiagramTimeSeeder::class
+            DiagramTimeSeeder::class,
+            StatSeeder::class
         ]);
     }
 }

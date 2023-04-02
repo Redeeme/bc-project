@@ -15,7 +15,9 @@
                     <h5 class="modal-text" id="exampleModalText3">Text</h5>
                     <h5 class="modal-text" id="exampleModalText4">Text</h5>
                     <h5 class="modal-text" id="exampleModalText5">Text</h5>
+                    <h5 class="modal-text" id="exampleModalText6">Text</h5>
                 </div>
+                <div id="map"></div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
@@ -24,6 +26,21 @@
     </div>
     <script src="https://static.fusioncharts.com/code/latest/fusioncharts.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore.js"></script>
+
+    <script>
+        (g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})({
+            key: "AIzaSyA-JzM07gPSTvahW9P2UWLzaeUtEItsx8Q",
+            // Add other bootstrap parameters as needed, using camel case.
+            // Use the 'v' parameter to indicate the version to load (alpha, beta, weekly, etc.)
+        });
+    </script>
+
+    <style>
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+    </style>
     <script>
         // let processes = [{"label":"2","id":"2"},
         //     {"label":"3","id":"3"},
@@ -44,6 +61,7 @@
         let palette = Math.floor(Math.random() * 5);
         let tourNumber = @json($tour);
         let dataset = @json($dataset);
+        let chargers = @json($chargers);
 
         let paneLength = 0;
         if (array_process.length > 550){
@@ -66,6 +84,28 @@
                 return  ("Nabijacka číslo: " + tourNumber + "\t\tNazov suboru: " + dataset);
             }
         }
+
+        async function initMap(lat, lng) {
+            //@ts-ignore
+            const { Map } = await google.maps.importLibrary("maps");
+
+            map = new Map(document.getElementById("map"), {
+                center: { lat: lat, lng: lng },
+                zoom: 16,
+            });
+            var mapp = document.getElementById("map");
+            mapp.style.display = "block";
+            var marker = new google.maps.Marker({
+                position: { lat: lat, lng: lng },
+                map: map
+            });
+        }
+        function toggleVisibility() {
+            $("#exampleModalText6").text(``);
+            var map = document.getElementById("map");
+            map.style.display = "none";
+        }
+
         const dataSource = {
             tasks: {
                 showlabels: "0",
@@ -137,6 +177,9 @@
                         array_task.forEach((element) => {
 
                             if (element.schedule_index === eventObj.data.id && element.schedule_index != null){
+                                @if(isset($type))
+                                    let type = @json($type);
+                                @endif
                                 $('#exampleModal').modal('show');
                                 $("#exampleModalLabel").text(`id: ${eventObj.data.id}`);
                                 $("#exampleModalText1").text(`start: ${element.start}`);
@@ -144,7 +187,21 @@
                                 $("#exampleModalText3").text(`energy_before: ${element.energy_before}`);
                                 $("#exampleModalText4").text(`energy_after: ${element.energy_after}`);
                                 $("#exampleModalText5").text(`consumption: ${element.consumption}`);
-                            }else if(element.taskid === eventObj.data.id && element.taskid != null){
+                                    if (element.charger_index != null){
+                                        $("#exampleModalText6").text(`charger index: ${element.charger_index}`);
+                                        for (let i = 0; i < chargers.length; i++) {
+
+                                            if (chargers[i].charger_index === element.charger_index) {
+                                                console.log('lol '+element.charger_index,element.schedule_index);
+                                                initMap(chargers[i].lat,chargers[i].long)
+                                                break
+                                            }
+                                        }
+                                    }else{
+                                        toggleVisibility();
+                                    }
+
+                            }else if(element.task_id === eventObj.data.id && element.task_id != null){
                                 $('#exampleModal').modal('show');
                                 $("#exampleModalLabel").text(`id: ${eventObj.data.id}`);
                                 $("#exampleModalText1").text(`start: ${element.start}, end: ${element.end}`);
@@ -152,6 +209,7 @@
                                 $("#exampleModalText3").text(`distance: ${element.distance}`);
                                 $("#exampleModalText4").text(`consumption: ${element.consumption}`);
                                 $("#exampleModalText5").text(`linka: ${element.linka}`);
+                                toggleVisibility();
                             }else if(element.process_id === eventObj.data.id && element.charger_task_id != null){
                                 $('#exampleModal').modal('show');
                                 $("#exampleModalLabel").text(`id: ${eventObj.data.id}`);
@@ -159,7 +217,20 @@
                                 $("#exampleModalText2").text(`loc: ${element.loc}`);
                                 $("#exampleModalText3").text(`speed: ${element.speed}`);
                                 $("#exampleModalText4").text(`charger_task_id: ${element.charger_task_id}`);
-                                $("#exampleModalText5").text(``);
+                                $("#exampleModalText6").text(``);
+                                if (element.charger_id != null){
+                                    $("#exampleModalText6").text(`charger index: ${element.charger_id}`);
+                                    for (let i = 0; i < chargers.length; i++) {
+
+                                        if (chargers[i].charger_index === element.charger_id) {
+                                            console.log('lol '+chargers[i].lat,chargers[i].long);
+                                            initMap(chargers[i].lat,chargers[i].long)
+                                            break
+                                        }
+                                    }
+                                }else{
+                                    toggleVisibility();
+                                }
                             }
                         })
                     }

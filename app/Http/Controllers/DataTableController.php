@@ -3,14 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\ChargerTaskDataTable;
-use App\DataTables\ChargerTaskDataTableUnit;
 use App\DataTables\ScheduleDataTable;
 use App\DataTables\TaskDataTable;
-use App\Models\ChargerTask;
 use App\Models\TableName;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Yajra\DataTables\DataTables;
 
 class DataTableController extends Controller
 {

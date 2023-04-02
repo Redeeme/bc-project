@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\DiagramTime;
 use App\Models\Schedule;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class GraphController extends Controller
 {

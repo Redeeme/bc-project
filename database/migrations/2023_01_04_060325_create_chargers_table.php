@@ -16,8 +16,10 @@ class CreateChargersTable extends Migration
         Schema::create('chargers', function (Blueprint $table) {
             $table->integer('charger_index')->unsigned()->index();
             $table->integer('location')->unsigned()->index();
-            $table->integer('cost');
-            $table->float('speed');
+            $table->integer('speed');
+            $table->float('cost');
+            $table->double('lat');
+            $table->double('long');
         });
     }
 

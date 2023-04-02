@@ -107,7 +107,7 @@
                         <a class="nav-link active" aria-current="page" href={{route('select-schedule-grafikon')}}>Grafikon</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href={{route('select-schedules-graph-datasets')}}>Schedule graph</a>
+                        <a class="nav-link active" aria-current="page" href={{route('get-stats')}}>Stats</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href={{route('import-upload')}}>Data import</a>

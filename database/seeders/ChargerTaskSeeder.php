@@ -18,7 +18,7 @@ class ChargerTaskSeeder extends Seeder
      */
     public function run()
     {
-        $filename = storage_path("app\csv\ChEvents_DS10_J.csv");
+        $filename = storage_path("app\csv\ChEvents_DS10_1.csv");
         Log::debug($filename);
         if(!file_exists($filename) || !is_readable($filename))
             return;
@@ -53,7 +53,7 @@ class ChargerTaskSeeder extends Seeder
                         'duration' => $time_duration,
                         'speed' => $row[6],
                         'loc' => $row[5],
-                        'dataset_name' => 'ChEvents_DS10_J.csv',
+                        'dataset_name' => 'ChEvents_DS10_1.csv',
                     ];
                 }
 
@@ -64,7 +64,7 @@ class ChargerTaskSeeder extends Seeder
                 ChargerTask::insert($t);
             }
             $helper[] = [
-                'dataset_name' => 'ChEvents_DS10_J.csv',
+                'dataset_name' => 'ChEvents_DS10_1.csv',
                 'dataset_table' => 'charger_tasks',
                 'dataset_comment' => 'default',
             ];

@@ -11,6 +11,7 @@ use App\Http\Controllers\GraphController;
 use App\Http\Controllers\HelpController;
 use App\Http\Controllers\ImportFileController;
 use App\Http\Controllers\ScheduleController;
+use App\Http\Controllers\StatController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
@@ -67,9 +68,6 @@ Route::get('/graphSelectSchedules/{dataset}',[ScheduleController::class, 'schedu
 Route::get('/import',[ImportFileController::class, 'index'])->name('import-upload');
 Route::post('/import',[ImportFileController::class, 'importData'])->name('import-data');
 
-
-
-
 Route::get('datatableUnit/{id}/{dataset}/{name}/{type}', function(SchedulesDataTableUnit $dataTable, $id,$dataset,$name,$type){
     return $dataTable->with('dataset', $dataset)->with('id', $id)->with('type', $type)
         ->render('dataTableViewUnit', $data=['dataset' => $dataset,'scheduleFlag' => $id,'type' => $type,'name' => $name]);
@@ -85,6 +83,18 @@ Route::get('datatableUnit/{id}/{dataset}/{name}', function(TaskDataTableUnit $da
         ->render('dataTableViewUnit', $data=['dataset' => $dataset,'tourFlag' => $id,'name' => $name]);
 })->name('page-data-table-task-unit');
 
+//stats
+Route::get('/statsSelection',[StatController::class, 'indexSelection'])->name('get-stats');
 
+Route::get('stats/{table}/{type}', [StatController::class, 'indexDatasetSelection'])->name('get-stat-dataset');
+
+Route::post('stats/dataset/{table}/{type}', [StatController::class, 'getStat'])->name('get-stat');
+
+Route::get('stats/chargers-stat-utilization/{table}/{type}/{dataset}', [StatController::class, 'chargersStatUtil'])->name('chargers-stat-utilization');
+Route::get('stats/chargers-stat-charging/{table}/{type}/{dataset}', [StatController::class, 'chargersStatCharging'])->name('chargers-stat-charging');
+Route::get('stats/schedules-stat-clip/{table}/{type}/{dataset}', [StatController::class, 'schedulesStatClip'])->name('schedules-stat-clip');
+Route::get('stats/schedules-stat-charging/{table}/{type}/{dataset}', [StatController::class, 'schedulesStatCharging'])->name('schedules-stat-charging');
+Route::get('stats/schedules-stat-utilization/{table}/{type}/{dataset}', [StatController::class, 'schedulesStatUtil'])->name('schedules-stat-utilization');
+Route::get('stats/schedules-stat-trips/{table}/{type}/{dataset}', [StatController::class, 'schedulesStatTrips'])->name('schedules-stat-trips');
 
 

@@ -17,7 +17,7 @@ class TasksSeeder extends Seeder
      */
     public function run()
     {
-        $filename = storage_path("app\csv\spoje_id_DS10_J.csv");
+        $filename = storage_path("app\csv\spoje_id_DS10_1.csv");
         Log::debug($filename);
         if(!file_exists($filename) || !is_readable($filename))
             return;
@@ -51,7 +51,7 @@ class TasksSeeder extends Seeder
                         'distance' => $row[8],
                         'consumption' => $row[9],
                         'linka' => $row[3],
-                        'dataset_name' => 'spoje_id_DS10_J.csv',
+                        'dataset_name' => 'spoje_id_DS10_1.csv',
                     ];
                 }
 
@@ -59,7 +59,7 @@ class TasksSeeder extends Seeder
             fclose($handle);
             Task::insert($data);
             $helper[] = [
-                'dataset_name' => 'spoje_id_DS10_J.csv',
+                'dataset_name' => 'spoje_id_DS10_1.csv',
                 'dataset_table' => 'tasks',
                 'dataset_comment' => 'default',
             ];

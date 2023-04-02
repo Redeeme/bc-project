@@ -2,15 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Charger;
 use App\Models\ChargerTask;
 use App\Models\DiagramTime;
-use App\Models\GanttProcess;
-use App\Models\GanttTask;
 use App\Models\Schedule;
 use App\Models\Task;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use function PHPUnit\Framework\isNull;
 
 class GanttController extends Controller
 {
@@ -37,16 +34,16 @@ class GanttController extends Controller
                 'end' => $row->end,
                 'loc_start'=> $row->loc_start,
                 'loc_end'=> $row->loc_end,
-                 'distance'=> $row->distance,
-                 'consumption'=> $row->consumption,
+                'distance'=> $row->distance,
+                'consumption'=> $row->consumption,
                 'linka' => $row->linka,
             ];
         }
-
+        $chargers = Charger::select('*')->get();
         $categories = DiagramTime::select('start','end','label')->where('id','!=','1')->get();
         $category = DiagramTime::select('start','end','label')->where('id','=','1')->get();
 //return response()->json(['processes' => $processes, 'task' => $task,'categories'=>$categories,'category'=>$category]);
-        return view('gantt', ['processes' => $processes, 'task' => $task,'categories'=>$categories,'category'=>$category,'tour'=>$tour,'tourFlag'=>$tour,'dataset'=>$dataset,'name'=>'tasks']);
+        return view('gantt', ['processes' => $processes, 'task' => $task,'categories'=>$categories,'category'=>$category,'tour'=>$tour,'tourFlag'=>$tour,'dataset'=>$dataset,'name'=>'tasks','chargers'=>$chargers]);
 
     }
 
@@ -55,12 +52,13 @@ class GanttController extends Controller
         $tour = $request->data;
         $dataset = $request->dataset;
 
+        $chargers = Charger::select('*')->get();
         $processes = ChargerTask::select('process_id AS label', 'process_id AS id')->where('charger_id', $tour)->where('dataset_name', $dataset)->get();
         $task = ChargerTask::select('*')->where('charger_id', $tour)->where('dataset_name', $dataset)->get();
         $categories = DiagramTime::select('start','end','label')->where('id','!=','1')->get();
         $category = DiagramTime::select('start','end','label')->where('id','=','1')->get();
         //return response()->json(array('tour'=>$tour,'chargerFlag'=>$tour,'dataset'=>$dataset));
-        return view('gantt', ['processes' => $processes, 'task' => $task,'categories'=>$categories,'category'=>$category,'tour'=>$tour,'chargerFlag'=>$tour,'dataset'=>$dataset,'name'=>'charger_tasks']);
+        return view('gantt', ['processes' => $processes, 'task' => $task,'categories'=>$categories,'category'=>$category,'tour'=>$tour,'chargerFlag'=>$tour,'dataset'=>$dataset,'name'=>'charger_tasks','chargers'=>$chargers]);
     }
 
     public function scheduleGantt(Request $request)
@@ -69,6 +67,7 @@ class GanttController extends Controller
         $schedule = $request->data;
         $type = $request->type;
         $dataset = $request->dataset;
+        $chargers = Charger::select('*')->get();
         if ($type == "CHARGER" && $type != null){
             $processes = Schedule::select('schedule_index AS label', 'schedule_index AS id',)->where('schedule_no', $schedule)->where('type', $type)->where('dataset_name', $dataset)->get();
             $task = Schedule::select('*')->where('schedule_no', $schedule)->where('type', $type)->where('dataset_name', $dataset)->get();
@@ -90,7 +89,8 @@ class GanttController extends Controller
                         'consumption'=> $item->consumption,
                         'energy_before'=> $item->energy_before,
                         'energy_after'=> $item->energy_after,
-                        'color'=> "#f16575"
+                        'color'=> "#f16575",
+                        'charger_index'=>$item->charger_index
                     ];
                 }else{
                     $task[] = [
@@ -108,9 +108,9 @@ class GanttController extends Controller
         }
         $categories = DiagramTime::select('start','end','label')->where('id','!=','1')->get();
         $category = DiagramTime::select('start','end','label')->where('id','=','1')->get();
-        //return response()->json(array('task' => $task, 'processes' => $processes));
+        //return response()->json(array('task' => $task, 'processes' => $processes,'chargers'=>$chargers));
 
 
-        return view('gantt', ['processes' => $processes, 'task' => $task,'categories'=>$categories,'category'=>$category,'tour'=>$schedule,'scheduleFlag'=>$schedule,'type'=>$type,'dataset'=>$dataset,'name'=>'schedules']);
+        return view('gantt', ['processes' => $processes, 'task' => $task,'categories'=>$categories,'category'=>$category,'tour'=>$schedule,'scheduleFlag'=>$schedule,'type'=>$type,'dataset'=>$dataset,'name'=>'schedules','chargers'=>$chargers]);
     }
 }
