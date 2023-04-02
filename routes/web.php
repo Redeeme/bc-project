@@ -91,11 +91,15 @@ Route::get('stats/{table}/{type}', [StatController::class, 'indexDatasetSelectio
 Route::post('stats/dataset/{table}/{type}', [StatController::class, 'getStat'])->name('get-stat');
 
 Route::get('stats/chargers-stat-utilization/{table}/{type}/{dataset}', [StatController::class, 'chargersStatUtil'])->name('chargers-stat-utilization');
-Route::get('stats/chargers-stat-charging/{table}/{type}/{dataset}', [StatController::class, 'chargersStatCharging'])->name('chargers-stat-charging');
 Route::get('stats/schedules-stat-clip/{table}/{type}/{dataset}', [StatController::class, 'schedulesStatClip'])->name('schedules-stat-clip');
 Route::get('stats/schedules-stat-charging/{table}/{type}/{dataset}', [StatController::class, 'schedulesStatCharging'])->name('schedules-stat-charging');
 Route::get('stats/schedules-stat-utilization/{table}/{type}/{dataset}', [StatController::class, 'schedulesStatUtil'])->name('schedules-stat-utilization');
 Route::get('stats/schedules-stat-trips/{table}/{type}/{dataset}', [StatController::class, 'schedulesStatTrips'])->name('schedules-stat-trips');
+
+Route::post('stats/chargers-stat-interval-length/{table}/{type}/{dataset}', [StatController::class, 'chargersStatIntLength'])->name('chargers-stat-interval-length');
+Route::get('stats/chargers-stat-interval-length-Selection/{table}/{type}/{dataset}', [StatController::class, 'chargersStatIntLengthSelection'])->name('chargers-stat-interval-length-Selection');
+Route::post('stats/chargers-stat-interval-count/{table}/{type}/{dataset}', [StatController::class, 'chargersStatIntCount'])->name('chargers-stat-interval-count');
+Route::get('stats/chargers-stat-interval-count-Selection/{table}/{type}/{dataset}', [StatController::class, 'chargersStatIntCountSelection'])->name('chargers-stat-interval-count-Selection');
 
 //stats
 Route::get('/datasets',[HelpController::class, 'indexDataset'])->name('datasets');

@@ -23,12 +23,6 @@ class StatSeeder extends Seeder
             'type' => 'chargers-stat-utilization',
         ];
         $data[] = [
-            'name' => 'Histogram nabíjania v čase',
-            'comment' => 'dĺžka nabíjania, počet vozidiel), možnosť určiť dĺžku časových intervalov/zadefinovať časové intervaly pre ráno, obed, večer a noc',
-            'table' => 'charger_tasks',
-            'type' => 'chargers-stat-charging',
-        ];
-        $data[] = [
             'name' => 'Počet pripnutí na nabíjačku',
             'comment' => 'Počet pripnutí na nabíjačku',
             'table' => 'schedules',
@@ -57,6 +51,18 @@ class StatSeeder extends Seeder
             'comment' => 'Stav beterie podla vozidla',
             'table' => 'schedules',
             'type' => 'schedules-stat-batery',
+        ];
+        $data[] = [
+            'name' => 'Pocet nabitych vozidel',
+            'comment' => 'možnosť určiť dĺžku časových intervalov/zadefinovať časové intervaly pre ráno, obed, večer a noc',
+            'table' => 'charger_tasks',
+            'type' => 'chargers-stat-interval-count-Selection',
+        ];
+        $data[] = [
+            'name' => 'Dlzka nabijania',
+            'comment' => 'možnosť určiť dĺžku časových intervalov/zadefinovať časové intervaly pre ráno, obed, večer a noc',
+            'table' => 'charger_tasks',
+            'type' => 'chargers-stat-interval-length-Selection',
         ];
         Stat::insert($data);
     }

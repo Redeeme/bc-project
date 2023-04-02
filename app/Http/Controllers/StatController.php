@@ -55,11 +55,12 @@ class StatController extends Controller
 
         return match ($type) {
             'chargers-stat-utilization' => redirect()->route('chargers-stat-utilization', ['type' => $type, 'dataset' => $request->data, 'table' => $table]),
-            'chargers-stat-charging' => redirect()->route('chargers-stat-charging', ['type' => $type, 'dataset' => $request->data, 'table' => $table]),
             'schedules-stat-clip' => redirect()->route('schedules-stat-clip', ['type' => $type, 'dataset' => $request->data, 'table' => $table]),
             'schedules-stat-charging' => redirect()->route('schedules-stat-charging', ['type' => $type, 'dataset' => $request->data, 'table' => $table]),
             'schedules-stat-utilization' => redirect()->route('schedules-stat-utilization', ['type' => $type, 'dataset' => $request->data, 'table' => $table]),
             'schedules-stat-trips' => redirect()->route('schedules-stat-trips', ['type' => $type, 'dataset' => $request->data, 'table' => $table]),
+            'chargers-stat-interval-length-Selection' => redirect()->route('chargers-stat-interval-length-Selection', ['type' => $type, 'dataset' => $request->data, 'table' => $table]),
+            'chargers-stat-interval-count-Selection' => redirect()->route('chargers-stat-interval-count-Selection', ['type' => $type, 'dataset' => $request->data, 'table' => $table]),
             default => redirect()->route('welcome-page'),
         };
     }
@@ -95,11 +96,6 @@ class StatController extends Controller
         $x = $chargersIndexes;
         $y = $data;
         return view('statsHistogram',compact('y','x','type'));
-    }
-
-    public function chargersStatCharging(string $dataset)
-    {
-
     }
 
     public function schedulesStatClip($table, $type, $dataset)
@@ -242,4 +238,47 @@ class StatController extends Controller
         $y = $data;
         return view('statsHistogram',compact('y','x','type'));
     }
+    public function chargersStatIntLengthSelection($table, $type, $dataset)
+    {
+        $type = 'chargers-stat-interval-length';
+        return view('statsIntervalSelection',compact('table','type','dataset'));
+    }
+    public function chargersStatIntCountSelection($table, $type, $dataset)
+    {
+        $type = 'chargers-stat-interval-count';
+        return view('statsIntervalSelection',compact('table','type','dataset'));
+    }
+    public function chargersStatIntLength($table, $type, $dataset,Request $request)
+    {
+                return response()->json([
+            'type' => $type,
+            'table' => $table,
+            'dataset' => $dataset,
+        ]);
+    }
+    public function chargersStatIntCount($table, $type, $dataset,Request $request)
+    {
+        $chargersIndexes = DB::table($table)
+            ->select('charger_id as x')
+            ->where('dataset_name', $dataset)
+            ->distinct()
+            ->get();
+
+        return view('statsHistogram',compact('y','x','type'));
+
+
+
+
+        $data1 = $request->interval1;
+        $data2 = $request->interval2;
+        return response()->json([
+            'type' => $type,
+            'table' => $table,
+            'dataset' => $dataset,
+            'data1' => $data1,
+            'data2' => $data2,
+        ]);
+    }
+
+
 }
