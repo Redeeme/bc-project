@@ -69,17 +69,17 @@ Route::get('/graphSelectSchedules/{dataset}',[ScheduleController::class, 'schedu
 Route::get('/import',[ImportFileController::class, 'index'])->name('import-upload');
 Route::post('/import',[ImportFileController::class, 'importData'])->name('import-data');
 
-Route::get('datatableUnit/{id}/{dataset}/{name}/{type}', function(SchedulesDataTableUnit $dataTable, $id,$dataset,$name,$type){
+Route::get('datatableUnitschedule/{id}/{dataset}/{name}/{type}', function(SchedulesDataTableUnit $dataTable, $id,$dataset,$name,$type){
     return $dataTable->with('dataset', $dataset)->with('id', $id)->with('type', $type)
         ->render('dataTableViewUnit', $data=['dataset' => $dataset,'scheduleFlag' => $id,'type' => $type,'name' => $name]);
 })->name('page-data-table-schedule-unit');
 
-Route::get('datatableUnit/{id}/{dataset}/{name}', function(ChargerTaskDataTableUnit $dataTable, $id,$dataset,$name){
+Route::get('datatableUnitcharger/{id}/{dataset}/{name}', function(ChargerTaskDataTableUnit $dataTable, $id,$dataset,$name){
     return $dataTable->with('dataset', $dataset)->with('id', $id)
         ->render('dataTableViewUnit', $data=['dataset' => $dataset,'chargerFlag' => $id,'name' => $name]);
 })->name('page-data-table-charger-task-unit');
 
-Route::get('datatableUnit/{id}/{dataset}/{name}', function(TaskDataTableUnit $dataTable, $id,$dataset,$name){
+Route::get('datatableUnittour/{id}/{dataset}/{name}', function(TaskDataTableUnit $dataTable, $id,$dataset,$name){
     return $dataTable->with('dataset', $dataset)->with('id', $id)
         ->render('dataTableViewUnit', $data=['dataset' => $dataset,'tourFlag' => $id,'name' => $name]);
 })->name('page-data-table-task-unit');

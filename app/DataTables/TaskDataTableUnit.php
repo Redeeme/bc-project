@@ -64,6 +64,7 @@ class TaskDataTableUnit extends DataTable
     public function getColumns(): array
     {
         return [
+            'index',
             'task_id',
             'processid',
             'start',
@@ -73,6 +74,7 @@ class TaskDataTableUnit extends DataTable
             'distance',
             'consumption',
             'linka',
+            'dataset_name',
         ];
     }
 

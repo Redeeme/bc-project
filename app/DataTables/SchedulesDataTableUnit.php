@@ -80,10 +80,12 @@ class SchedulesDataTableUnit extends DataTable
             'end',
             'energy_before',
             'energy_after',
+            'consumption',
             'location_start',
             'location_finish',
             'type',
             'schedule_no',
+            'dataset_name',
         ];
     }
 

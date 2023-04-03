@@ -21,13 +21,13 @@
                         <div class="alert alert-success" role="alert" id="successMsg" style="display: none" >
                             Choosing successful
                         </div>
-                        <form action="{{route('select-schedules-graph-dataset')}}" method="post" name="datasetChoosing">
+                        <form action="{{route('select-schedules-graph-dataset')}}" method="post" name="datasetChoosing"onsubmit="return validateForm('inputCategory');">
                             @csrf
                             <input type="hidden" name="cid" value="ahoj">
                             <div class="form-group">
                                 <label for="inputCategory"><strong>Vyber datasetu rozvrhov</strong></label>
                                 <select id="inputCategory" class="form-control" name="dataset">
-                                    <option selected>{{$dataset_name[0]->dataset_name}}</option>
+                                    <option value="" selected>Select option</option>
                                     @foreach($dataset_name as $item)
                                         <option>{{$item->dataset_name}}</option>
                                     @endforeach
@@ -50,12 +50,12 @@
                             <h6 class="text-white">Vyber daneho rozvrhu pre zobrazenie grafu podla typu akcie</h6>
                         </div>
                         <div class="card-body align-items-center d-flex justify-content-center">
-                            <form method="post" action="{{route('graph-page-schedules')}}" enctype="multipart/form-data">
+                            <form method="post" action="{{route('graph-page-schedules')}}" enctype="multipart/form-data"onsubmit="return validateForm('inputCategory');">
                                 @csrf
                                 <label for="inputCategory"><strong>Dataset:</strong></label>
                                 <br><label><input class="form-control" type="text" value="{{$dataset}}" name="dataset" readonly></label></br>
                                 <br> <label><strong>Vyber turnusu</strong></label></br>
-                                    <select class="selectpicker" multiple data-live-search="true" name="schedule[]">
+                                    <select id="inputCategory" class="selectpicker" multiple data-live-search="true" name="schedule[]">
                                         @foreach($schedules as $schedule)
                                             <option value="{{$schedule->schedule_no}}">{{$schedule->schedule_no}}</option>
                                         @endforeach

@@ -68,9 +68,10 @@ class ChargerTaskDataTableUnit extends DataTable
             'process_id',
             'start',
             'end',
+            'duration',
             'speed',
             'loc',
-            'dataset',
+            'dataset_name',
         ];
     }
 
