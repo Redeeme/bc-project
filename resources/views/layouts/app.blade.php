@@ -49,6 +49,9 @@
             right: 16px;
             color: black;
         }
+         .black-text {
+             color: black!important;
+         }
     </style>
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
@@ -103,9 +106,20 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href={{route('select-table-view')}}>Data</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href={{route('select-schedule-grafikon')}}>Grafikon</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle black-text" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Grafikon
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li>
+                                <a class="dropdown-item" href={{route('select-schedule-grafikon')}}>Grafikon 1</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href={{route('select-schedule-stations-grafikon')}}>Grafikon 2</a>
+                            </li>
+                        </ul>
                     </li>
+
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href={{route('get-stats')}}>Stats</a>
                     </li>

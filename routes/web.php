@@ -53,6 +53,7 @@ Route::post('/statsSchedules',[ScheduleController::class, 'scheduleStats'])->nam
 
 Route::get('/dataTableSelection', [DataTableController::class, 'getTableNames'])->name('select-table-view');
 Route::get('/scheduleGrafikon', [GrafikonController::class, 'getScheduleGrafikon'])->name('select-schedule-grafikon');
+Route::get('/scheduleStationsGrafikon', [GrafikonController::class, 'getScheduleStationsGrafikon'])->name('select-schedule-stations-grafikon');
 
 Route::get('/dataTableChargerTaskview',[DataTableController::class, 'getChargerTaskDataTable'])->name('page-data-table-charger-task');
 Route::get('/dataTableScheduleview',[DataTableController::class, 'getScheduleDataTable'])->name('page-data-table-schedule');

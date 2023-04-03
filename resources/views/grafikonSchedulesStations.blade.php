@@ -11,7 +11,9 @@
     <script>
         var array = [];
         let array_data = @json($data);
+        let stations = @json($stations);
 
+        const labels = stations.map(item => item.location);
         let min = Date.parse(`01 Jan 1970 03:59:59 GMT`)
         let max = Date.parse(`02 Jan 1970 03:59:59 GMT`)
         for (let i = 0;i<array_data.length;i++){
@@ -25,7 +27,6 @@
             array.push(arrayy);
         }
 
-        const ctx = document.getElementById('myChart');
         const hidden_chart = true;
 
         var dataa = [];
@@ -42,46 +43,35 @@
         const data = {
             datasets: dataa
         }
-
         console.log(data);
-
-        new Chart(ctx, {
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const myChart = new Chart(ctx, {
             type: 'line',
             data: data,
             options: {
-                responsive: true,
-                interaction: {
-                    mode: 'index',
-                    intersect: false,
-                },
-                stacked: false,
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'Chart.js Line Chart - Multi Axis'
-                    }
-                },
                 scales: {
-                    y: {
-                        type: 'linear',
-                        display: true,
-                        alignToPixels: true,
-                        ticks: {
-                            min: 1,
-                            max: 44,
-                            stepSize: 1,
-                        }
-                        // grid line settings
-                    },
                     x: {
                         type: 'time',
+                        title: {
+                            display: true,
+                            text: 'Values'
+                        },
                         time: {
                             unit: 'hour',
                         }
+                    },
+                    y: {
+                        type: 'category',
+                        labels: labels,
+                        title: {
+                            display: true,
+                            text: 'Locations'
+                        }
                     }
                 }
-            },
+            }
         });
+        //TODO x y axis labels! assign stations data to y axis
     </script>
 
 
