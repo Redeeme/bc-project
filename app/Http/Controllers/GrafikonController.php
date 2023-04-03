@@ -116,10 +116,10 @@ class GrafikonController extends Controller
             $data[$i] = $dataa;
         }
         $stations = DB::table('stations')
-        ->select('location')
+            ->select('location')
             ->get();
 
         //return response()->json(['data' => $stations]);
-        return view('grafikonSchedulesStations', compact('data','stations'));
+        return view('grafikonSchedulesStations', compact('data', 'stations'));
     }
 }

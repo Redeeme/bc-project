@@ -8,53 +8,56 @@
             background-repeat: no-repeat;
         }
     </style>
-    <div class="container"style="margin-top: 250px">
+    <div class="container" style="margin-top: 250px">
         <div class="h-100 d-flex align-items-center justify-content-center">
-                <div class="card">
-                    <div class="card-header bg-info">
-                        <h6 class="text-white">Import Excel Data</h6>
-                    </div>
-                    <div class="card-body">
-                        @if ($message = Session::get('success'))
-                            <div class="alert alert-success alert-block">
-                                <button type="button" class="close" data-dismiss="alert">×</button>
-                                <strong>{{ $message }}</strong>
-                            </div>
-                            <br>
-                        @endif
-                        <form action="{{route('import-data')}}" method="post" enctype="multipart/form-data">
-                            @csrf
-                            <fieldset>
-                                <label>Select File to Upload  <small class="warning text-muted">{{__('Please upload only Excel (.xlsx or .xls) files')}}</small></label>
+            <div class="card">
+                <div class="card-header bg-info">
+                    <h6 class="text-white">Import Excel Data</h6>
+                </div>
+                <div class="card-body">
+                    @if ($message = Session::get('success'))
+                        <div class="alert alert-success alert-block">
+                            <button type="button" class="close" data-dismiss="alert">×</button>
+                            <strong>{{ $message }}</strong>
+                        </div>
+                        <br>
+                    @endif
+                    <form action="{{route('import-data')}}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <fieldset>
+                            <label>Select File to Upload <small
+                                    class="warning text-muted">{{__('Please upload only Excel (.xlsx or .xls) files')}}</small></label>
+                            <div class="input-group">
+                                <br>
+                                <input type="file" required class="form-control" name="uploaded_file"
+                                       id="uploaded_file">
+                                </br>
+                                @if ($errors->has('uploaded_file'))
+                                    <p class="text-right mb-0">
+                                        <small class="danger text-muted"
+                                               id="file-error">{{ $errors->first('uploaded_file') }}</small>
+                                    </p>
+                                @endif
                                 <div class="input-group">
-                                    <br>
-                                    <input type="file" required class="form-control" name="uploaded_file" id="uploaded_file">
-                                    </br>
-                                    @if ($errors->has('uploaded_file'))
-                                        <p class="text-right mb-0">
-                                            <small class="danger text-muted" id="file-error">{{ $errors->first('uploaded_file') }}</small>
-                                        </p>
-                                    @endif
-                                    <div class="input-group">
-                                        <br> <label for="inputCategory"><strong>Nazov tabulky:</strong></label>
-                                          <select id="inputCategory" class="form-control" name="table_name">
-                                            @foreach($tableNames as $tableName)
-                                                <option>{{$tableName->name}}</option>
-                                            @endforeach
-                                        </select>
-
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="inputCategory"><strong>Comment:</strong></label>
-                                        <br><label><input class="form-control" type="text" name="comment"></label></br>
-                                    </div>
+                                    <br> <label for="inputCategory"><strong>Nazov tabulky:</strong></label>
+                                    <select id="inputCategory" class="form-control" name="table_name">
+                                        @foreach($tableNames as $tableName)
+                                            <option>{{$tableName->name}}</option>
+                                        @endforeach
+                                    </select>
 
                                 </div>
-                                <div class="text-center" style="margin-top: 10px;">
-                                    <button type="submit" class="btn btn-success">Import</button>
+                                <div class="form-group">
+                                    <label for="inputCategory"><strong>Comment:</strong></label>
+                                    <br><label><input class="form-control" type="text" name="comment"></label></br>
                                 </div>
-                            </fieldset>
-                        </form>
+
+                            </div>
+                            <div class="text-center" style="margin-top: 10px;">
+                                <button type="submit" class="btn btn-success">Import</button>
+                            </div>
+                        </fieldset>
+                    </form>
                 </div>
             </div>
         </div>

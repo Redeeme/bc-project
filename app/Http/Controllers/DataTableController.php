@@ -15,23 +15,25 @@ class DataTableController extends Controller
         return view('tableSelection');
     }
 
-    public function getTableNames(){
+    public function getTableNames()
+    {
         $tableNames = TableName::all();
-        return view('tableSelection',[
+        return view('tableSelection', [
             'tableNames' => $tableNames,
         ]);
     }
 
-    public function getData(Request $request){
-        if ($request->data != null){
+    public function getData(Request $request)
+    {
+        if ($request->data != null) {
             //return response()->json(['id' => $request->data,'dataset' => $request->dataset,'name' => $request->name,'type' => $request->type]);
             return match ($request->name) {
-                'charger_tasks' => redirect()->route('page-data-table-charger-task-unit',['id' => $request->data,'dataset' => $request->dataset,'name' => $request->name]),
-                'schedules' => redirect()->route('page-data-table-schedule-unit',['id' => $request->data,'dataset' => $request->dataset,'name' => $request->name,'type' => $request->type]),
-                'tasks' => redirect()->route('page-data-table-task-unit',['id' => $request->data,'dataset' => $request->dataset,'name' => $request->name]),
+                'charger_tasks' => redirect()->route('page-data-table-charger-task-unit', ['id' => $request->data, 'dataset' => $request->dataset, 'name' => $request->name]),
+                'schedules' => redirect()->route('page-data-table-schedule-unit', ['id' => $request->data, 'dataset' => $request->dataset, 'name' => $request->name, 'type' => $request->type]),
+                'tasks' => redirect()->route('page-data-table-task-unit', ['id' => $request->data, 'dataset' => $request->dataset, 'name' => $request->name]),
                 default => redirect()->route('welcome-page'),
             };
-        }else{
+        } else {
             return match ($request->name) {
                 'charger_tasks' => redirect()->route('page-data-table-charger-task'),
                 'schedules' => redirect()->route('page-data-table-schedule'),
@@ -46,10 +48,12 @@ class DataTableController extends Controller
     {
         return $dataTable->render('dataTableView');
     }
+
     public function getScheduleDataTable(ScheduleDataTable $dataTable)
     {
         return $dataTable->render('dataTableView');
     }
+
     public function getTaskDataTable(TaskDataTable $dataTable)
     {
         return $dataTable->render('dataTableView');

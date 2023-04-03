@@ -12,12 +12,11 @@ class ChargerTaskController extends Controller
         return view('chargerSelection');
     }
 
-
     public function getCharger($dataset)
     {
         $charger = DB::table('charger_tasks')
             ->select('charger_id AS id')
-            ->where('dataset_name',$dataset)
+            ->where('dataset_name', $dataset)
             ->distinct()
             ->get();
         $charger->sortBy('id');
@@ -29,7 +28,6 @@ class ChargerTaskController extends Controller
 
     public function chargerStats(Request $request)
     {
-
         $dataset = $request->dataset;
         $name = $request->name;
         $chargerFlag = $request->data;

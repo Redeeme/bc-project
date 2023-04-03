@@ -19,11 +19,9 @@ class ChargerSeeder extends Seeder
         $filename = storage_path("app\csv\chargers_DS10_1.csv");
         if (!file_exists($filename) || !is_readable($filename))
             return;
-        if (($handle = fopen($filename, 'r')) !== FALSE)
-        {
+        if (($handle = fopen($filename, 'r')) !== FALSE) {
             fgetcsv($handle);
-            while (($row = fgetcsv($handle, 1000, ';')) !== FALSE)
-            {
+            while (($row = fgetcsv($handle, 1000, ';')) !== FALSE) {
                 error_log($row[0]);
                 error_log($row[1]);
                 error_log($row[2]);

@@ -17,7 +17,7 @@ class TaskController extends Controller
     {
         $tour = DB::table('tasks')
             ->select('linka AS id')
-            ->where('dataset_name',$dataset)
+            ->where('dataset_name', $dataset)
             ->distinct()
             ->get();
         $tour->sortBy('id');

@@ -11,7 +11,9 @@
         @foreach($stats as $stat)
             <div class="article-card">
                 <div class="image"></div>
-                <h3><a href="{{ route('get-stat-dataset', ['table' => $stat['table'], 'type' => $stat['type']]) }}">{{$stat['name']}}</a></h3>
+                <h3>
+                    <a href="{{ route('get-stat-dataset', ['table' => $stat['table'], 'type' => $stat['type']]) }}">{{$stat['name']}}</a>
+                </h3>
 
                 <div class="description">{{$stat['comment']}}</div>
             </div>

@@ -9,16 +9,17 @@
     </style>
     <div class="container" style="margin-top: 230px">
         @if(isset($dataset_name))
-            <div class="h-100 d-flex align-items-center justify-content-center" >
+            <div class="h-100 d-flex align-items-center justify-content-center">
                 <div class="card">
                     <div class="card-header bg-info">
                         <h6 class="text-white">Vyber dat pre ganttov diagram podla indexu turnusu</h6>
                     </div>
                     <div class="card-body">
-                        <div class="alert alert-success" role="alert" id="successMsg" style="display: none" >
+                        <div class="alert alert-success" role="alert" id="successMsg" style="display: none">
                             Choosing successful
                         </div>
-                        <form action="{{route('get-dataset')}}" method="post" name="datasetChoosing" onsubmit="return validateForm('inputCategory');">
+                        <form action="{{route('get-dataset')}}" method="post" name="datasetChoosing"
+                              onsubmit="return validateForm('inputCategory');">
                             @csrf
                             <input type="hidden" name="cid" value="ahoj">
                             <div class="form-group">
@@ -41,25 +42,27 @@
             </div>
         @endif
         @if(isset($tour))
-            <div class="h-100 d-flex align-items-center justify-content-center" >
+            <div class="h-100 d-flex align-items-center justify-content-center">
                 <div class="card">
                     <div class="card-header bg-info">
                         <h6 class="text-white">Vyber dat pre ganttov diagram podla indexu turnusu</h6>
                     </div>
                     <div class="card-body">
-                        <form action="{{route('gantt-tour')}}" method="post" onsubmit="return validateForm('inputCategoryTour');">
+                        <form action="{{route('gantt-tour')}}" method="post"
+                              onsubmit="return validateForm('inputCategoryTour');">
                             @csrf
                             <input type="hidden" name="cid" value="ahoj">
-                                <div class="form-group">
-                                    <label for="inputCategory"><strong>Dataset:</strong></label>
-                                      <br><label><input class="form-control" type="text" value="{{$dataset}}" name="dataset" readonly></label></br>
-                                    <label for="inputCategoryTour"><strong>Vyber index turnusu</strong></label>
-                                    <select id="inputCategoryTour" class="form-control" name="data">
-                                        <option value="" selected>Select option</option>
-                                        @foreach($tour as $item)
-                                            <option>{{$item->id}}</option>
-                                        @endforeach
-                                    </select>
+                            <div class="form-group">
+                                <label for="inputCategory"><strong>Dataset:</strong></label>
+                                <br><label><input class="form-control" type="text" value="{{$dataset}}" name="dataset"
+                                                  readonly></label></br>
+                                <label for="inputCategoryTour"><strong>Vyber index turnusu</strong></label>
+                                <select id="inputCategoryTour" class="form-control" name="data">
+                                    <option value="" selected>Select option</option>
+                                    @foreach($tour as $item)
+                                        <option>{{$item->id}}</option>
+                                    @endforeach
+                                </select>
                                 <div class="form group">
                                     <div class="text-center" style="margin-top: 10px;">
                                         <button type="submit" class="btn btn-success">Show</button>
@@ -72,33 +75,35 @@
             </div>
         @endif
         @if(isset($schedule))
-            <div class="h-100 d-flex align-items-center justify-content-center" >
+            <div class="h-100 d-flex align-items-center justify-content-center">
                 <div class="card">
                     <div class="card-header bg-info">
                         <h6 class="text-white">Vyber dat pre ganttov diagram podla indexu rozvrhu</h6>
                     </div>
                     <div class="card-body">
-                        <form action="{{route('gantt-schedule')}}" method="post" onsubmit="return validateForm('inputCategorySchedule');">
+                        <form action="{{route('gantt-schedule')}}" method="post"
+                              onsubmit="return validateForm('inputCategorySchedule');">
                             @csrf
                             <input type="hidden" name="cid" value="ahoj">
-                                <div class="form-group">
-                                    <label for="inputCategory"><strong>Dataset:</strong></label>
-                                    <br><label><input class="form-control" type="text" value="{{$dataset}}" name="dataset" readonly></label></br>
-                                    <label for="inputCategorySchedule"><strong>Vyber index rozvrhu</strong></label>
-                                    <select id="inputCategorySchedule" class="form-control" name="data">
-                                        <option value="" selected>Select option</option>
-                                        @foreach($schedule as $item)
-                                            <option>{{$item->id}}</option>
-                                        @endforeach
-                                    </select>
-                                    <label for="inputCategorySchedule"><strong>Vyber typu akcie</strong></label>
-                                    <select id="inputCategorySchedule" class="form-control" name="type">
-                                        <option value="" selected>BOTH</option>
-                                        @foreach($categories as $category)
-                                            <option>{{$category->type}}</option>
-                                        @endforeach
-                                    </select>
-                                    <div class="form group">
+                            <div class="form-group">
+                                <label for="inputCategory"><strong>Dataset:</strong></label>
+                                <br><label><input class="form-control" type="text" value="{{$dataset}}" name="dataset"
+                                                  readonly></label></br>
+                                <label for="inputCategorySchedule"><strong>Vyber index rozvrhu</strong></label>
+                                <select id="inputCategorySchedule" class="form-control" name="data">
+                                    <option value="" selected>Select option</option>
+                                    @foreach($schedule as $item)
+                                        <option>{{$item->id}}</option>
+                                    @endforeach
+                                </select>
+                                <label for="inputCategorySchedule"><strong>Vyber typu akcie</strong></label>
+                                <select id="inputCategorySchedule" class="form-control" name="type">
+                                    <option value="" selected>BOTH</option>
+                                    @foreach($categories as $category)
+                                        <option>{{$category->type}}</option>
+                                    @endforeach
+                                </select>
+                                <div class="form group">
                                     <div class="text-center" style="margin-top: 10px;">
                                         <button type="submit" class="btn btn-success">Show</button>
                                     </div>
@@ -110,26 +115,28 @@
             </div>
         @endif
         @if(isset($charger))
-            <div class="h-100 d-flex align-items-center justify-content-center" >
+            <div class="h-100 d-flex align-items-center justify-content-center">
                 <div class="card">
                     <div class="card-header bg-info">
                         <h6 class="text-white">Vyber dat pre ganttov diagram podla indexu nabijacky</h6>
                     </div>
                     <div class="card-body">
-                        <form action="{{route('gantt-charger')}}" method="post" onsubmit="return validateForm('inputCategoryCharger');">
+                        <form action="{{route('gantt-charger')}}" method="post"
+                              onsubmit="return validateForm('inputCategoryCharger');">
                             @csrf
                             <input type="hidden" name="cid" value="ahoj">
-                                <div class="form-group">
-                                    <label for="inputCategory"><strong>Dataset:</strong></label>
-                                    <br><label><input class="form-control" type="text" value="{{$dataset}}" name="dataset" readonly></label></br>
-                                    <label for="inputCategoryCharger"><strong>Vyber index nabijacky</strong></label>
-                                    <select id="inputCategoryCharger" class="form-control" name="data">
-                                        <option value="" selected>Select option</option>
-                                        @foreach($charger as $item)
-                                            <option>{{$item->id}}</option>
-                                        @endforeach
-                                    </select>
-                                    <div class="form group">
+                            <div class="form-group">
+                                <label for="inputCategory"><strong>Dataset:</strong></label>
+                                <br><label><input class="form-control" type="text" value="{{$dataset}}" name="dataset"
+                                                  readonly></label></br>
+                                <label for="inputCategoryCharger"><strong>Vyber index nabijacky</strong></label>
+                                <select id="inputCategoryCharger" class="form-control" name="data">
+                                    <option value="" selected>Select option</option>
+                                    @foreach($charger as $item)
+                                        <option>{{$item->id}}</option>
+                                    @endforeach
+                                </select>
+                                <div class="form group">
                                     <div class="text-center" style="margin-top: 10px;">
                                         <button type="submit" class="btn btn-success">Show</button>
                                     </div>
@@ -144,28 +151,28 @@
 
     <script type="text/javascript">
 
-        $('#datasetChoosing').on('submit',function(e){
-        e.preventDefault();
+        $('#datasetChoosing').on('submit', function (e) {
+            e.preventDefault();
 
-        let inputDataset = $('#inputDataset').val();
+            let inputDataset = $('#inputDataset').val();
 
-        $.ajax({
-        url: "/datasetSelect",
-        type:"POST",
-        data:{
-        "_token": "{{ csrf_token() }}",
-        dataset:inputDataset
-    },
-        success:function(response){
-        $('#successMsg').show();
-        console.log(response);
-    },
-        error: function(response) {
-        $('#nameErrorMsg').text(response.responseJSON.errors.name);
-    },
-    });
-    });
-</script>
+            $.ajax({
+                url: "/datasetSelect",
+                type: "POST",
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    dataset: inputDataset
+                },
+                success: function (response) {
+                    $('#successMsg').show();
+                    console.log(response);
+                },
+                error: function (response) {
+                    $('#nameErrorMsg').text(response.responseJSON.errors.name);
+                },
+            });
+        });
+    </script>
 
 
 @endsection

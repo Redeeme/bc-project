@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\ChargerTask;
 use App\Models\Helper;
 use App\Models\TableName;
@@ -16,19 +17,20 @@ class ImportFileController extends Controller
     public function index()
     {
         $tableNames = TableName::all();
-        return view('import',[
+        return view('import', [
             'tableNames' => $tableNames,
         ]);
     }
+
     public function importData(Request $request)
     {
         $datasets = DB::table('helpers')
             ->select('dataset_name')
             ->distinct()
             ->get();
-       // return response()->json(array('$data' => $request->file('uploaded_file')->getClientOriginalName()));
+        // return response()->json(array('$data' => $request->file('uploaded_file')->getClientOriginalName()));
         $file_name = $request->file('uploaded_file')->getClientOriginalName();
-        if (!$datasets->contains('dataset_name',$file_name)) {
+        if (!$datasets->contains('dataset_name', $file_name)) {
             //return response()->json(['comment' => $request->comment, 'file' => $request->file('uploaded_file')->getClientOriginalName(), 'table_name' => $request->table_name]);
 
             $the_file = $request->file('uploaded_file');
@@ -75,7 +77,7 @@ class ImportFileController extends Controller
                         'dataset_name' => $file_name,
                         'dataset_table' => 'tasks',
                         'dataset_comment' => 'default',
-                        'row_count'=>count($data)
+                        'row_count' => count($data)
                     ];
                     Helper::insert($helper);
                     //return response()->json(array('$data' => $data));
@@ -108,7 +110,7 @@ class ImportFileController extends Controller
                             $schedule = $firststring;
                         } elseif ($sheet->getCell('A' . $row)->getValue() === NULL ||
                             $sheet->getCell('A' . $row)->getValue() === '') {
-                        } elseif ($firststring == "Index"){
+                        } elseif ($firststring == "Index") {
 
                         } else {
                             $hours_start = (int)($sheet->getCell('B' . $row)->getValue() / 60);
@@ -133,7 +135,7 @@ class ImportFileController extends Controller
                                     'schedule_no' => $schedule,
                                     'dataset_name' => $file_name,
                                 ];
-                            }else{
+                            } else {
                                 $charger = NULL;
                                 $data[] = [
                                     'schedule_index' => (int)$sheet->getCell('A' . $row)->getValue(),
@@ -158,7 +160,7 @@ class ImportFileController extends Controller
                         'dataset_name' => $file_name,
                         'dataset_table' => 'schedules',
                         'dataset_comment' => 'default',
-                        'row_count'=>count($data)
+                        'row_count' => count($data)
                     ];
                     Helper::insert($helper);
                     //return response()->json(array('$data' => $data));
@@ -204,11 +206,10 @@ class ImportFileController extends Controller
                         'dataset_name' => $file_name,
                         'dataset_table' => 'charger_tasks',
                         'dataset_comment' => 'default',
-                        'row_count'=>count($data)
+                        'row_count' => count($data)
                     ];
                     Helper::insert($helper);
-                    foreach (array_chunk($data,1000) as $t)
-                    {
+                    foreach (array_chunk($data, 1000) as $t) {
                         ChargerTask::insert($t);
                     }
                 } catch (Exception $e) {

@@ -8,24 +8,29 @@
             background-attachment: fixed;
             background-size: 100%;
         }
+
         .header {
             height: 30vh;
             display: flex;
             justify-content: center;
             align-items: center;
         }
+
         .header h1 {
             color: #1a202c;
             font-style: oblique;
             font-size: 48px;
             text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
         }
+
         .container {
         }
+
         h2 {
             font-size: 36px;
             margin-bottom: 20px;
         }
+
         p {
             font-size: 18px;
             line-height: 1.6;
@@ -38,7 +43,10 @@
     <div class="container">
         <h2>About Us</h2>
         <p>
-            We are a passionate team dedicated to providing the best experience for our customers. Our goal is to create a seamless online platform that meets the diverse needs of our users. With a focus on innovation and user satisfaction, we continually strive to improve and expand our services. We hope you enjoy your time on our website and find everything you need.
+            We are a passionate team dedicated to providing the best experience for our customers. Our goal is to create
+            a seamless online platform that meets the diverse needs of our users. With a focus on innovation and user
+            satisfaction, we continually strive to improve and expand our services. We hope you enjoy your time on our
+            website and find everything you need.
         </p>
     </div>
 

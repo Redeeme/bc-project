@@ -7,32 +7,33 @@
             background-repeat: no-repeat;
         }
     </style>
-        <div class="h-100 d-flex align-items-center justify-content-center" >
-            <div class="card">
-                <div class="card-header bg-info">
-                    <h6 class="text-white">Vyber dat pre ganttov diagram podla indexu turnusu</h6>
-                </div>
-                <div class="card-body">
-                    <form action="{{ route('get-stat', ['type' => $type, 'table' => $table]) }}" method="post"onsubmit="return validateForm('inputCategory');">
-                        @csrf
-                        <input type="hidden" name="cid" value="ahoj">
-                        <div class="form-group">
-                            <select id="inputCategory" class="form-control" name="data">
-                                <option value="" selected>Select option</option>
-                                @foreach($dataset as $item)
-                                    <option>{{$item->dataset_name}}</option>
-                                @endforeach
-                            </select>
-                            <div class="form group">
-                                <div class="text-center" style="margin-top: 10px;">
-                                    <button type="submit" class="btn btn-success">Show</button>
-                                </div>
+    <div class="h-100 d-flex align-items-center justify-content-center">
+        <div class="card">
+            <div class="card-header bg-info">
+                <h6 class="text-white">Vyber dat pre ganttov diagram podla indexu turnusu</h6>
+            </div>
+            <div class="card-body">
+                <form action="{{ route('get-stat', ['type' => $type, 'table' => $table]) }}" method="post"
+                      onsubmit="return validateForm('inputCategory');">
+                    @csrf
+                    <input type="hidden" name="cid" value="ahoj">
+                    <div class="form-group">
+                        <select id="inputCategory" class="form-control" name="data">
+                            <option value="" selected>Select option</option>
+                            @foreach($dataset as $item)
+                                <option>{{$item->dataset_name}}</option>
+                            @endforeach
+                        </select>
+                        <div class="form group">
+                            <div class="text-center" style="margin-top: 10px;">
+                                <button type="submit" class="btn btn-success">Show</button>
                             </div>
                         </div>
-                    </form>
-                </div>
+                    </div>
+                </form>
             </div>
         </div>
+    </div>
 
 
 @endsection

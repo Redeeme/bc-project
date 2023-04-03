@@ -46,10 +46,10 @@ class ChargerTaskDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('chargertask-table')
-                    ->columns($this->getColumns())
-                    ->minifiedAjax()
-                    ->orderBy(1);
+            ->setTableId('chargertask-table')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+            ->orderBy(1);
     }
 
     /**

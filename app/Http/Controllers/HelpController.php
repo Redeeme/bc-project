@@ -20,26 +20,28 @@ class HelpController extends Controller
             'dataset_name' => $dataset,
         ]);
     }
+
     public function getDataset(Request $request)
     {
         $dataset = $request->dataset;
         $tableName = DB::table('helpers')
             ->select('dataset_table')
-            ->where('dataset_name',$dataset)
+            ->where('dataset_name', $dataset)
             ->distinct()
             ->get();
         return match ($tableName[0]->dataset_table) {
-            'charger_tasks' => redirect()->route('select-chargers',['dataset' => $dataset]),
-            'schedules' => redirect()->route('select-schedules',['dataset' => $dataset]),
-            'tasks' => redirect()->route('select-tours',['dataset' => $dataset]),
+            'charger_tasks' => redirect()->route('select-chargers', ['dataset' => $dataset]),
+            'schedules' => redirect()->route('select-schedules', ['dataset' => $dataset]),
+            'tasks' => redirect()->route('select-tours', ['dataset' => $dataset]),
             default => redirect()->route('welcome-page'),
         };
     }
+
     public function getSchedulesDatasets()
     {
         $dataset = DB::table('helpers')
             ->select('dataset_name')
-            ->where('dataset_table','schedules')
+            ->where('dataset_table', 'schedules')
             ->distinct()
             ->get();
         $dataset->sortBy('dataset_name');
@@ -47,11 +49,13 @@ class HelpController extends Controller
             'dataset_name' => $dataset,
         ]);
     }
+
     public function getSchedulesDataset(Request $request)
     {
         $dataset = $request->dataset;
-        return redirect()->route('select-schedules-graph',['dataset' => $dataset]);
+        return redirect()->route('select-schedules-graph', ['dataset' => $dataset]);
     }
+
     public function indexDataset()
     {
         $dataset = DB::table('helpers')
@@ -62,7 +66,8 @@ class HelpController extends Controller
             'datasets' => $dataset,
         ]);
     }
-    public function deleteDataset($id,$table)
+
+    public function deleteDataset($id, $table)
     {
         $dataset = Helper::find($id);
 
@@ -71,7 +76,7 @@ class HelpController extends Controller
         }
         $name = DB::table('helpers')
             ->select('dataset_name')
-            ->where('id','=',$id)
+            ->where('id', '=', $id)
             ->get();
         DB::table($table)
             ->where('dataset_name', '=', $name[0]->dataset_name)

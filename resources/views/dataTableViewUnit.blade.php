@@ -7,7 +7,7 @@
 
     @if(isset($tourFlag))
         <div class="card text-center" style="width: 94%; margin-left: 3%">
-            <div class="card-header" >
+            <div class="card-header">
                 <ul class="nav nav-tabs card-header-tabs">
                     <li class="nav-item" style="margin-right: 5px">
                         <form action="{{route('gantt-tour')}}" method="post">
@@ -15,7 +15,9 @@
                             <input type="hidden" name="data" value="{{ $tourFlag }}">
                             <input type="hidden" name="dataset" value="{{ $dataset }}">
                             <div class="form group">
-                                <button type="submit" class="btn btn-primary btn-block" id="update_button">schema gantt</button>
+                                <button type="submit" class="btn btn-primary btn-block" id="update_button">schema
+                                    gantt
+                                </button>
                             </div>
                         </form>
                     </li>
@@ -27,7 +29,9 @@
                             <input type="hidden" name="dataset" value="{{ $dataset }}">
                             <input type="hidden" name="name" value="{{ $name }}">
                             <div class="form group">
-                                <button type="submit" class="btn btn-primary btn-block" id="update_button">tabulkove zobrazenie</button>
+                                <button type="submit" class="btn btn-primary btn-block" id="update_button">tabulkove
+                                    zobrazenie
+                                </button>
                             </div>
                         </form>
                     </li>
@@ -38,7 +42,9 @@
                             <input type="hidden" name="data" value="{{ $tourFlag }}">
                             <input type="hidden" name="dataset" value="{{ $dataset }}">
                             <div class="form group">
-                                <button type="submit" class="btn btn-primary btn-block" id="update_button">statistiky dat</button>
+                                <button type="submit" class="btn btn-primary btn-block" id="update_button">statistiky
+                                    dat
+                                </button>
                             </div>
                         </form>
                     </li>
@@ -57,7 +63,9 @@
                             <input type="hidden" name="data" value="{{ $chargerFlag }}">
                             <input type="hidden" name="dataset" value="{{ $dataset }}">
                             <div class="form group">
-                                <button type="submit" class="btn btn-primary btn-block" id="update_button">schema gantt</button>
+                                <button type="submit" class="btn btn-primary btn-block" id="update_button">schema
+                                    gantt
+                                </button>
                             </div>
                         </form>
                     </li>
@@ -69,7 +77,9 @@
                             <input type="hidden" name="dataset" value="{{ $dataset }}">
                             <input type="hidden" name="name" value="{{ $name }}">
                             <div class="form group">
-                                <button type="submit" class="btn btn-primary btn-block" id="update_button">tabulkove zobrazenie</button>
+                                <button type="submit" class="btn btn-primary btn-block" id="update_button">tabulkove
+                                    zobrazenie
+                                </button>
                             </div>
                         </form>
                     </li>
@@ -81,7 +91,9 @@
                             <input type="hidden" name="dataset" value="{{ $dataset }}">
                             <input type="hidden" name="name" value="{{ $name }}">
                             <div class="form group">
-                                <button type="submit" class="btn btn-primary btn-block" id="update_button">statistiky dat</button>
+                                <button type="submit" class="btn btn-primary btn-block" id="update_button">statistiky
+                                    dat
+                                </button>
                             </div>
                         </form>
                     </li>
@@ -102,7 +114,9 @@
                             <input type="hidden" name="dataset" value="{{ $dataset }}">
                             <input type="hidden" name="name" value="{{ $name }}">
                             <div class="form group">
-                                <button type="submit" class="btn btn-primary btn-block" id="update_button">schema gantt</button>
+                                <button type="submit" class="btn btn-primary btn-block" id="update_button">schema
+                                    gantt
+                                </button>
                             </div>
                         </form>
                     </li>
@@ -115,7 +129,9 @@
                             <input type="hidden" name="dataset" value="{{ $dataset }}">
                             <input type="hidden" name="name" value="{{ $name }}">
                             <div class="form group">
-                                <button type="submit" class="btn btn-primary btn-block" id="update_button">tabulkove zobrazenie</button>
+                                <button type="submit" class="btn btn-primary btn-block" id="update_button">tabulkove
+                                    zobrazenie
+                                </button>
                             </div>
                         </form>
                     </li>
@@ -128,7 +144,9 @@
                             <input type="hidden" name="dataset" value="{{ $dataset }}">
                             <input type="hidden" name="name" value="{{ $name }}">
                             <div class="form group">
-                                <button type="submit" class="btn btn-primary btn-block" id="update_button">statistiky dat</button>
+                                <button type="submit" class="btn btn-primary btn-block" id="update_button">statistiky
+                                    dat
+                                </button>
                             </div>
                         </form>
                     </li>

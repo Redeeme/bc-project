@@ -22,19 +22,17 @@ class StationSeeder extends Seeder
         Log::debug($filename);
         if (!file_exists($filename) || !is_readable($filename))
             return;
-        if (($handle = fopen($filename, 'r')) !== FALSE)
-        {
+        if (($handle = fopen($filename, 'r')) !== FALSE) {
             fgetcsv($handle);
-            while (($row = fgetcsv($handle, 1000, ';')) !== FALSE)
-            {
+            while (($row = fgetcsv($handle, 1000, ';')) !== FALSE) {
                 error_log($row[0]);
-                    $data[] = [
-                        'station_id' => $row[0],
-                        'location' => $row[1],
-                    ];
+                $data[] = [
+                    'station_id' => $row[0],
+                    'location' => $row[1],
+                ];
             }
             fclose($handle);
             Station::insert($data);
         }
-}
+    }
 }

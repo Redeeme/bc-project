@@ -20,7 +20,7 @@ class ChargerTaskSeeder extends Seeder
     {
         $filename = storage_path("app\csv\ChEvents_DS10_1.csv");
         Log::debug($filename);
-        if(!file_exists($filename) || !is_readable($filename))
+        if (!file_exists($filename) || !is_readable($filename))
             return;
 
         $header = NULL;
@@ -29,13 +29,11 @@ class ChargerTaskSeeder extends Seeder
         $minute_start = 0;
         $hours_end = 0;
         $minute_end = 0;
-        if (($handle = fopen($filename, 'r')) !== FALSE)
-        {
-            while (($row = fgetcsv($handle, 1000, ';')) !== FALSE)
-            {
-                if(!$header) {
+        if (($handle = fopen($filename, 'r')) !== FALSE) {
+            while (($row = fgetcsv($handle, 1000, ';')) !== FALSE) {
+                if (!$header) {
                     $header = $row;
-                }else{
+                } else {
                     $hours_start = (int)($row[2] / 60);
                     $minute_start = $row[2] % 60;
                     $hours_end = (int)($row[3] / 60);
@@ -56,18 +54,16 @@ class ChargerTaskSeeder extends Seeder
                         'dataset_name' => 'ChEvents_DS10_1.csv',
                     ];
                 }
-
             }
             fclose($handle);
-            foreach (array_chunk($data,1000) as $t)
-            {
+            foreach (array_chunk($data, 1000) as $t) {
                 ChargerTask::insert($t);
             }
             $helper[] = [
                 'dataset_name' => 'ChEvents_DS10_1.csv',
                 'dataset_table' => 'charger_tasks',
                 'dataset_comment' => 'default',
-                'row_count'=>count($data)
+                'row_count' => count($data)
             ];
             Helper::insert($helper);
         }

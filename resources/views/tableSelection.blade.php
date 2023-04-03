@@ -11,15 +11,15 @@
     <div class="container" style="margin-top: 240px">
 
 
-        <div class="h-100 d-flex align-items-center justify-content-center" >
-            <div class="card">
-                <div class="card-header bg-info">
-                    <h6 class="text-white">Vyber dat pre tabulkove zobrazenie podla nazvu datasetu</h6>
-                </div>
-                <div class="card-body">
-                    <form action="{{route('page-data-table')}}" method="post"onsubmit="return validateForm('inputCategoryCharger')>
-                        @csrf
-                        <input type="hidden" name="cid" value="ahoj">
+    <div class="h-100 d-flex align-items-center justify-content-center" >
+        <div class="card">
+            <div class="card-header bg-info">
+                <h6 class="text-white">Vyber dat pre tabulkove zobrazenie podla nazvu datasetu</h6>
+            </div>
+            <div class="card-body">
+                <form action="{{route('page-data-table')}}" method="post"onsubmit="return validateForm('inputCategory');">
+                    @csrf
+                    <input type="hidden" name="cid" value="ahoj">
                         <div class="form-group">
                             <label for="inputCategory"><strong>Dataset</strong></label>
                             <select id="inputCategory" class="form-control" name="name">
@@ -34,9 +34,9 @@
                                 <button type="submit" class="btn btn-success">Show</button>
                             </div>
                         </div>
-                    </form>
-                </div>
+                </form>
             </div>
         </div>
+    </div>
     </div>
 @endsection

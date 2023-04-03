@@ -35,12 +35,12 @@ class SchedulesDataTableUnit extends DataTable
      */
     public function query(Schedule $model): QueryBuilder
     {
-        if ($this->type == 'BOTH'){
+        if ($this->type == 'BOTH') {
             return Schedule::where([
                 ['schedule_no', $this->id],
                 ['dataset_name', $this->dataset],
             ]);
-        }else{
+        } else {
             return Schedule::where([
                 ['schedule_no', $this->id],
                 ['dataset_name', $this->dataset],

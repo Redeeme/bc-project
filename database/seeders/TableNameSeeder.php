@@ -14,10 +14,9 @@ class TableNameSeeder extends Seeder
      */
     public function run()
     {
-            $data[] = ['name' => "charger_tasks"];
-            $data[] = ['name' => "schedules"];
-            $data[] = ['name' => "tasks"];
-            TableName::insert($data);
-
+        $data[] = ['name' => "charger_tasks"];
+        $data[] = ['name' => "schedules"];
+        $data[] = ['name' => "tasks"];
+        TableName::insert($data);
     }
 }

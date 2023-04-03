@@ -19,7 +19,7 @@ class TasksSeeder extends Seeder
     {
         $filename = storage_path("app\csv\spoje_id_DS10_1.csv");
         Log::debug($filename);
-        if(!file_exists($filename) || !is_readable($filename))
+        if (!file_exists($filename) || !is_readable($filename))
             return;
 
         $header = NULL;
@@ -28,13 +28,11 @@ class TasksSeeder extends Seeder
         $minute_start = 0;
         $hours_end = 0;
         $minute_end = 0;
-        if (($handle = fopen($filename, 'r')) !== FALSE)
-        {
-            while (($row = fgetcsv($handle, 1000, ';')) !== FALSE)
-            {
-                if(!$header) {
+        if (($handle = fopen($filename, 'r')) !== FALSE) {
+            while (($row = fgetcsv($handle, 1000, ';')) !== FALSE) {
+                if (!$header) {
                     $header = $row;
-                }else{
+                } else {
                     $hours_start = (int)($row[6] / 60);
                     $minute_start = $row[6] % 60;
                     $hours_end = (int)($row[7] / 60);
@@ -54,7 +52,6 @@ class TasksSeeder extends Seeder
                         'dataset_name' => 'spoje_id_DS10_1.csv',
                     ];
                 }
-
             }
             fclose($handle);
             Task::insert($data);
@@ -62,7 +59,7 @@ class TasksSeeder extends Seeder
                 'dataset_name' => 'spoje_id_DS10_1.csv',
                 'dataset_table' => 'tasks',
                 'dataset_comment' => 'default',
-                'row_count'=>count($data)
+                'row_count' => count($data)
             ];
             Helper::insert($helper);
         }

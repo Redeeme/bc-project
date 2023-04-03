@@ -38,7 +38,7 @@ class ScheduleSeeder extends Seeder
                     $schedule = $row[0];
                 } elseif ($row[0] == null) {
 
-                } elseif (substr($row[0], 0, 5) == "Index"){
+                } elseif (substr($row[0], 0, 5) == "Index") {
 
                 } else {
                     $hours_start = (int)($row[1] / 60);
@@ -80,20 +80,17 @@ class ScheduleSeeder extends Seeder
                             'dataset_name' => 'DS10_1_res_GGA_.txt',
                         ];
                     }
-
                 }
-
             }
             fclose($handle);
-            foreach (array_chunk($data,1000) as $t)
-            {
+            foreach (array_chunk($data, 1000) as $t) {
                 Schedule::insert($t);
             }
             $helper[] = [
                 'dataset_name' => 'DS10_1_res_GGA_.txt',
                 'dataset_table' => 'schedules',
                 'dataset_comment' => 'default',
-                'row_count'=>count($data)
+                'row_count' => count($data)
             ];
             Helper::insert($helper);
         }

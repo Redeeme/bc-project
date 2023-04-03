@@ -13,44 +13,53 @@
                 <h6 class="text-white">Vyber dat pre ganttov diagram podla indexu turnusu</h6>
             </div>
             <div class="card-body">
-                <form action="{{ route($type, ['table' => $table, 'type' => $type, 'dataset' => $dataset]) }}" method="post">
+                <form action="{{ route($type, ['table' => $table, 'type' => $type, 'dataset' => $dataset]) }}"
+                      method="post">
                     @csrf
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="inputInterval1">Rano od:</label>
-                                <input type="time" class="form-control" id="inputInterval1" name="interval1" value="00:00">
+                                <input type="time" class="form-control" id="inputInterval1" name="interval1"
+                                       value="00:00">
                             </div>
                             <div class="form-group">
                                 <label for="inputInterval2">Interval 2</label>
-                                <input type="time" class="form-control" id="inputInterval2" name="interval2" value="06:00">
+                                <input type="time" class="form-control" id="inputInterval2" name="interval2"
+                                       value="06:00">
                             </div>
                             <div class="form-group">
                                 <label for="inputInterval3">Interval 3</label>
-                                <input type="time" class="form-control" id="inputInterval3" name="interval3" value="12:00">
+                                <input type="time" class="form-control" id="inputInterval3" name="interval3"
+                                       value="12:00">
                             </div>
                             <div class="form-group">
                                 <label for="inputInterval4">Interval 4</label>
-                                <input type="time" class="form-control" id="inputInterval4" name="interval4" value="18:00">
+                                <input type="time" class="form-control" id="inputInterval4" name="interval4"
+                                       value="18:00">
                             </div>
                         </div>
                         <div class="col-md-6">
 
                             <div class="form-group">
                                 <label for="inputInterval5">Interval 5</label>
-                                <input type="time" class="form-control" id="inputInterval5" name="interval5" value="06:00">
+                                <input type="time" class="form-control" id="inputInterval5" name="interval5"
+                                       value="06:00">
                             </div>
                             <div class="form-group">
                                 <label for="inputInterval6">Interval 6</label>
-                                <input type="time" class="form-control" id="inputInterval6" name="interval6" value="12:00">
+                                <input type="time" class="form-control" id="inputInterval6" name="interval6"
+                                       value="12:00">
                             </div>
                             <div class="form-group">
                                 <label for="inputInterval7">Interval 7</label>
-                                <input type="time" class="form-control" id="inputInterval7" name="interval7" value="18:00">
+                                <input type="time" class="form-control" id="inputInterval7" name="interval7"
+                                       value="18:00">
                             </div>
                             <div class="form-group">
                                 <label for="inputInterval8">Interval 8</label>
-                                <input type="time" class="form-control" id="inputInterval8" name="interval8" value="23:59">
+                                <input type="time" class="form-control" id="inputInterval8" name="interval8"
+                                       value="23:59">
                             </div>
                         </div>
                     </div>
@@ -61,40 +70,40 @@
             </div>
         </div>
     </div>
-<script>
-    $(document).ready(function() {
-        $('form').submit(function(event) {
-            var interval1 = $('#inputInterval1').val();
-            var interval5 = $('#inputInterval5').val();
+    <script>
+        $(document).ready(function () {
+            $('form').submit(function (event) {
+                var interval1 = $('#inputInterval1').val();
+                var interval5 = $('#inputInterval5').val();
 
-            var interval2 = $('#inputInterval2').val();
-            var interval6 = $('#inputInterval6').val();
+                var interval2 = $('#inputInterval2').val();
+                var interval6 = $('#inputInterval6').val();
 
-            var interval3 = $('#inputInterval3').val();
-            var interval7 = $('#inputInterval7').val();
+                var interval3 = $('#inputInterval3').val();
+                var interval7 = $('#inputInterval7').val();
 
-            var interval4 = $('#inputInterval4').val();
-            var interval8 = $('#inputInterval8').val();
+                var interval4 = $('#inputInterval4').val();
+                var interval8 = $('#inputInterval8').val();
 
-            if (interval1 >= interval5) {
-                event.preventDefault();
-                alert('Interval 1 cannot be higher than or equal to Interval 5');
-            }
-            if (interval2 >= interval6) {
-                event.preventDefault();
-                alert('Interval 2 cannot be higher than or equal to Interval 6');
-            }
-            if (interval3 >= interval7) {
-                event.preventDefault();
-                alert('Interval 3 cannot be higher than or equal to Interval 7');
-            }
-            if (interval4 >= interval8) {
-                event.preventDefault();
-                alert('Interval 4 cannot be higher than or equal to Interval 8');
-            }
+                if (interval1 >= interval5) {
+                    event.preventDefault();
+                    alert('Interval 1 cannot be higher than or equal to Interval 5');
+                }
+                if (interval2 >= interval6) {
+                    event.preventDefault();
+                    alert('Interval 2 cannot be higher than or equal to Interval 6');
+                }
+                if (interval3 >= interval7) {
+                    event.preventDefault();
+                    alert('Interval 3 cannot be higher than or equal to Interval 7');
+                }
+                if (interval4 >= interval8) {
+                    event.preventDefault();
+                    alert('Interval 4 cannot be higher than or equal to Interval 8');
+                }
+            });
         });
-    });
-</script>
+    </script>
 
 
 
