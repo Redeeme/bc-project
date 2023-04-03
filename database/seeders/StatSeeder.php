@@ -55,7 +55,7 @@ class StatSeeder extends Seeder
         $data[] = [
             'name' => 'Pocet nabitych vozidel',
             'comment' => 'možnosť určiť dĺžku časových intervalov/zadefinovať časové intervaly pre ráno, obed, večer a noc',
-            'table' => 'charger_tasks',
+            'table' => 'schedules',
             'type' => 'chargers-stat-interval-count-Selection',
         ];
         $data[] = [
