@@ -32,7 +32,7 @@
                         </form>
                     </li>
 
-                    <li class="nav-item" style="margin-right: 5px">
+                    <li class="nav-item" style="margin-right: 5px; display: none;">
                         <form action="{{route('stats-tour')}}" method="post">
                             @csrf
                             <input type="hidden" name="data" value="{{ $tourFlag }}">
@@ -74,7 +74,7 @@
                         </form>
                     </li>
 
-                    <li class="nav-item" style="margin-right: 5px">
+                    <li class="nav-item" style="margin-right: 5px; display: none;">
                         <form action="{{route('stats-charger')}}" method="post">
                             @csrf
                             <input type="hidden" name="data" value="{{ $chargerFlag }}">

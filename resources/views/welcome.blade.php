@@ -8,28 +8,39 @@
             background-attachment: fixed;
             background-size: 100%;
         }
+        .header {
+            height: 30vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .header h1 {
+            color: #1a202c;
+            font-style: oblique;
+            font-size: 48px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+        }
+        .container {
+        }
+        h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+        }
     </style>
-<div class="container" style="margin-top: 120px">
-    <img src="https://www.metoffice.gov.uk/binaries/content/gallery/metofficegovuk/hero-images/advice/maps-satellite-images/satellite-image-of-globe.jpg" width="1300" height="600">
-    <h1>Nástroj na grafické znázornenie turnusov elektrických autobusov</h1>
-    <h4>Cieľ: Cieľom práce je vytvorenie nástroja na grafické zobrazenie turnusov elektrických vozidiel, ako aj rozvrhov nabíjacích staníc. Nástroj by mal slúžiť na analýzu a prehľadnejšie zobrazenie turnusov elektrických autobusov získaných pri optimalizačných výpočtoch.</h4>
-    <h4>
-        Výsledkom optimalizačných algoritmov sú často iba textové súbory, ktoré však nie sú vhodné na čítanie pre človeka. Tak je to aj v prípade úlohy návrhu turnusov elektrických autobusov. Úlohou študenta je preskúmať štandardné grafické schémy turnusov vozidiel (napr. Ganttove diagramy) a následne vytvoriť nástroj, v ktorom bude možné vybrané (po dohode s vedúcim práce) schémy zobraziť pre turnusy definované vstupnými súbormi. Súčasne by mal byť nástroj schopný zobraziť aj rozvrhy nabíjania nabíjacích staníc.
+    <div class="header">
+        <h1>Welcome to Our Website</h1>
+    </div>
 
-        Postup práce:</h4>
-    <h4>
-        Výsledkom optimalizačných algoritmov sú často iba textové súbory, ktoré však nie sú vhodné na čítanie pre človeka. Tak je to aj v prípade úlohy návrhu turnusov elektrických autobusov. Úlohou študenta je preskúmať štandardné grafické schémy turnusov vozidiel (napr. Ganttove diagramy) a následne vytvoriť nástroj, v ktorom bude možné vybrané (po dohode s vedúcim práce) schémy zobraziť pre turnusy definované vstupnými súbormi. Súčasne by mal byť nástroj schopný zobraziť aj rozvrhy nabíjania nabíjacích staníc.
-
-        Postup práce:</h4>
-    <h4>
-        Výsledkom optimalizačných algoritmov sú často iba textové súbory, ktoré však nie sú vhodné na čítanie pre človeka. Tak je to aj v prípade úlohy návrhu turnusov elektrických autobusov. Úlohou študenta je preskúmať štandardné grafické schémy turnusov vozidiel (napr. Ganttove diagramy) a následne vytvoriť nástroj, v ktorom bude možné vybrané (po dohode s vedúcim práce) schémy zobraziť pre turnusy definované vstupnými súbormi. Súčasne by mal byť nástroj schopný zobraziť aj rozvrhy nabíjania nabíjacích staníc.
-
-        Postup práce:</h4>
-    <h4>
-        Výsledkom optimalizačných algoritmov sú často iba textové súbory, ktoré však nie sú vhodné na čítanie pre človeka. Tak je to aj v prípade úlohy návrhu turnusov elektrických autobusov. Úlohou študenta je preskúmať štandardné grafické schémy turnusov vozidiel (napr. Ganttove diagramy) a následne vytvoriť nástroj, v ktorom bude možné vybrané (po dohode s vedúcim práce) schémy zobraziť pre turnusy definované vstupnými súbormi. Súčasne by mal byť nástroj schopný zobraziť aj rozvrhy nabíjania nabíjacích staníc.
-
-        Postup práce:</h4>
-</div>
+    <div class="container">
+        <h2>About Us</h2>
+        <p>
+            We are a passionate team dedicated to providing the best experience for our customers. Our goal is to create a seamless online platform that meets the diverse needs of our users. With a focus on innovation and user satisfaction, we continually strive to improve and expand our services. We hope you enjoy your time on our website and find everything you need.
+        </p>
+    </div>
 
 
 @endsection
