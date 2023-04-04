@@ -80,7 +80,7 @@
 <div id="app">
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
         <div class="container">
-            <a class="navbar-brand" href="#">Bakalarska praca</a>
+            <a class="navbar-brand" href="#">Bakalárska práca</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false"
                     aria-label="{{ __('Toggle navigation') }}">
@@ -97,23 +97,13 @@
                 <ul class="navbar-nav ml-auto">
                     <!-- Authentication Links -->
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href={{route('welcome-page')}}>Home</a>
-                    </li>
-{{--                    <li class="nav-item dropdown">
-                        <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Gantt
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="{{route('select-tours')}}">tours</a></li>
-                            <li><a class="dropdown-item" href="{{route('select-chargers')}}">chargers</a></li>
-                            <li><a class="dropdown-item" href="{{route('select-schedules')}}">schedules</a></li>
-                        </ul>
-                    </li>--}}
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href={{route('get-datasets')}}>Gantt</a>
+                        <a class="nav-link active" aria-current="page" href={{route('welcome-page')}}>Domov</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href={{route('select-table-view')}}>Data</a>
+                        <a class="nav-link active" aria-current="page" href={{route('get-datasets')}}>Ganttov diagram</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href={{route('select-table-view')}}>Dáta</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle black-text" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -130,13 +120,13 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href={{route('get-stats')}}>Stats</a>
+                        <a class="nav-link active" aria-current="page" href={{route('get-stats')}}>Štatistiky </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href={{route('import-upload')}}>Data import</a>
+                        <a class="nav-link active" aria-current="page" href={{route('import-upload')}}>Import dát</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href={{route('datasets')}}>Datasets Management</a>
+                        <a class="nav-link active" aria-current="page" href={{route('datasets')}}>Správa datasetov</a>
                     </li>
                 </ul>
             </div>
@@ -151,14 +141,12 @@
 <div class="containerFooter">
     <div class="footerText">
         <h6>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam at ligula suscipit, iaculis ipsum quis,
-            fringilla nisi. Sed dapibus placerat lorem. Praesent vel blandit velit. Aliquam molestie nulla vitae
-            sapien eleifend, at ultrices elit efficitur.
+            Tento footer obsahuje odkazy na sociálne siete, kontaktné údaje spoločnosti a informácie o autorských právach.
         </h6>
     </div>
     <div class="bottom-right">
-        <h6>Author</h6>
-        <a href="#">Jozef Forgáč</a>
+        <h6>Autor</h6>
+        <h6>Jozef Forgáč</h6>
     </div>
 </div>
 </html>

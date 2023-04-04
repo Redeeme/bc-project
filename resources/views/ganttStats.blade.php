@@ -12,8 +12,7 @@
                             <input type="hidden" name="data" value="{{ $tourFlag }}">
                             <input type="hidden" name="dataset" value="{{ $dataset }}">
                             <div class="form group">
-                                <button type="submit" class="btn btn-primary btn-block" id="update_button">schema
-                                    gantt
+                                <button type="submit" class="btn btn-primary btn-block" id="update_button">Schéma Ganttov diagramu
                                 </button>
                             </div>
                         </form>
@@ -26,8 +25,7 @@
                             <input type="hidden" name="dataset" value="{{ $dataset }}">
                             <input type="hidden" name="name" value="{{ $name }}">
                             <div class="form group">
-                                <button type="submit" class="btn btn-primary btn-block" id="update_button">tabulkove
-                                    zobrazenie
+                                <button type="submit" class="btn btn-primary btn-block" id="update_button">Tabuľkové zobrazenie
                                 </button>
                             </div>
                         </form>
@@ -40,8 +38,7 @@
                             <input type="hidden" name="dataset" value="{{ $dataset }}">
                             <input type="hidden" name="name" value="{{ $name }}">
                             <div class="form group">
-                                <button type="submit" class="btn btn-primary btn-block" id="update_button">statistiky
-                                    dat
+                                <button type="submit" class="btn btn-primary btn-block" id="update_button">Štatistiky dát
                                 </button>
                             </div>
                         </form>
@@ -61,8 +58,7 @@
                             <input type="hidden" name="data" value="{{ $chargerFlag }}">
                             <input type="hidden" name="dataset" value="{{ $dataset }}">
                             <div class="form group">
-                                <button type="submit" class="btn btn-primary btn-block" id="update_button">schema
-                                    gantt
+                                <button type="submit" class="btn btn-primary btn-block" id="update_button">Schéma Ganttov diagramu
                                 </button>
                             </div>
                         </form>
@@ -75,8 +71,7 @@
                             <input type="hidden" name="dataset" value="{{ $dataset }}">
                             <input type="hidden" name="name" value="{{ $name }}">
                             <div class="form group">
-                                <button type="submit" class="btn btn-primary btn-block" id="update_button">tabulkove
-                                    zobrazenie
+                                <button type="submit" class="btn btn-primary btn-block" id="update_button">Tabuľkové zobrazenie
                                 </button>
                             </div>
                         </form>
@@ -89,8 +84,7 @@
                             <input type="hidden" name="dataset" value="{{ $dataset }}">
                             <input type="hidden" name="name" value="{{ $name }}">
                             <div class="form group">
-                                <button type="submit" class="btn btn-primary btn-block" id="update_button">statistiky
-                                    dat
+                                <button type="submit" class="btn btn-primary btn-block" id="update_button">Štatistiky dát
                                 </button>
                             </div>
                         </form>
@@ -112,8 +106,7 @@
                             <input type="hidden" name="dataset" value="{{ $dataset }}">
                             <input type="hidden" name="name" value="{{ $name }}">
                             <div class="form group">
-                                <button type="submit" class="btn btn-primary btn-block" id="update_button">schema
-                                    gantt
+                                <button type="submit" class="btn btn-primary btn-block" id="update_button">Schéma Ganttov diagramu
                                 </button>
                             </div>
                         </form>
@@ -127,8 +120,7 @@
                             <input type="hidden" name="dataset" value="{{ $dataset }}">
                             <input type="hidden" name="name" value="{{ $name }}">
                             <div class="form group">
-                                <button type="submit" class="btn btn-primary btn-block" id="update_button">tabulkove
-                                    zobrazenie
+                                <button type="submit" class="btn btn-primary btn-block" id="update_button">Tabuľkové zobrazenie
                                 </button>
                             </div>
                         </form>
@@ -142,8 +134,7 @@
                             <input type="hidden" name="dataset" value="{{ $dataset }}">
                             <input type="hidden" name="name" value="{{ $name }}">
                             <div class="form group">
-                                <button type="submit" class="btn btn-primary btn-block" id="update_button">statistiky
-                                    dat
+                                <button type="submit" class="btn btn-primary btn-block" id="update_button">Štatistiky dát
                                 </button>
                             </div>
                         </form>

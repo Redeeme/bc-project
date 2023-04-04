@@ -8,11 +8,11 @@
             background-repeat: no-repeat;
         }
     </style>
-    <div class="container" style="margin-top: 250px">
+    <div class="container" style="margin-top: 100px">
         <div class="h-100 d-flex align-items-center justify-content-center">
             <div class="card">
                 <div class="card-header bg-info">
-                    <h6 class="text-white">Import Excel Data</h6>
+                    <h6 class="text-white">Importovať dáta z Excelu</h6>
                 </div>
                 <div class="card-body">
                     @if ($message = Session::get('success'))
@@ -22,43 +22,68 @@
                         </div>
                         <br>
                     @endif
-                    <form action="{{route('import-data')}}" method="post" enctype="multipart/form-data">
-                        @csrf
-                        <fieldset>
-                            <label>Select File to Upload <small
-                                    class="warning text-muted">{{__('Please upload only Excel (.xlsx or .xls) files')}}</small></label>
-                            <div class="input-group">
-                                <br>
-                                <input type="file" required class="form-control" name="uploaded_file"
-                                       id="uploaded_file">
-                                </br>
-                                @if ($errors->has('uploaded_file'))
-                                    <p class="text-right mb-0">
-                                        <small class="danger text-muted"
-                                               id="file-error">{{ $errors->first('uploaded_file') }}</small>
-                                    </p>
-                                @endif
-                                <div class="input-group">
-                                    <br> <label for="inputCategory"><strong>Nazov tabulky:</strong></label>
+                        <form action="{{route('import-data')}}" method="post" enctype="multipart/form-data">
+                            @csrf
+                            <fieldset>
+                                <div class="form-group">
+                                    <label>Vyberte súbor na nahratie <small
+                                            class="warning text-muted">{{__('Prosím, nahrávajte len súbory typu Excel (.xlsx alebo .xls).')}}</small></label>
+                                    <input type="file" required class="form-control" name="uploaded_file" id="uploaded_file">
+                                    @if ($errors->has('uploaded_file'))
+                                        <p class="text-right mb-0">
+                                            <small class="danger text-muted"
+                                                   id="file-error">{{ $errors->first('uploaded_file') }}</small>
+                                        </p>
+                                    @endif
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputCategory"><strong>Názov tabuľky:</strong></label>
                                     <select id="inputCategory" class="form-control" name="table_name">
                                         @foreach($tableNames as $tableName)
                                             <option>{{$tableName->name}}</option>
                                         @endforeach
                                     </select>
-
                                 </div>
                                 <div class="form-group">
-                                    <label for="inputCategory"><strong>Comment:</strong></label>
-                                    <br><label><input class="form-control" type="text" name="comment"></label></br>
+                                    <label for="inputCategory"><strong>Komentár:</strong></label>
+                                    <input class="form-control" type="text" name="comment">
                                 </div>
-
-                            </div>
-                            <div class="text-center" style="margin-top: 10px;">
-                                <button type="submit" class="btn btn-success">Import</button>
-                            </div>
-                        </fieldset>
-                    </form>
+                                <div class="form-group text-center">
+                                    <button type="submit" class="btn btn-success">Importovať</button>
+                                </div>
+                            </fieldset>
+                        </form>
                 </div>
             </div>
         </div>
+    </div>
+    <div class="container" style="margin-top: 50px;">
+        <div class="row">
+            <div class="col-md-12 text-center mb-4">
+                <h3>Je potrebné použiť konkrétne formáty súborov pre import do nasledujúcich tabuliek:</h3>
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col-md-12 text-center">
+                <h4>tasks:</h4>
+                <img src="{{ asset('img/tasks.png') }}" alt="tasks" class="img-fluid">
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col-md-12 text-center">
+                <h4>schedules:</h4>
+                <img src="{{ asset('img/schedules.png') }}" alt="schedules" class="img-fluid">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h4>charger_tasks:</h4>
+                <img src="{{ asset('img/charger_tasks.png') }}" alt="charger_tasks" class="img-fluid">
+            </div>
+        </div>
+    </div>
+
+
+
+
 @endsection

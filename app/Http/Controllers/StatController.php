@@ -89,7 +89,22 @@ class StatController extends Controller
         }
         $x = $chargersIndexes;
         $y = $data;
-        return view('statsHistogram', compact('y', 'x', 'type'));
+        $label = DB::table('stats')
+            ->select('x_label')
+            ->where('type', $type)
+            ->get();
+        $x_label = $label[0]->x_label;
+        $label = DB::table('stats')
+            ->select('y_label')
+            ->where('type', $type)
+            ->get();
+        $y_label = $label[0]->y_label;
+        $label = DB::table('stats')
+            ->select('name')
+            ->where('type', $type)
+            ->get();
+        $name = $label[0]->name;
+        return view('statsHistogram', compact('y', 'x', 'type','x_label','y_label','name'));
     }
 
     public function schedulesStatClip($table, $type, $dataset)
@@ -115,7 +130,22 @@ class StatController extends Controller
         }
         $x = $schedulesIndexes;
         $y = $data;
-        return view('statsHistogram', compact('y', 'x', 'type'));
+        $label = DB::table('stats')
+            ->select('x_label')
+            ->where('type', $type)
+            ->get();
+        $x_label = $label[0]->x_label;
+        $label = DB::table('stats')
+            ->select('y_label')
+            ->where('type', $type)
+            ->get();
+        $y_label = $label[0]->y_label;
+        $label = DB::table('stats')
+            ->select('name')
+            ->where('type', $type)
+            ->get();
+        $name = $label[0]->name;
+        return view('statsHistogram', compact('y', 'x', 'type','x_label','y_label','name'));
     }
 
     public function schedulesStatCharging($table, $type, $dataset)
@@ -151,7 +181,22 @@ class StatController extends Controller
         }
         $x = $schedulesIndexes;
         $y = $data;
-        return view('statsHistogram', compact('y', 'x', 'type'));
+        $label = DB::table('stats')
+            ->select('x_label')
+            ->where('type', $type)
+            ->get();
+        $x_label = $label[0]->x_label;
+        $label = DB::table('stats')
+            ->select('y_label')
+            ->where('type', $type)
+            ->get();
+        $y_label = $label[0]->y_label;
+        $label = DB::table('stats')
+            ->select('name')
+            ->where('type', $type)
+            ->get();
+        $name = $label[0]->name;
+        return view('statsHistogram', compact('y', 'x', 'type','x_label','y_label','name'));
     }
 
     public function schedulesStatUtil($table, $type, $dataset)
@@ -204,7 +249,22 @@ class StatController extends Controller
         $x = $schedulesIndexes;
         $y = $data1;
         $yy = $data2;
-        return view('statsDoubleHistogram', compact('y', 'x', 'yy', 'type'));
+        $label = DB::table('stats')
+            ->select('x_label')
+            ->where('type', $type)
+            ->get();
+        $x_label = $label[0]->x_label;
+        $label = DB::table('stats')
+            ->select('y_label')
+            ->where('type', $type)
+            ->get();
+        $y_label = $label[0]->y_label;
+        $label = DB::table('stats')
+            ->select('name')
+            ->where('type', $type)
+            ->get();
+        $name = $label[0]->name;
+        return view('statsHistogram', compact('y', 'x', 'type','x_label','y_label','name'));
     }
 
     public function schedulesStatTrips($table, $type, $dataset)
@@ -230,7 +290,22 @@ class StatController extends Controller
         }
         $x = $schedulesIndexes;
         $y = $data;
-        return view('statsHistogram', compact('y', 'x', 'type'));
+        $label = DB::table('stats')
+            ->select('x_label')
+            ->where('type', $type)
+            ->get();
+        $x_label = $label[0]->x_label;
+        $label = DB::table('stats')
+            ->select('y_label')
+            ->where('type', $type)
+            ->get();
+        $y_label = $label[0]->y_label;
+        $label = DB::table('stats')
+            ->select('name')
+            ->where('type', $type)
+            ->get();
+        $name = $label[0]->name;
+        return view('statsHistogram', compact('y', 'x', 'type','x_label','y_label','name'));
     }
 
     public function chargersStatIntLengthSelection($table, $type, $dataset)
@@ -361,12 +436,28 @@ class StatController extends Controller
                 }
             }
         }
+
         $x = $chargersIndexes;
         $y1 = $data11;
         $y2 = $data22;
         $y3 = $data33;
         $y4 = $data44;
-        return view('statsQuadrupleHistogram', compact('y1', 'y2', 'y3', 'y4', 'x', 'type',));
+        $label = DB::table('stats')
+            ->select('x_label')
+            ->where('type', 'chargers-stat-interval-length-Selection')
+            ->get();
+        $x_label = $label[0]->x_label;
+        $label = DB::table('stats')
+            ->select('y_label')
+            ->where('type', 'chargers-stat-interval-length-Selection')
+            ->get();
+        $y_label = $label[0]->y_label;
+        $label = DB::table('stats')
+            ->select('name')
+            ->where('type', 'chargers-stat-interval-length-Selection')
+            ->get();
+        $name = $label[0]->name;
+        return view('statsQuadrupleHistogram', compact('y1', 'y2', 'y3', 'y4', 'x', 'type','x_label','y_label','name'));
     }
 
     public function chargersStatIntCount($table, $type, $dataset, Request $request)
@@ -478,7 +569,25 @@ class StatController extends Controller
         $y2 = $data22;
         $y3 = $data33;
         $y4 = $data44;
-        return view('statsQuadrupleHistogram', compact('y1', 'y2', 'y3', 'y4', 'x', 'type',));
+        $label = DB::table('stats')
+            ->select('x_label')
+            ->where('type', 'chargers-stat-interval-count-Selection')
+            ->get();
+//                return response()->json([
+//            '$schedules1' => $type,
+//        ]);
+        $x_label = $label[0]->x_label;
+        $label = DB::table('stats')
+            ->select('y_label')
+            ->where('type', 'chargers-stat-interval-count-Selection')
+            ->get();
+        $y_label = $label[0]->y_label;
+        $label = DB::table('stats')
+            ->select('name')
+            ->where('type', 'chargers-stat-interval-count-Selection')
+            ->get();
+        $name = $label[0]->name;
+        return view('statsQuadrupleHistogram', compact('y1', 'y2', 'y3', 'y4', 'x', 'type','x_label','y_label','name'));
 //        return response()->json([
 //            '$schedules1' => $schedules1->count(),
 //            '$schedules2' => $schedules2->count(),

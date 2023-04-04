@@ -37,16 +37,16 @@
         }
     </style>
     <div class="header">
-        <h1>Welcome to Our Website</h1>
+        <h1>Vitajte na našej webovej stránke</h1>
     </div>
 
     <div class="container">
-        <h2>About Us</h2>
+        <h2>O nás</h2>
         <p>
-            We are a passionate team dedicated to providing the best experience for our customers. Our goal is to create
-            a seamless online platform that meets the diverse needs of our users. With a focus on innovation and user
-            satisfaction, we continually strive to improve and expand our services. We hope you enjoy your time on our
-            website and find everything you need.
+            Sme vášnivý tím zameraný na poskytovanie najlepšieho zážitku pre našich zákazníkov.
+            Našim cieľom je vytvoriť bezproblémovú online platformu, ktorá uspokojí rôznorodé potreby našich používateľov.
+            S dôrazom na inováciu a spokojnosť používateľov sa neustále snažíme zlepšovať a rozširovať naše služby.
+            Dúfame, že si užijete svoj čas na našej webovej stránke a nájdete všetko, čo potrebujete.
         </p>
     </div>
 

@@ -14,7 +14,7 @@
     <div class="h-100 d-flex align-items-center justify-content-center" >
         <div class="card">
             <div class="card-header bg-info">
-                <h6 class="text-white">Vyber dat pre tabulkove zobrazenie podla nazvu datasetu</h6>
+                <h6 class="text-white">Vyberte dáta pre tabuľkové zobrazenie podľa názvu datasetu</h6>
             </div>
             <div class="card-body">
                 <form action="{{route('page-data-table')}}" method="post"onsubmit="return validateForm('inputCategory');">
@@ -23,7 +23,7 @@
                         <div class="form-group">
                             <label for="inputCategory"><strong>Dataset</strong></label>
                             <select id="inputCategory" class="form-control" name="name">
-                                <option value="" selected>Select option</option>
+                                <option value="" selected>Vyberte možnosť</option>
                                 @foreach($tableNames as $tableName)
                                     <option>{{$tableName->name}}</option>
                                 @endforeach
@@ -31,7 +31,7 @@
                         </div>
                         <div class="form group">
                             <div class="text-center" style="margin-top: 10px;">
-                                <button type="submit" class="btn btn-success">Show</button>
+                                <button type="submit" class="btn btn-success">Zobraziť</button>
                             </div>
                         </div>
                 </form>

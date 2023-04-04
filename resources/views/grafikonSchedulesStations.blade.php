@@ -49,12 +49,18 @@
             type: 'line',
             data: data,
             options: {
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Grafikon turnusov'
+                    }
+                },
                 scales: {
                     x: {
                         type: 'time',
                         title: {
                             display: true,
-                            text: 'Values'
+                            text: 'Časy'
                         },
                         time: {
                             unit: 'hour',
@@ -65,7 +71,7 @@
                         labels: labels,
                         title: {
                             display: true,
-                            text: 'Locations'
+                            text: 'Lokácie'
                         }
                     }
                 }

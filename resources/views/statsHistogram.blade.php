@@ -17,13 +17,27 @@
         const yy = y.map(item => item.y);
 
         const ctx = document.getElementById('myChart').getContext('2d');
+        function getRandomColor(firstValue) {
+            const randomValue = (min) => Math.floor(Math.random() * (256 - min) + min);
+            const randomAlpha = () => (Math.random() * 0.5 + 0.5).toFixed(2); // Generate random alpha between 0.5 and 1
+
+            return {
+                backgroundColor: `rgba(${firstValue}, ${randomValue()}, ${randomValue()}, ${randomAlpha()})`,
+                borderColor: `rgba(${firstValue}, ${randomValue()}, ${randomValue()}, 1)`
+            };
+        }
+
+        // Usage:
+        const firstValue = 255; // The fixed first value
+        const randomColors = getRandomColor(firstValue);
+        console.log(randomColors);
         const data = {
             labels: xx,
             datasets: [{
-                label: "{{ $type }}",
+                label: "data",
                 data: yy,
-                backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                borderColor: 'rgba(255, 99, 132, 1)',
+                backgroundColor: 'rgb(31,110,202)',
+                borderColor: 'rgb(31,110,202)',
                 borderWidth: 1
             }]
         };
@@ -33,8 +47,26 @@
                     ticks: {
                         beginAtZero: true
                     }
-                }]
-            }
+                }],
+                x: {
+                    title: {
+                        display: true,
+                        text: "{{ $x_label }}"
+                    },
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: "{{ $y_label }}"
+                    }
+                }
+            },
+            plugins: {
+                title: {
+                    display: true,
+                    text: "{{ $name }}"
+                }
+            },
         };
         const myChart = new Chart(ctx, {
             type: 'bar',

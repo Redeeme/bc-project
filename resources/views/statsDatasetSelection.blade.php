@@ -7,10 +7,10 @@
             background-repeat: no-repeat;
         }
     </style>
-    <div class="h-100 d-flex align-items-center justify-content-center">
+    <div class="h-100 d-flex align-items-center justify-content-center"style="margin-top: 150px">
         <div class="card">
             <div class="card-header bg-info">
-                <h6 class="text-white">Vyber dat pre ganttov diagram podla indexu turnusu</h6>
+                <h6 class="text-white">Vyberte dáta pre zobrazenie</h6>
             </div>
             <div class="card-body">
                 <form action="{{ route('get-stat', ['type' => $type, 'table' => $table]) }}" method="post"
@@ -18,15 +18,16 @@
                     @csrf
                     <input type="hidden" name="cid" value="ahoj">
                     <div class="form-group">
+                        <label for="inputCategory"><strong>Dataset:</strong></label>
                         <select id="inputCategory" class="form-control" name="data">
-                            <option value="" selected>Select option</option>
+                            <option value="" selected>Vyberte možnosť</option>
                             @foreach($dataset as $item)
                                 <option>{{$item->dataset_name}}</option>
                             @endforeach
                         </select>
                         <div class="form group">
                             <div class="text-center" style="margin-top: 10px;">
-                                <button type="submit" class="btn btn-success">Show</button>
+                                <button type="submit" class="btn btn-success">Zobraziť</button>
                             </div>
                         </div>
                     </div>

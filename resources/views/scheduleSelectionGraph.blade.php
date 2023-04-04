@@ -15,27 +15,27 @@
             <div class="h-100 d-flex align-items-center justify-content-center">
                 <div class="card">
                     <div class="card-header bg-info">
-                        <h6 class="text-white">Vyber dat pre graf rozvrhov</h6>
+                        <h6 class="text-white">Vyberte dáta pre graf rozvrhov</h6>
                     </div>
                     <div class="card-body">
                         <div class="alert alert-success" role="alert" id="successMsg" style="display: none">
-                            Choosing successful
+                            Výber bol úspešný
                         </div>
                         <form action="{{route('select-schedules-graph-dataset')}}" method="post" name="datasetChoosing"
                               onsubmit="return validateForm('inputCategory');">
                             @csrf
                             <input type="hidden" name="cid" value="ahoj">
                             <div class="form-group">
-                                <label for="inputCategory"><strong>Vyber datasetu rozvrhov</strong></label>
+                                <label for="inputCategory"><strong>Vyberte dataset rozvrhov</strong></label>
                                 <select id="inputCategory" class="form-control" name="dataset">
-                                    <option value="" selected>Select option</option>
+                                    <option value="" selected>Vyberte možnosť</option>
                                     @foreach($dataset_name as $item)
                                         <option>{{$item->dataset_name}}</option>
                                     @endforeach
                                 </select>
                                 <div class="form group">
                                     <div class="text-center" style="margin-top: 10px;">
-                                        <button type="submit" class="btn btn-success">Choose</button>
+                                        <button type="submit" class="btn btn-success">Zobraziť</button>
                                     </div>
                                 </div>
                             </div>
@@ -48,7 +48,7 @@
             <div class="h-100 d-flex align-items-center justify-content-center">
                 <div class="card">
                     <div class="card-header bg-info">
-                        <h6 class="text-white">Vyber daneho rozvrhu pre zobrazenie grafu podla typu akcie</h6>
+                        <h6 class="text-white">Vyberte daný rozvrh pre zobrazenie grafu podľa typu akcie</h6>
                     </div>
                     <div class="card-body align-items-center d-flex justify-content-center">
                         <form method="post" action="{{route('graph-page-schedules')}}" enctype="multipart/form-data"
@@ -57,7 +57,7 @@
                             <label for="inputCategory"><strong>Dataset:</strong></label>
                             <br><label><input class="form-control" type="text" value="{{$dataset}}" name="dataset"
                                               readonly></label></br>
-                            <br> <label><strong>Vyber turnusu</strong></label></br>
+                            <br> <label><strong>Vyberte rozvrhy</strong></label></br>
                             <select id="inputCategory" class="selectpicker" multiple data-live-search="true"
                                     name="schedule[]">
                                 @foreach($schedules as $schedule)
@@ -65,7 +65,7 @@
                                 @endforeach
                             </select>
                             <div class="">
-                                <label><strong>Vyber typu akcie</strong></label>
+                                <label><strong>Vyberte typ akcie</strong></label>
                                 <select id="inputCategory" class="form-control" name="type">
                                     <option selected>BOTH</option>
                                     @foreach($categories as $category)
@@ -74,7 +74,7 @@
                                 </select>
                             </div>
                             <div class="text-center" style="margin-top: 10px;">
-                                <button type="submit" class="btn btn-success">Show</button>
+                                <button type="submit" class="btn btn-success">Zobraziť</button>
                             </div>
                         </form>
                     </div>

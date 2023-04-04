@@ -10,7 +10,7 @@
     <div class="h-100 d-flex align-items-center justify-content-center">
         <div class="card">
             <div class="card-header bg-info">
-                <h6 class="text-white">Vyber dat pre ganttov diagram podla indexu turnusu</h6>
+                <h6 class="text-white">Vyberte hodnoty pre intervalové zobrazenie</h6>
             </div>
             <div class="card-body">
                 <form action="{{ route($type, ['table' => $table, 'type' => $type, 'dataset' => $dataset]) }}"
@@ -19,22 +19,22 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="inputInterval1">Rano od:</label>
+                                <label for="inputInterval1">Ráno od:</label>
                                 <input type="time" class="form-control" id="inputInterval1" name="interval1"
                                        value="00:00">
                             </div>
                             <div class="form-group">
-                                <label for="inputInterval2">Interval 2</label>
+                                <label for="inputInterval2">Obed od:</label>
                                 <input type="time" class="form-control" id="inputInterval2" name="interval2"
                                        value="06:00">
                             </div>
                             <div class="form-group">
-                                <label for="inputInterval3">Interval 3</label>
+                                <label for="inputInterval3">Večer od:</label>
                                 <input type="time" class="form-control" id="inputInterval3" name="interval3"
                                        value="12:00">
                             </div>
                             <div class="form-group">
-                                <label for="inputInterval4">Interval 4</label>
+                                <label for="inputInterval4">Noc od:</label>
                                 <input type="time" class="form-control" id="inputInterval4" name="interval4"
                                        value="18:00">
                             </div>
@@ -42,29 +42,29 @@
                         <div class="col-md-6">
 
                             <div class="form-group">
-                                <label for="inputInterval5">Interval 5</label>
+                                <label for="inputInterval5">Ráno do:</label>
                                 <input type="time" class="form-control" id="inputInterval5" name="interval5"
                                        value="06:00">
                             </div>
                             <div class="form-group">
-                                <label for="inputInterval6">Interval 6</label>
+                                <label for="inputInterval6">Obed do:</label>
                                 <input type="time" class="form-control" id="inputInterval6" name="interval6"
                                        value="12:00">
                             </div>
                             <div class="form-group">
-                                <label for="inputInterval7">Interval 7</label>
+                                <label for="inputInterval7">Večer do:</label>
                                 <input type="time" class="form-control" id="inputInterval7" name="interval7"
                                        value="18:00">
                             </div>
                             <div class="form-group">
-                                <label for="inputInterval8">Interval 8</label>
+                                <label for="inputInterval8">Noc do:</label>
                                 <input type="time" class="form-control" id="inputInterval8" name="interval8"
                                        value="23:59">
                             </div>
                         </div>
                     </div>
                     <div class="text-center" style="margin-top: 10px;">
-                        <button type="submit" class="btn btn-success">Show</button>
+                        <button type="submit" class="btn btn-success">Zobraziť</button>
                     </div>
                 </form>
             </div>

@@ -27,28 +27,28 @@
                 labels: xx,
                 datasets: [
                     {
-                        label: 'rano',
+                        label: 'Ráno',
                         data: yy1,
                         backgroundColor: 'rgba(255, 99, 132, 0.2)',
                         borderColor: 'rgba(255, 99, 132, 1)',
                         borderWidth: 1
                     },
                     {
-                        label: 'obed',
+                        label: 'Obed',
                         data: yy2,
                         backgroundColor: 'rgba(54, 162, 235, 0.2)',
                         borderColor: 'rgba(54, 162, 235, 1)',
                         borderWidth: 1
                     },
                     {
-                        label: 'vecer',
+                        label: 'Večer',
                         data: yy3,
                         backgroundColor: 'rgba(255, 206, 86, 0.2)',
                         borderColor: 'rgba(255, 206, 86, 1)',
                         borderWidth: 1
                     },
                     {
-                        label: 'noc',
+                        label: 'Noc',
                         data: yy4,
                         backgroundColor: 'rgba(75, 192, 192, 0.2)',
                         borderColor: 'rgba(75, 192, 192, 1)',
@@ -62,8 +62,26 @@
                         ticks: {
                             beginAtZero: true
                         }
-                    }]
-                }
+                    }],
+                    x: {
+                        title: {
+                            display: true,
+                            text: "{{ $x_label }}"
+                        },
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: "{{ $y_label }}"
+                        }
+                    }
+                },
+                plugins: {
+                    title: {
+                        display: true,
+                        text: "{{ $name }}"
+                    }
+                },
             }
         });
     </script>

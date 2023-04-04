@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('comment');
             $table->string('table');
             $table->string('type');
+            $table->string('x_label');
+            $table->string('y_label');
         });
     }
 

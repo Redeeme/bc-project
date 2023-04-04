@@ -20,14 +20,14 @@
         const data = {
             labels: xx,
             datasets: [{
-                label: 'time on trips',
+                label: 'Čas strávený na spojoch',
                 data: yy1,
                 backgroundColor: 'rgba(255, 99, 132, 0.2)',
                 borderColor: 'rgba(255, 99, 132, 1)',
                 borderWidth: 1
             },
                 {
-                    label: 'time on charging',
+                    label: 'Čas strávený nabíjaním',
                     data: yy2,
                     backgroundColor: 'rgba(54, 162, 235, 0.2)',
                     borderColor: 'rgba(54, 162, 235, 1)',
@@ -40,8 +40,26 @@
                     ticks: {
                         beginAtZero: true
                     }
-                }]
-            }
+                }],
+                x: {
+                    title: {
+                        display: true,
+                        text: "{{ $x_label }}"
+                    },
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: "{{ $y_label }}"
+                    }
+                }
+            },
+            plugins: {
+                title: {
+                    display: true,
+                    text: "{{ $name }}"
+                }
+            },
         };
         const myChart = new Chart(ctx, {
             type: 'bar',

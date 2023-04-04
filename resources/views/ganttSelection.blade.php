@@ -12,7 +12,7 @@
             <div class="h-100 d-flex align-items-center justify-content-center">
                 <div class="card">
                     <div class="card-header bg-info">
-                        <h6 class="text-white">Vyber dat pre ganttov diagram podla indexu turnusu</h6>
+                        <h6 class="text-white">Vyberte dáta pre zobrazenie Ganttovho diagramu.</h6>
                     </div>
                     <div class="card-body">
                         <div class="alert alert-success" role="alert" id="successMsg" style="display: none">
@@ -23,16 +23,16 @@
                             @csrf
                             <input type="hidden" name="cid" value="ahoj">
                             <div class="form-group">
-                                <label for="inputCategory"><strong>Vyber datasetu turnusov</strong></label>
+                                <label for="inputCategory"><strong>Vyberte dataset.</strong></label>
                                 <select id="inputCategory" class="form-control" name="dataset">
-                                    <option value="" selected>Select option</option>
+                                    <option value="" selected>Vyberte možnosť</option>
                                     @foreach($dataset_name as $item)
                                         <option>{{$item->dataset_name}}</option>
                                     @endforeach
                                 </select>
                                 <div class="form group">
                                     <div class="text-center" style="margin-top: 10px;">
-                                        <button type="submit" class="btn btn-success">Choose</button>
+                                        <button type="submit" class="btn btn-success">Vyberte</button>
                                     </div>
                                 </div>
                             </div>
@@ -45,7 +45,7 @@
             <div class="h-100 d-flex align-items-center justify-content-center">
                 <div class="card">
                     <div class="card-header bg-info">
-                        <h6 class="text-white">Vyber dat pre ganttov diagram podla indexu turnusu</h6>
+                        <h6 class="text-white">Vyberte dáta pre zobrazenie Ganttovho diagramu.</h6>
                     </div>
                     <div class="card-body">
                         <form action="{{route('gantt-tour')}}" method="post"
@@ -56,16 +56,16 @@
                                 <label for="inputCategory"><strong>Dataset:</strong></label>
                                 <br><label><input class="form-control" type="text" value="{{$dataset}}" name="dataset"
                                                   readonly></label></br>
-                                <label for="inputCategoryTour"><strong>Vyber index turnusu</strong></label>
+                                <label for="inputCategoryTour"><strong>Vyberte číslo linky</strong></label>
                                 <select id="inputCategoryTour" class="form-control" name="data">
-                                    <option value="" selected>Select option</option>
+                                    <option value="" selected>Vyberte možnosť</option>
                                     @foreach($tour as $item)
                                         <option>{{$item->id}}</option>
                                     @endforeach
                                 </select>
                                 <div class="form group">
                                     <div class="text-center" style="margin-top: 10px;">
-                                        <button type="submit" class="btn btn-success">Show</button>
+                                        <button type="submit" class="btn btn-success">Zobraziť</button>
                                     </div>
                                 </div>
                             </div>
@@ -78,7 +78,7 @@
             <div class="h-100 d-flex align-items-center justify-content-center">
                 <div class="card">
                     <div class="card-header bg-info">
-                        <h6 class="text-white">Vyber dat pre ganttov diagram podla indexu rozvrhu</h6>
+                        <h6 class="text-white">Vyberte dáta pre zobrazenie Ganttovho diagramu.</h6>
                     </div>
                     <div class="card-body">
                         <form action="{{route('gantt-schedule')}}" method="post"
@@ -89,14 +89,14 @@
                                 <label for="inputCategory"><strong>Dataset:</strong></label>
                                 <br><label><input class="form-control" type="text" value="{{$dataset}}" name="dataset"
                                                   readonly></label></br>
-                                <label for="inputCategorySchedule"><strong>Vyber index rozvrhu</strong></label>
+                                <label for="inputCategorySchedule"><strong>Vyberte index rozvrhu</strong></label>
                                 <select id="inputCategorySchedule" class="form-control" name="data">
-                                    <option value="" selected>Select option</option>
+                                    <option value="" selected>Vyberte možnosť</option>
                                     @foreach($schedule as $item)
                                         <option>{{$item->id}}</option>
                                     @endforeach
                                 </select>
-                                <label for="inputCategorySchedule"><strong>Vyber typu akcie</strong></label>
+                                <label for="inputCategorySchedule"><strong>Vyberte typ akcie</strong></label>
                                 <select id="inputCategorySchedule" class="form-control" name="type">
                                     <option value="" selected>BOTH</option>
                                     @foreach($categories as $category)
@@ -105,7 +105,7 @@
                                 </select>
                                 <div class="form group">
                                     <div class="text-center" style="margin-top: 10px;">
-                                        <button type="submit" class="btn btn-success">Show</button>
+                                        <button type="submit" class="btn btn-success">Zobraziť</button>
                                     </div>
                                 </div>
                             </div>
@@ -118,7 +118,7 @@
             <div class="h-100 d-flex align-items-center justify-content-center">
                 <div class="card">
                     <div class="card-header bg-info">
-                        <h6 class="text-white">Vyber dat pre ganttov diagram podla indexu nabijacky</h6>
+                        <h6 class="text-white">Vyberte dáta pre zobrazenie Ganttovho diagramu.</h6>
                     </div>
                     <div class="card-body">
                         <form action="{{route('gantt-charger')}}" method="post"
@@ -129,16 +129,16 @@
                                 <label for="inputCategory"><strong>Dataset:</strong></label>
                                 <br><label><input class="form-control" type="text" value="{{$dataset}}" name="dataset"
                                                   readonly></label></br>
-                                <label for="inputCategoryCharger"><strong>Vyber index nabijacky</strong></label>
+                                <label for="inputCategoryCharger"><strong>Vyberte index nabíjačky</strong></label>
                                 <select id="inputCategoryCharger" class="form-control" name="data">
-                                    <option value="" selected>Select option</option>
+                                    <option value="" selected>Vyberte možnosť</option>
                                     @foreach($charger as $item)
                                         <option>{{$item->id}}</option>
                                     @endforeach
                                 </select>
                                 <div class="form group">
                                     <div class="text-center" style="margin-top: 10px;">
-                                        <button type="submit" class="btn btn-success">Show</button>
+                                        <button type="submit" class="btn btn-success">Zobraziť</button>
                                     </div>
                                 </div>
                             </div>

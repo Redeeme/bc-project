@@ -58,7 +58,7 @@
                 plugins: {
                     title: {
                         display: true,
-                        text: 'Chart.js Line Chart - Multi Axis'
+                        text: 'Grafikon turnusov'
                     }
                 },
                 scales: {
@@ -70,13 +70,21 @@
                             min: 1,
                             max: 44,
                             stepSize: 1,
-                        }
+                        },
+                        title: {
+                            display: true,
+                            text: 'Spoje'
+                        },
                         // grid line settings
                     },
                     x: {
                         type: 'time',
                         time: {
                             unit: 'hour',
+                        },
+                        title: {
+                            display: true,
+                            text: 'Časy'
                         }
                     }
                 }

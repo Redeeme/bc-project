@@ -36,25 +36,25 @@
                 <h3>{{$item->dataset_name}}</h3>
                 <div class="description d-flex justify-content-between">
                     <div>
-                        comment: {{$item->dataset_comment}} row_count: {{$item->row_count}}
-                        table: {{$item->dataset_table}}
+                        Komentár: {{$item->dataset_comment}} Počet riadkov: {{$item->row_count}}
+                        Tabuľka : {{$item->dataset_table}}
                     </div>
                     <form action="{{ route('delete-dataset', ['id' => $item->id,'table' => $item->dataset_table]) }}"
                           method="POST">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Delete</button>
+                        <button type="submit" class="btn btn-danger">Vymazať </button>
                     </form>
                 </div>
             </div>
         @endforeach
     </div>
     <div class="text-center">
-        <a id="refreshButton" class="btn btn-primary my-2">Refresh</a>
+        <a id="refreshButton" class="btn btn-primary my-2">Obnoviť </a>
     </div>
     <div id="loading-spinner-wrapper" style="display: none;">
         <div id="loading-spinner" class="spinner-border text-primary" role="status">
-            <span class="sr-only">Loading...</span>
+            <span class="sr-only">Načítava sa...</span>
         </div>
     </div>
 
@@ -73,12 +73,12 @@
                 success: function (response) {
                     // Hide the loading spinner on success
                     $('#loading-spinner-wrapper').hide();
-                    alert('Migration completed successfully!');
+                    alert('Migrácia bola úspešne dokončená!');
                 },
                 error: function (response) {
                     // Hide the loading spinner on error
                     $('#loading-spinner-wrapper').hide();
-                    alert('Migration failed!');
+                    alert('Migrácia zlyhala!');
                 }
             });
         });
