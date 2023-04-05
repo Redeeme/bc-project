@@ -25,8 +25,8 @@ class ImportFileController extends Controller
     public function importData(Request $request)
     {
         $validatedData = $request->validate([
-            'table_name' => 'required',
-            'uploaded_file' => 'required|file|max:10240', // 10MB maximum size
+            'table_name' => 'required|in:tasks,charger_tasks,schedules',
+            'uploaded_file' => 'required|file|mimes:csv,txt|max:10240', // 10MB maximum size
         ]);
         $table_name = $validatedData['table_name'];
 

@@ -29,7 +29,7 @@ class DataTableController extends Controller
             $validatedData = $request->validate([
                 'dataset' => 'required',
                 'data' => 'required',
-                'name' => 'required',
+                'name' => 'required|in:tasks,charger_tasks,schedules',
             ]);
             $id = $validatedData['data'];
             $dataset = $validatedData['dataset'];
