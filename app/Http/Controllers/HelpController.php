@@ -6,6 +6,7 @@ use App\Models\Helper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class HelpController extends Controller
 {
@@ -76,6 +77,16 @@ class HelpController extends Controller
 
     public function deleteDataset($id, $table)
     {
+        $validatedData = Validator::make(
+            [
+                'id' => $id,
+                'table' => $table,
+            ],
+            [
+                'id' => 'required',
+                'table' => 'required',
+            ]
+        )->validate();
         if (!isset($id) || !isset($table)) {
             return redirect()->back()->withErrors(['error' => 'Please enter right values :)']);
         }

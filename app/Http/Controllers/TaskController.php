@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class TaskController extends Controller
 {
@@ -15,9 +16,14 @@ class TaskController extends Controller
 
     public function getTour($dataset)
     {
-        if (!isset($dataset)) {
-            return redirect()->back()->withErrors(['error' => 'Please enter right values :)']);
-        }
+        $validatedData = Validator::make(
+            [
+                'dataset' => $dataset
+            ],
+            [
+                'dataset' => 'required'
+            ]
+        )->validate();
         $tour = DB::table('tasks')
             ->select('linka AS id')
             ->where('dataset_name', $dataset)

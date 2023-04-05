@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class ChargerTaskController extends Controller
 {
@@ -14,9 +15,14 @@ class ChargerTaskController extends Controller
 
     public function getCharger($dataset)
     {
-        if (!isset($dataset)) {
-            return redirect()->back()->withErrors(['error' => 'Please enter right values :)']);
-        }
+        $validatedData = Validator::make(
+            [
+                'dataset' => $dataset,
+            ],
+            [
+                'dataset' => 'required',
+            ]
+        )->validate();
         $charger = DB::table('charger_tasks')
             ->select('charger_id AS id')
             ->where('dataset_name', $dataset)

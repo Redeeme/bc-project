@@ -6,6 +6,7 @@ use App\Models\Stat;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class StatController extends Controller
 {
@@ -17,9 +18,17 @@ class StatController extends Controller
 
     public function indexDatasetSelection($type, $table)
     {
-        if (!isset($table) || !isset($type)) {
-            return redirect()->back()->withErrors(['error' => 'Please enter right values :)']);
-        }
+        $validatedData = Validator::make(
+            [
+                'table' => $table,
+                'type' => $type
+            ],
+            [
+                'table' => 'required',
+                'type' => 'required'
+            ]
+        )->validate();
+
         if ($table == 'schedules-stat-batery') {
             return redirect()->route('select-schedules-graph-datasets');
         }
@@ -48,9 +57,16 @@ class StatController extends Controller
 
     public function getStat($type, $table, Request $request)
     {
-        if (!isset($table) || !isset($type)) {
-            return redirect()->back()->withErrors(['error' => 'Please enter right values :)']);
-        }
+        $validatedData = Validator::make(
+            [
+                'table' => $table,
+                'type' => $type
+            ],
+            [
+                'table' => 'required',
+                'type' => 'required'
+            ]
+        )->validate();
         $validatedData = $request->validate([
             'data' => 'required',
         ]);
@@ -69,9 +85,18 @@ class StatController extends Controller
 
     public function chargersStatUtil($table, $type, $dataset)
     {
-        if (!isset($table) || !isset($type) || !isset($dataset)) {
-            return redirect()->back()->withErrors(['error' => 'Please enter right values :)']);
-        }
+        $validatedData = Validator::make(
+            [
+                'table' => $table,
+                'type' => $type,
+                'dataset' => $dataset
+            ],
+            [
+                'table' => 'required',
+                'type' => 'required',
+                'dataset' => 'required'
+            ]
+        )->validate();
         $chargersIndexes = DB::table($table)
             ->select('charger_id as x')
             ->where('dataset_name', $dataset)
@@ -120,9 +145,18 @@ class StatController extends Controller
 
     public function schedulesStatClip($table, $type, $dataset)
     {
-        if (!isset($table) || !isset($type) || !isset($dataset)) {
-            return redirect()->back()->withErrors(['error' => 'Please enter right values :)']);
-        }
+        $validatedData = Validator::make(
+            [
+                'table' => $table,
+                'type' => $type,
+                'dataset' => $dataset
+            ],
+            [
+                'table' => 'required',
+                'type' => 'required',
+                'dataset' => 'required'
+            ]
+        )->validate();
         $schedulesIndexes = DB::table($table)
             ->select('schedule_no as x')
             ->where('dataset_name', $dataset)
@@ -164,9 +198,18 @@ class StatController extends Controller
 
     public function schedulesStatCharging($table, $type, $dataset)
     {
-        if (!isset($table) || !isset($type) || !isset($dataset)) {
-            return redirect()->back()->withErrors(['error' => 'Please enter right values :)']);
-        }
+        $validatedData = Validator::make(
+            [
+                'table' => $table,
+                'type' => $type,
+                'dataset' => $dataset
+            ],
+            [
+                'table' => 'required',
+                'type' => 'required',
+                'dataset' => 'required'
+            ]
+        )->validate();
         $schedulesIndexes = DB::table($table)
             ->select('schedule_no as x')
             ->where('dataset_name', $dataset)
@@ -218,9 +261,18 @@ class StatController extends Controller
 
     public function schedulesStatUtil($table, $type, $dataset)
     {
-        if (!isset($table) || !isset($type) || !isset($dataset)) {
-            return redirect()->back()->withErrors(['error' => 'Please enter right values :)']);
-        }
+        $validatedData = Validator::make(
+            [
+                'table' => $table,
+                'type' => $type,
+                'dataset' => $dataset
+            ],
+            [
+                'table' => 'required',
+                'type' => 'required',
+                'dataset' => 'required'
+            ]
+        )->validate();
         $schedulesIndexes = DB::table($table)
             ->select('schedule_no as x')
             ->where('dataset_name', $dataset)
@@ -290,9 +342,18 @@ class StatController extends Controller
 
     public function schedulesStatTrips($table, $type, $dataset)
     {
-        if (!isset($table) || !isset($type) || !isset($dataset)) {
-            return redirect()->back()->withErrors(['error' => 'Please enter right values :)']);
-        }
+        $validatedData = Validator::make(
+            [
+                'table' => $table,
+                'type' => $type,
+                'dataset' => $dataset
+            ],
+            [
+                'table' => 'required',
+                'type' => 'required',
+                'dataset' => 'required'
+            ]
+        )->validate();
         $schedulesIndexes = DB::table($table)
             ->select('schedule_no as x')
             ->where('dataset_name', $dataset)
@@ -334,9 +395,18 @@ class StatController extends Controller
 
     public function chargersStatIntLengthSelection($table, $type, $dataset)
     {
-        if (!isset($table) || !isset($type) || !isset($dataset)) {
-            return redirect()->back()->withErrors(['error' => 'Please enter right values :)']);
-        }
+        $validatedData = Validator::make(
+            [
+                'table' => $table,
+                'type' => $type,
+                'dataset' => $dataset
+            ],
+            [
+                'table' => 'required',
+                'type' => 'required',
+                'dataset' => 'required'
+            ]
+        )->validate();
         $type = 'chargers-stat-interval-length';
         return view('statsIntervalSelection', compact('table', 'type', 'dataset'));
     }
@@ -352,9 +422,18 @@ class StatController extends Controller
 
     public function chargersStatIntLength($table, $type, $dataset, Request $request)
     {
-        if (!isset($table) || !isset($type) || !isset($dataset)) {
-            return redirect()->back()->withErrors(['error' => 'Please enter a name.']);
-        }
+        $validatedData = Validator::make(
+            [
+                'table' => $table,
+                'type' => $type,
+                'dataset' => $dataset
+            ],
+            [
+                'table' => 'required',
+                'type' => 'required',
+                'dataset' => 'required'
+            ]
+        )->validate();
 
         $validatedData = $request->validate([
             'interval1' => 'required',
@@ -506,9 +585,18 @@ class StatController extends Controller
 
     public function chargersStatIntCount($table, $type, $dataset, Request $request)
     {
-        if (!isset($table) || !isset($type) || !isset($dataset)) {
-            return redirect()->back()->withErrors(['error' => 'Please enter right values :)']);
-        }
+        $validatedData = Validator::make(
+            [
+                'table' => $table,
+                'type' => $type,
+                'dataset' => $dataset
+            ],
+            [
+                'table' => 'required',
+                'type' => 'required',
+                'dataset' => 'required'
+            ]
+        )->validate();
         $validatedData = $request->validate([
             'interval1' => 'required',
             'interval2' => 'required',
