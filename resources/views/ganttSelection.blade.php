@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('pageTitle', 'schedule_selection')
+@section('pageTitle', 'Výber dát')
 @section('content')
     <style>
         body {
@@ -96,11 +96,11 @@
                                         <option>{{$item->id}}</option>
                                     @endforeach
                                 </select>
-                                <label for="inputCategorySchedule"><strong>Vyberte typ akcie</strong></label>
-                                <select id="inputCategorySchedule" class="form-control" name="type">
-                                    <option value="" selected>BOTH</option>
+                                <label for="inputCategory"><strong>Vyberte typ akcie</strong></label>
+                                <select id="inputCategory" class="form-control" name="type">
+                                    <option value="BOTH" selected>BOTH</option>
                                     @foreach($categories as $category)
-                                        <option>{{$category->type}}</option>
+                                        <option value="{{$category->type}}">{{$category->type}}</option>
                                     @endforeach
                                 </select>
                                 <div class="form group">

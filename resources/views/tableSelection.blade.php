@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('pageTitle', 'vyber tabulky')
+@section('pageTitle', 'Výber dát')
 @section('content')
 
     <style>

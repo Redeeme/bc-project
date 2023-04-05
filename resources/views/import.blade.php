@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('pageTitle', 'Vyber Linky')
+@section('pageTitle', 'Import dát')
 @section('content')
 
     <style>
@@ -27,7 +27,7 @@
                             <fieldset>
                                 <div class="form-group">
                                     <label>Vyberte súbor na nahratie <small
-                                            class="warning text-muted">{{__('Prosím, nahrávajte len súbory typu Excel (.xlsx alebo .xls).')}}</small></label>
+                                            class="warning text-muted">{{__('Prosím, nahrávajte len súbory typu Excel (.xlsx, .xls alebo txt).')}}</small></label>
                                     <input type="file" required class="form-control" name="uploaded_file" id="uploaded_file">
                                     @if ($errors->has('uploaded_file'))
                                         <p class="text-right mb-0">

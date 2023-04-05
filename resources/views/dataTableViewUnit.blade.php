@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('pageTitle', 'dataTableViewUnit')
+@section('pageTitle', 'Zobrazenie dát')
 @section('content')
 
     <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>

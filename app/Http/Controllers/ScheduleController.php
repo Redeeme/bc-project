@@ -104,24 +104,24 @@ class ScheduleController extends Controller
 
         $stats = [];
         $stats[] = [
-            'name' => 'chargingTime',
-            'stat' => $chargingTime,
+            'name' => 'Doba nabíjania',
+            'stat' => $chargingTime." minút",
         ];
         $stats[] = [
-            'name' => 'tripTime',
-            'stat' => $tripTime,
+            'name' => 'Čas na spojoch',
+            'stat' => $tripTime." minút",
         ];
         $stats[] = [
-            'name' => 'overallTime',
-            'stat' => $overallTime,
+            'name' => 'Celkový čas',
+            'stat' => $overallTime." minút",
         ];
         $stats[] = [
-            'name' => 'energyRecharged',
-            'stat' => $energyRecharged,
+            'name' => 'Nabité množstvo energie',
+            'stat' => $energyRecharged." Kilowatthodin",
         ];
         $stats[] = [
-            'name' => 'energySpent',
-            'stat' => $energySpent,
+            'name' => 'Spotrebované množstvo energie',
+            'stat' => $energySpent." Kilowatthodin",
         ];
         //return response()->json(array('1'=>$stats,'2'=>$tripTime,'3'=>$overallTime,'4'=>$energyRecharged,'5'=>$energySpent));
         return view('ganttStats', [

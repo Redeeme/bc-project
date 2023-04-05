@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('pageTitle', 'statsViewUnit')
+@section('pageTitle', 'Zobrazenie štatistík')
 @section('content')
 
     @if(isset($tourFlag))

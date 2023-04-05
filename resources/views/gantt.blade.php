@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('pageTitle', 'gantt')
+@section('pageTitle', 'Ganttov diagram')
 @section('content')
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

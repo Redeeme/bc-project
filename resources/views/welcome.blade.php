@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('pageTitle', 'welcome')
+@section('pageTitle', 'Domov')
 @section('content')
     <style>
         body {
@@ -37,16 +37,14 @@
         }
     </style>
     <div class="header">
-        <h1>Vitajte na našej webovej stránke</h1>
+        <h1>Nástroj na grafické znázornenie turnusov elektrických autobusov</h1>
     </div>
 
     <div class="container">
-        <h2>O nás</h2>
+        <h2>Cieľ</h2>
         <p>
-            Sme vášnivý tím zameraný na poskytovanie najlepšieho zážitku pre našich zákazníkov.
-            Našim cieľom je vytvoriť bezproblémovú online platformu, ktorá uspokojí rôznorodé potreby našich používateľov.
-            S dôrazom na inováciu a spokojnosť používateľov sa neustále snažíme zlepšovať a rozširovať naše služby.
-            Dúfame, že si užijete svoj čas na našej webovej stránke a nájdete všetko, čo potrebujete.
+            Cieľom práce je vytvorenie nástroja na grafické zobrazenie turnusov elektrických vozidiel, ako aj rozvrhov nabíjacích staníc.
+            Nástroj by mal slúžiť na analýzu a prehľadnejšie zobrazenie turnusov elektrických autobusov získaných pri optimalizačných výpočtoch.
         </p>
     </div>
 

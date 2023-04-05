@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('pageTitle', 'schedule_selection')
+@section('pageTitle', 'Prehľad datasetov')
 @section('content')
     <style>
         body {
@@ -74,6 +74,7 @@
                     // Hide the loading spinner on success
                     $('#loading-spinner-wrapper').hide();
                     alert('Migrácia bola úspešne dokončená!');
+                    location.reload(); // Refresh the page
                 },
                 error: function (response) {
                     // Hide the loading spinner on error

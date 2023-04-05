@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('pageTitle', 'schedule_selection')
+@section('pageTitle', 'Výber dát')
 @section('content')
 
 

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('pageTitle', 'grafikonView')
+@section('pageTitle', 'Zobrazenie dát')
 @section('content')
     <div class="container justify-content-center" style="position: relative; height:200vh; width:140vw">
         <canvas id="myChart"></canvas>

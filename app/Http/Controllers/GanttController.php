@@ -108,7 +108,7 @@ class GanttController extends Controller
         }
         $categories = DiagramTime::select('start', 'end', 'label')->where('id', '!=', '1')->get();
         $category = DiagramTime::select('start', 'end', 'label')->where('id', '=', '1')->get();
-        //return response()->json(array('task' => $task, 'processes' => $processes,'chargers'=>$chargers));
+        //return response()->json(array('processes' => $processes, 'task' => $task, 'categories' => $categories, 'category' => $category, 'tour' => $schedule, 'scheduleFlag' => $schedule, 'type' => $type, 'dataset' => $dataset, 'name' => 'schedules', 'chargers' => $chargers));
 
 
         return view('gantt', ['processes' => $processes, 'task' => $task, 'categories' => $categories, 'category' => $category, 'tour' => $schedule, 'scheduleFlag' => $schedule, 'type' => $type, 'dataset' => $dataset, 'name' => 'schedules', 'chargers' => $chargers]);
