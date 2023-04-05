@@ -13,8 +13,10 @@
           integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0-alpha1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/css/bootstrap-select.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/css/bootstrap-select.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 
     <style type="text/css">
         html, body {
@@ -23,6 +25,7 @@
             margin: 0px;
             overflow: hidden;
         }
+
         .containerFooter {
             text-align: center;
             color: white;
@@ -38,29 +41,59 @@
             align-items: center;
             margin-top: auto;
         }
+
         .footerText {
             color: white;
             font-size: clamp(1rem, 2.5vw, 2rem);
             width: 50%;
         }
+
         .bottom-right {
             position: static;
             bottom: 8px;
             right: 16px;
             color: black;
         }
-         .black-text {
-             color: black!important;
-         }
+
+        .black-text {
+            color: black !important;
+        }
+
+        #loading-spinner-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 9999;
+        }
+
+        #loading-spinner {
+            width: 3rem;
+            height: 3rem;
+        }
+
+        .hidden {
+            display: none;
+        }
     </style>
     <!-- Scripts -->
-    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"
+            integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+            crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0-alpha1/js/bootstrap.bundle.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+            crossorigin="anonymous"></script>
     <script>
         function validateForm(inputCategoryId) {
             const inputCategory = document.getElementById(inputCategoryId);
@@ -100,13 +133,15 @@
                         <a class="nav-link active" aria-current="page" href={{route('welcome-page')}}>Domov</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href={{route('get-datasets')}}>Ganttov diagram</a>
+                        <a class="nav-link active" aria-current="page" href={{route('get-datasets')}}>Ganttov
+                            diagram</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href={{route('select-table-view')}}>Dáta</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle black-text" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle black-text" href="#" id="navbarDropdown" role="button"
+                           data-bs-toggle="dropdown" aria-expanded="false">
                             Grafikon
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -114,7 +149,8 @@
                                 <a class="dropdown-item" href={{route('select-schedule-grafikon')}}>Grafikon 1</a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href={{route('select-schedule-stations-grafikon')}}>Grafikon 2</a>
+                                <a class="dropdown-item" href={{route('select-schedule-stations-grafikon')}}>Grafikon
+                                    2</a>
                             </li>
                         </ul>
                     </li>
@@ -141,7 +177,8 @@
 <div class="containerFooter">
     <div class="footerText">
         <h6>
-            Tento footer obsahuje odkazy na sociálne siete, kontaktné údaje spoločnosti a informácie o autorských právach.
+            Tento footer obsahuje odkazy na sociálne siete, kontaktné údaje spoločnosti a informácie o autorských
+            právach.
         </h6>
     </div>
     <div class="bottom-right">

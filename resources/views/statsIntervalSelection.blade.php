@@ -104,10 +104,4 @@
             });
         });
     </script>
-
-
-
-
-
-
 @endsection
