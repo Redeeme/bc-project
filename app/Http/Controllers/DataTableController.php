@@ -26,11 +26,19 @@ class DataTableController extends Controller
     public function getData(Request $request)
     {
         if ($request->data != null) {
+            $validatedData = $request->validate([
+                'dataset' => 'required',
+                'data' => 'required',
+                'name' => 'required',
+            ]);
+            $id = $validatedData['data'];
+            $dataset = $validatedData['dataset'];
+            $name = $validatedData['name'];
             //return response()->json(['id' => $request->data,'dataset' => $request->dataset,'name' => $request->name,'type' => $request->type]);
-            return match ($request->name) {
-                'charger_tasks' => redirect()->route('page-data-table-charger-task-unit', ['id' => $request->data, 'dataset' => $request->dataset, 'name' => $request->name]),
-                'schedules' => redirect()->route('page-data-table-schedule-unit', ['id' => $request->data, 'dataset' => $request->dataset, 'name' => $request->name, 'type' => $request->type]),
-                'tasks' => redirect()->route('page-data-table-task-unit', ['id' => $request->data, 'dataset' => $request->dataset, 'name' => $request->name]),
+            return match ($name) {
+                'charger_tasks' => redirect()->route('page-data-table-charger-task-unit', ['id' => $id, 'dataset' => $dataset, 'name' => $name]),
+                'schedules' => redirect()->route('page-data-table-schedule-unit', ['id' => $id, 'dataset' => $dataset, 'name' => $name, 'type' => $request->type]),
+                'tasks' => redirect()->route('page-data-table-task-unit', ['id' => $id, 'dataset' => $dataset, 'name' => $name]),
                 default => redirect()->route('welcome-page'),
             };
         } else {

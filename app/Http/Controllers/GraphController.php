@@ -10,10 +10,14 @@ class GraphController extends Controller
 
     public function schedulesGraph(Request $request)
     {
-
-        $schedul = $request->schedule;
-        $dataset = $request->dataset;
-        $type = $request->type;
+        $validatedData = $request->validate([
+            'schedule' => 'required',
+            'dataset' => 'required',
+            'type' => 'required',
+        ]);
+        $schedul = $validatedData['schedule'];
+        $dataset = $validatedData['dataset'];
+        $type = $validatedData['type'];
 
         $data = [sizeof($schedul)];
         for ($j = 0; $j <= sizeof($schedul) - 1; $j++) {

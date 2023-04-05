@@ -14,6 +14,9 @@ class ChargerTaskController extends Controller
 
     public function getCharger($dataset)
     {
+        if (!isset($dataset)) {
+            return redirect()->back()->withErrors(['error' => 'Please enter right values :)']);
+        }
         $charger = DB::table('charger_tasks')
             ->select('charger_id AS id')
             ->where('dataset_name', $dataset)
@@ -28,9 +31,14 @@ class ChargerTaskController extends Controller
 
     public function chargerStats(Request $request)
     {
-        $dataset = $request->dataset;
-        $name = $request->name;
-        $chargerFlag = $request->data;
+        $validatedData = $request->validate([
+            'dataset' => 'required',
+            'name' => 'required',
+            'data' => 'required',
+        ]);
+        $dataset = $validatedData->dataset;
+        $name = $validatedData->name;
+        $chargerFlag = $validatedData->data;
         return view('ganttStats', [
             'chargerFlag' => $chargerFlag,
             'dataset' => $dataset,

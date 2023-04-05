@@ -15,6 +15,9 @@ class TaskController extends Controller
 
     public function getTour($dataset)
     {
+        if (!isset($dataset)) {
+            return redirect()->back()->withErrors(['error' => 'Please enter right values :)']);
+        }
         $tour = DB::table('tasks')
             ->select('linka AS id')
             ->where('dataset_name', $dataset)
@@ -29,10 +32,16 @@ class TaskController extends Controller
 
     public function tourStats(Request $request)
     {
+        $validatedData = $request->validate([
+            'dataset' => 'required',
+            'name' => 'required',
+            'data' => 'required'
+        ]);
 
-        $dataset = $request->dataset;
-        $name = $request->name;
-        $tourflag = $request->data;
+        $dataset = $validatedData['dataset'];
+        $name = $validatedData['name'];
+        $tourflag = $validatedData['data'];
+
         return view('ganttStats', [
             'tourFlag' => $tourflag,
             'dataset' => $dataset,

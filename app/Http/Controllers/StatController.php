@@ -17,7 +17,9 @@ class StatController extends Controller
 
     public function indexDatasetSelection($type, $table)
     {
-
+        if (!isset($table) || !isset($type)) {
+            return redirect()->back()->withErrors(['error' => 'Please enter right values :)']);
+        }
         if ($table == 'schedules-stat-batery') {
             return redirect()->route('select-schedules-graph-datasets');
         }
@@ -46,21 +48,30 @@ class StatController extends Controller
 
     public function getStat($type, $table, Request $request)
     {
-
+        if (!isset($table) || !isset($type)) {
+            return redirect()->back()->withErrors(['error' => 'Please enter right values :)']);
+        }
+        $validatedData = $request->validate([
+            'data' => 'required',
+        ]);
+        $dataset = $validatedData['data'];
         return match ($type) {
-            'chargers-stat-utilization' => redirect()->route('chargers-stat-utilization', ['type' => $type, 'dataset' => $request->data, 'table' => $table]),
-            'schedules-stat-clip' => redirect()->route('schedules-stat-clip', ['type' => $type, 'dataset' => $request->data, 'table' => $table]),
-            'schedules-stat-charging' => redirect()->route('schedules-stat-charging', ['type' => $type, 'dataset' => $request->data, 'table' => $table]),
-            'schedules-stat-utilization' => redirect()->route('schedules-stat-utilization', ['type' => $type, 'dataset' => $request->data, 'table' => $table]),
-            'schedules-stat-trips' => redirect()->route('schedules-stat-trips', ['type' => $type, 'dataset' => $request->data, 'table' => $table]),
-            'chargers-stat-interval-length-Selection' => redirect()->route('chargers-stat-interval-length-Selection', ['type' => $type, 'dataset' => $request->data, 'table' => $table]),
-            'chargers-stat-interval-count-Selection' => redirect()->route('chargers-stat-interval-count-Selection', ['type' => $type, 'dataset' => $request->data, 'table' => $table]),
+            'chargers-stat-utilization' => redirect()->route('chargers-stat-utilization', ['type' => $type, 'dataset' => $dataset, 'table' => $table]),
+            'schedules-stat-clip' => redirect()->route('schedules-stat-clip', ['type' => $type, 'dataset' => $dataset, 'table' => $table]),
+            'schedules-stat-charging' => redirect()->route('schedules-stat-charging', ['type' => $type, 'dataset' => $dataset, 'table' => $table]),
+            'schedules-stat-utilization' => redirect()->route('schedules-stat-utilization', ['type' => $type, 'dataset' => $dataset, 'table' => $table]),
+            'schedules-stat-trips' => redirect()->route('schedules-stat-trips', ['type' => $type, 'dataset' => $dataset, 'table' => $table]),
+            'chargers-stat-interval-length-Selection' => redirect()->route('chargers-stat-interval-length-Selection', ['type' => $type, 'dataset' => $dataset, 'table' => $table]),
+            'chargers-stat-interval-count-Selection' => redirect()->route('chargers-stat-interval-count-Selection', ['type' => $type, 'dataset' => $dataset, 'table' => $table]),
             default => redirect()->route('welcome-page'),
         };
     }
 
     public function chargersStatUtil($table, $type, $dataset)
     {
+        if (!isset($table) || !isset($type) || !isset($dataset)) {
+            return redirect()->back()->withErrors(['error' => 'Please enter right values :)']);
+        }
         $chargersIndexes = DB::table($table)
             ->select('charger_id as x')
             ->where('dataset_name', $dataset)
@@ -109,6 +120,9 @@ class StatController extends Controller
 
     public function schedulesStatClip($table, $type, $dataset)
     {
+        if (!isset($table) || !isset($type) || !isset($dataset)) {
+            return redirect()->back()->withErrors(['error' => 'Please enter right values :)']);
+        }
         $schedulesIndexes = DB::table($table)
             ->select('schedule_no as x')
             ->where('dataset_name', $dataset)
@@ -150,6 +164,9 @@ class StatController extends Controller
 
     public function schedulesStatCharging($table, $type, $dataset)
     {
+        if (!isset($table) || !isset($type) || !isset($dataset)) {
+            return redirect()->back()->withErrors(['error' => 'Please enter right values :)']);
+        }
         $schedulesIndexes = DB::table($table)
             ->select('schedule_no as x')
             ->where('dataset_name', $dataset)
@@ -201,6 +218,9 @@ class StatController extends Controller
 
     public function schedulesStatUtil($table, $type, $dataset)
     {
+        if (!isset($table) || !isset($type) || !isset($dataset)) {
+            return redirect()->back()->withErrors(['error' => 'Please enter right values :)']);
+        }
         $schedulesIndexes = DB::table($table)
             ->select('schedule_no as x')
             ->where('dataset_name', $dataset)
@@ -249,6 +269,7 @@ class StatController extends Controller
         $x = $schedulesIndexes;
         $y = $data1;
         $yy = $data2;
+
         $label = DB::table('stats')
             ->select('x_label')
             ->where('type', $type)
@@ -264,11 +285,14 @@ class StatController extends Controller
             ->where('type', $type)
             ->get();
         $name = $label[0]->name;
-        return view('statsHistogram', compact('y', 'x', 'type','x_label','y_label','name'));
+        return view('statsDoubleHistogram', compact('y', 'x','yy', 'type','x_label','y_label','name'));
     }
 
     public function schedulesStatTrips($table, $type, $dataset)
     {
+        if (!isset($table) || !isset($type) || !isset($dataset)) {
+            return redirect()->back()->withErrors(['error' => 'Please enter right values :)']);
+        }
         $schedulesIndexes = DB::table($table)
             ->select('schedule_no as x')
             ->where('dataset_name', $dataset)
@@ -310,47 +334,67 @@ class StatController extends Controller
 
     public function chargersStatIntLengthSelection($table, $type, $dataset)
     {
+        if (!isset($table) || !isset($type) || !isset($dataset)) {
+            return redirect()->back()->withErrors(['error' => 'Please enter right values :)']);
+        }
         $type = 'chargers-stat-interval-length';
         return view('statsIntervalSelection', compact('table', 'type', 'dataset'));
     }
 
     public function chargersStatIntCountSelection($table, $type, $dataset)
     {
+        if (!isset($table) || !isset($type) || !isset($dataset)) {
+            return redirect()->back()->withErrors(['error' => 'Please enter a name.']);
+        }
         $type = 'chargers-stat-interval-count';
         return view('statsIntervalSelection', compact('table', 'type', 'dataset'));
     }
 
     public function chargersStatIntLength($table, $type, $dataset, Request $request)
     {
+        if (!isset($table) || !isset($type) || !isset($dataset)) {
+            return redirect()->back()->withErrors(['error' => 'Please enter a name.']);
+        }
+
+        $validatedData = $request->validate([
+            'interval1' => 'required',
+            'interval2' => 'required',
+            'interval3' => 'required',
+            'interval4' => 'required',
+            'interval5' => 'required',
+            'interval6' => 'required',
+            'interval7' => 'required',
+            'interval8' => 'required',
+        ]);
         $chargersIndexes = DB::table($table)
             ->select('charger_id as x')
             ->where('dataset_name', $dataset)
             ->distinct()
             ->get();
 
-        $data1 = $request->interval1;
-        $data2 = $request->interval5;
+        $data1 = $validatedData['interval1'];
+        $data2 = $validatedData['interval5'];
         $start_time1 = strtotime($data1);
         $end_time1 = strtotime($data2);
         $start_minutes1 = date('i', $start_time1) + date('G', $start_time1) * 60;
         $end_minutes1 = date('i', $end_time1) + date('G', $end_time1) * 60;
 
-        $data3 = $request->interval2;
-        $data4 = $request->interval6;
+        $data3 =$validatedData['interval2'];
+        $data4 = $validatedData['interval6'];
         $start_time2 = strtotime($data3);
         $end_time2 = strtotime($data4);
         $start_minutes2 = date('i', $start_time2) + date('G', $start_time2) * 60;
         $end_minutes2 = date('i', $end_time2) + date('G', $end_time2) * 60;
 
-        $data5 = $request->interval3;
-        $data6 = $request->interval7;
+        $data5 = $validatedData['interval3'];
+        $data6 = $validatedData['interval7'];
         $start_time3 = strtotime($data5);
         $end_time3 = strtotime($data6);
         $start_minutes3 = date('i', $start_time3) + date('G', $start_time3) * 60;
         $end_minutes3 = date('i', $end_time3) + date('G', $end_time3) * 60;
 
-        $data7 = $request->interval4;
-        $data8 = $request->interval8;
+        $data7 = $validatedData['interval4'];
+        $data8 = $validatedData['interval8'];
         $start_time4 = strtotime($data7);
         $end_time4 = strtotime($data8);
         $start_minutes4 = date('i', $start_time4) + date('G', $start_time4) * 60;
@@ -462,35 +506,48 @@ class StatController extends Controller
 
     public function chargersStatIntCount($table, $type, $dataset, Request $request)
     {
+        if (!isset($table) || !isset($type) || !isset($dataset)) {
+            return redirect()->back()->withErrors(['error' => 'Please enter right values :)']);
+        }
+        $validatedData = $request->validate([
+            'interval1' => 'required',
+            'interval2' => 'required',
+            'interval3' => 'required',
+            'interval4' => 'required',
+            'interval5' => 'required',
+            'interval6' => 'required',
+            'interval7' => 'required',
+            'interval8' => 'required',
+        ]);
         $chargersIndexes = DB::table('charger_tasks')
             ->select('charger_id as x')
             ->where('dataset_name', 'ChEvents_DS10_1.csv')
             ->distinct()
             ->get();
 
-        $data1 = $request->interval1;
-        $data2 = $request->interval5;
+        $data1 = $validatedData['interval1'];
+        $data2 = $validatedData['interval5'];
         $start_time1 = strtotime($data1);
         $end_time1 = strtotime($data2);
         $start_minutes1 = date('i', $start_time1) + date('G', $start_time1) * 60;
         $end_minutes1 = date('i', $end_time1) + date('G', $end_time1) * 60;
 
-        $data3 = $request->interval2;
-        $data4 = $request->interval6;
+        $data3 = $validatedData['interval2'];
+        $data4 = $validatedData['interval6'];
         $start_time2 = strtotime($data3);
         $end_time2 = strtotime($data4);
         $start_minutes2 = date('i', $start_time2) + date('G', $start_time2) * 60;
         $end_minutes2 = date('i', $end_time2) + date('G', $end_time2) * 60;
 
-        $data5 = $request->interval3;
-        $data6 = $request->interval7;
+        $data5 = $validatedData['interval3'];
+        $data6 = $validatedData['interval7'];
         $start_time3 = strtotime($data5);
         $end_time3 = strtotime($data6);
         $start_minutes3 = date('i', $start_time3) + date('G', $start_time3) * 60;
         $end_minutes3 = date('i', $end_time3) + date('G', $end_time3) * 60;
 
-        $data7 = $request->interval4;
-        $data8 = $request->interval8;
+        $data7 = $validatedData['interval4'];
+        $data8 = $validatedData['interval8'];
         $start_time4 = strtotime($data7);
         $end_time4 = strtotime($data8);
         $start_minutes4 = date('i', $start_time4) + date('G', $start_time4) * 60;

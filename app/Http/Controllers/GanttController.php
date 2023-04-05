@@ -22,8 +22,12 @@ class GanttController extends Controller
 //spoj_id -> processid
     public function tourGantt(Request $request)
     {
-        $tour = $request->data;
-        $dataset = $request->dataset;
+        $validatedData = $request->validate([
+            'dataset' => 'required',
+            'data' => 'required',
+        ]);
+        $tour = $validatedData['data'];
+        $dataset = $validatedData['dataset'];
         $processes = Task::select('processid AS label', 'processid AS id')->where('linka', $tour)->where('dataset_name', $dataset)->get();
         $data = Task::select('*')->where('linka', $tour)->where('dataset_name', $dataset)->get();
         $task = [];
@@ -49,8 +53,12 @@ class GanttController extends Controller
 
     public function chargerGantt(Request $request)
     {
-        $tour = $request->data;
-        $dataset = $request->dataset;
+        $validatedData = $request->validate([
+            'dataset' => 'required',
+            'data' => 'required',
+        ]);
+        $tour = $validatedData['data'];
+        $dataset = $validatedData['dataset'];
 
         $chargers = Charger::select('*')->get();
         $processes = ChargerTask::select('process_id AS label', 'process_id AS id')->where('charger_id', $tour)->where('dataset_name', $dataset)->get();
@@ -63,10 +71,15 @@ class GanttController extends Controller
 
     public function scheduleGantt(Request $request)
     {
+        $validatedData = $request->validate([
+            'dataset' => 'required',
+            'data' => 'required',
+            'type' => 'required',
+        ]);
+        $schedule = $validatedData['data'];
+        $dataset = $validatedData['dataset'];
+        $type = $validatedData['type'];
 
-        $schedule = $request->data;
-        $type = $request->type;
-        $dataset = $request->dataset;
         $chargers = Charger::select('*')->get();
         if ($type == "CHARGER" && $type != null) {
             $processes = Schedule::select('schedule_index AS label', 'schedule_index AS id',)->where('schedule_no', $schedule)->where('type', $type)->where('dataset_name', $dataset)->get();

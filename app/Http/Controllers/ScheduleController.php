@@ -16,6 +16,9 @@ class ScheduleController extends Controller
 
     public function getSchedule($dataset)
     {
+        if (!isset($dataset)) {
+            return redirect()->back()->withErrors(['error' => 'Please enter right values :)']);
+        }
         $schedule = DB::table('schedules')
             ->select('schedule_no AS id')
             ->where('dataset_name', $dataset)
@@ -31,6 +34,9 @@ class ScheduleController extends Controller
 
     public function schedulesSelectGraph($dataset)
     {
+        if (!isset($dataset)) {
+            return redirect()->back()->withErrors(['error' => 'Please enter right values :)']);
+        }
         $schedules = DB::table('schedules')
             ->select('schedule_no')
             ->where('dataset_name', $dataset)
@@ -45,7 +51,7 @@ class ScheduleController extends Controller
         return view('scheduleSelectionGraph', ['schedules' => $schedules, 'categories' => $categories, 'dataset' => $dataset]);
     }
 
-    public function getScheduleTable(Request $request)
+    public function getScheduleTable()
     {
         $schedule = DB::table('schedules')
             ->select('schedule_no AS id')
@@ -59,7 +65,7 @@ class ScheduleController extends Controller
         return view('ganttSelection', ['schedule' => $schedule, 'categories' => $categories]);
     }
 
-    public function getScheduleGantt(Request $request)
+    public function getScheduleGantt()
     {
         $schedule = DB::table('schedules')
             ->select('schedule_no AS id')
@@ -73,7 +79,7 @@ class ScheduleController extends Controller
         return view('ganttSelection', ['schedule' => $schedule, 'categories' => $categories]);
     }
 
-    public function getScheduleStats(Request $request)
+    public function getScheduleStats()
     {
         $schedule = DB::table('schedules')
             ->select('schedule_no AS id')
@@ -89,11 +95,17 @@ class ScheduleController extends Controller
 
     public function scheduleStats(Request $request)
     {
+        $validatedData = $request->validate([
+            'dataset' => 'required',
+            'name' => 'required',
+            'type' => 'required',
+            'data' => 'required'
+        ]);
 
-        $dataset = $request->dataset;
-        $name = $request->name;
-        $scheduleFlag = $request->data;
-        $type = $request->type;
+        $dataset = $validatedData['dataset'];
+        $name = $validatedData['name'];
+        $scheduleFlag = $validatedData['data'];
+        $type = $validatedData['type'];
 
         $chargingTime = $this->timeSpent('CHARGER', $dataset, $name, $scheduleFlag);
         $tripTime = $this->timeSpent('TRIP', $dataset, $name, $scheduleFlag);
@@ -135,6 +147,9 @@ class ScheduleController extends Controller
 
     public function timeSpent(string $type, string $dataset, string $name, string $scheduleFlag)
     {
+        if (!isset($scheduleFlag) || !isset($name) || !isset($dataset)|| !isset($type)) {
+            return redirect()->back()->withErrors(['error' => 'Please enter right values :)']);
+        }
         $times = DB::table('schedules')
             ->select('start', 'end')
             ->where('schedule_no', $scheduleFlag)
@@ -160,6 +175,9 @@ class ScheduleController extends Controller
 
     public function energyRecharged(string $dataset, string $name, string $scheduleFlag)
     {
+        if (!isset($scheduleFlag) || !isset($name) || !isset($dataset)) {
+            return redirect()->back()->withErrors(['error' => 'Please enter right values :)']);
+        }
         $energies = DB::table('schedules')
             ->select('energy_before', 'energy_after')
             ->where('schedule_no', $scheduleFlag)
@@ -183,6 +201,9 @@ class ScheduleController extends Controller
 
     public function energySpent(string $dataset, string $name, string $scheduleFlag)
     {
+        if (!isset($scheduleFlag) || !isset($name) || !isset($dataset)) {
+            return redirect()->back()->withErrors(['error' => 'Please enter right values :)']);
+        }
         $energies = DB::table('schedules')
             ->select('energy_before', 'energy_after')
             ->where('schedule_no', $scheduleFlag)

@@ -23,7 +23,11 @@ class HelpController extends Controller
 
     public function getDataset(Request $request)
     {
-        $dataset = $request->dataset;
+        $validatedData = $request->validate([
+            'dataset' => 'required',
+        ]);
+        $dataset = $validatedData['dataset'];
+
         $tableName = DB::table('helpers')
             ->select('dataset_table')
             ->where('dataset_name', $dataset)
@@ -52,7 +56,10 @@ class HelpController extends Controller
 
     public function getSchedulesDataset(Request $request)
     {
-        $dataset = $request->dataset;
+        $validatedData = $request->validate([
+            'dataset' => 'required',
+        ]);
+        $dataset = $validatedData['dataset'];
         return redirect()->route('select-schedules-graph', ['dataset' => $dataset]);
     }
 
@@ -69,6 +76,9 @@ class HelpController extends Controller
 
     public function deleteDataset($id, $table)
     {
+        if (!isset($id) || !isset($table)) {
+            return redirect()->back()->withErrors(['error' => 'Please enter right values :)']);
+        }
         $dataset = Helper::find($id);
 
         if (!$dataset) {

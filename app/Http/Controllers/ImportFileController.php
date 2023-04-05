@@ -24,6 +24,13 @@ class ImportFileController extends Controller
 
     public function importData(Request $request)
     {
+        $validatedData = $request->validate([
+            'table_name' => 'required',
+            'uploaded_file' => 'required|file|max:10240', // 10MB maximum size
+        ]);
+        $table_name = $validatedData['table_name'];
+
+
         $datasets = DB::table('helpers')
             ->select('dataset_name')
             ->distinct()
@@ -34,7 +41,7 @@ class ImportFileController extends Controller
             //return response()->json(['comment' => $request->comment, 'file' => $request->file('uploaded_file')->getClientOriginalName(), 'table_name' => $request->table_name]);
 
             $the_file = $request->file('uploaded_file');
-            if ($request->table_name == 'tasks') {
+            if ($table_name == 'tasks') {
                 try {
                     $spreadsheet = IOFactory::load($the_file->getRealPath());
                     $sheet = $spreadsheet->getActiveSheet();
@@ -87,7 +94,7 @@ class ImportFileController extends Controller
                     return back()->withErrors('There was a problem uploading the data!');
                 }
                 return back()->withSuccess('Great! Data has been successfully uploaded.');
-            } elseif ($request->table_name == 'schedules') {
+            } elseif ($table_name == 'schedules') {
                 try {
 
                     $spreadsheet = IOFactory::load($the_file->getRealPath());
@@ -170,7 +177,7 @@ class ImportFileController extends Controller
                     return back()->withErrors('There was a problem uploading the data!');
                 }
                 return back()->withSuccess('Great! Data has been successfully uploaded.');
-            } elseif ($request->table_name == 'charger_tasks') {
+            } elseif ($table_name == 'charger_tasks') {
                 try {
                     $spreadsheet = IOFactory::load($the_file->getRealPath());
                     $sheet = $spreadsheet->getActiveSheet();
